@@ -1,0 +1,30 @@
+# Producer
+input:
+  generate:
+    mapping: |
+      root = {
+        "message": "Hello Toppic from Benthos!",
+        "timestamp": now()
+      }
+    interval: "2s"
+
+pipeline:
+  processors:
+    - dump_log:
+
+# Common config using exchange
+output:
+  label: "Producer_Topic"
+  amqp_0_9:
+    urls:
+      - amqp://guest:guest@host.docker.internal:5672/
+    exchange: "test.topic"
+    exchange_declare:
+      enabled: true # ให้สร้าง exchange
+      type: topic # type เป็น topic
+      durable: true
+    key: "thai.hello"
+    type: "topic"
+    metadata:
+      exclude_prefixes: []
+    max_in_flight: 64

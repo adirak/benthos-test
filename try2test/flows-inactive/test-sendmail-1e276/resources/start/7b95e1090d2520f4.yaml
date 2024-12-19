@@ -1,0 +1,36 @@
+processor_resources:
+  - label: 4524f6582f81e276_7b95e1090d2520f4
+    branch:
+      request_map: |
+        meta nodeId = "7b95e1090d2520f4"
+        meta nodeType = "start"
+        meta scopeType = "mainFlow"
+        meta scopeId = "4524f6582f81e276"
+        meta processInfo = "Success"
+
+        let filter = model2json("4524f6582f81e276_in")
+        let data = this.json_filter($filter).catch(err -> {"_error":err})
+        meta error_message = $data._error
+        root = if $data._error == null { $data } else { this }
+
+      processors:
+        - switch:
+          - check: meta("error_message") != null
+            processors:
+              - mapping: |
+                  root = {}
+                  meta result_error = true
+                  meta result_status = {"code" : "500", "description" :  meta("error_message"), "source" : {"scopeType": "mainFlow", "scopeId": "4524f6582f81e276", "nodeType" : "start", "nodeId" : "7b95e1090d2520f4" }}
+                  meta processInfo = meta("error_message")
+          - processors:
+              - mapping: |
+                  root = this
+      result_map: |
+        root = this
+        let error = if meta("result_error") == true { meta("result_status") } else { null }
+        meta result_status = if $error != null { $error }
+        meta goto_label = match {
+          $error == nil => "this.4524f6582f81e276_344ff1dfc091f404",
+            
+          $error != nil => "this.exception"
+        }

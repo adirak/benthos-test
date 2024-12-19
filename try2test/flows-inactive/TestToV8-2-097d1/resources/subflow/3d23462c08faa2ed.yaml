@@ -1,0 +1,68 @@
+processor_resources:
+  - label: "{package}_3d23462c08faa2ed"
+    hp_function:
+      name: "Test V4 to V8 Sub"
+      input: |-
+        meta 3d23462c08faa2ed_parrent = meta("flowId")
+        meta flowId = "3d23462c08faa2ed"
+        meta subflowId = "3d23462c08faa2ed"
+
+        root = this
+
+      processors:
+        
+        # Node startsub
+        - label: "{package}_197fb2f536ce7e5c"
+          hp_resource:
+            id: "{package}_197fb2f536ce7e5c"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "3d23462c08faa2ed",
+                "nodeId":"197fb2f536ce7e5c",
+                "nodeType":"startsub"
+                
+              }
+            goto_route:
+              success: "this.{package}_a25e4868be279cb2"
+              #failure: "this.{package}_3d23462c08faa2ed_exception"
+              
+        # Node define
+        - label: "{package}_a25e4868be279cb2"
+          hp_resource:
+            id: "{package}_a25e4868be279cb2"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "3d23462c08faa2ed",
+                "nodeId":"a25e4868be279cb2",
+                "nodeType":"define"
+                
+              }
+            goto_route:
+              success: "this.{package}_976943d26274abea"
+              #failure: "this.{package}_3d23462c08faa2ed_exception"
+              
+        # Node endsub
+        - label: "{package}_976943d26274abea"
+          hp_resource:
+            id: "{package}_976943d26274abea"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "3d23462c08faa2ed",
+                "nodeId":"976943d26274abea",
+                "nodeType":"endsub"
+                
+              }
+            goto_route:
+              success: "this.{package}_3d23462c08faa2ed_endnode"
+              
+        # End flow resource
+        - label: "{package}_3d23462c08faa2ed_endnode"
+          noop:
+
+      output: |-
+        meta flowId = metadata("3d23462c08faa2ed_parrent")
+
+        root = this

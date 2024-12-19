@@ -1,0 +1,37 @@
+input:
+  csv:
+    paths:
+      - /data/csv/email.csv
+    delimiter: ";"
+    parse_header_row: false
+    lazy_quotes: false
+    delete_on_finish: false
+    batch_count: 1
+
+pipeline:
+  processors:
+    - mapping: |
+        root = {}
+        root.email = this.index(0)
+        root.id = this.index(1)
+        root.firstName = this.index(2)
+        root.lastName = this.index(3)
+    - dump_log:
+
+# Push to RabbitMQ
+output:
+  label: "Producer_Topic"
+  amqp_0_9:
+    urls:
+      - amqp://guest:guest@host.docker.internal:5672/
+    exchange: "test.csv"
+    exchange_declare:
+      enabled: true # ให้สร้าง exchange
+      type: topic # type เป็น topic
+      durable: true
+    key: "test_csv"
+    type: "topic"
+    metadata:
+      exclude_prefixes: []
+    max_in_flight: 64
+

@@ -1,0 +1,31 @@
+
+processor_resources:
+  - label: "{package}_f78298eae48641a6"
+    branch:
+      request_map: |
+        meta nodeId = "f78298eae48641a6"
+        meta key = this.key.string()
+        
+        root = {}
+        
+      processors:
+       
+
+        # - cache:
+        #     resource: redis_cache
+        #     operator: get
+        #     key: ${! meta("key") }
+        - hp_redis_cmd:
+            profile: test_event
+            command: get
+            args_mapping: root = [meta("key")]
+
+        - mapping: |
+            let data = content().parse_json()
+            let filter = model2json("463af6abb11c4004_f78298eae48641a6_out")
+            root = if $data != nil { $data.json_filter($filter) } else { {} }
+
+
+
+      result_map: |
+        root = root.copy_key(this)

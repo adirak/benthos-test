@@ -1,0 +1,60 @@
+processor_resources:
+  - label: 4524f6582f81e276_060e33dec5db9de1
+    branch:
+      request_map: |
+        meta nodeId = "060e33dec5db9de1"
+        meta nodeType = "sendmail"
+        meta scopeType = "mainFlow"
+        meta scopeId = "4524f6582f81e276"
+        meta processInfo = "Success"
+
+        root = this
+
+
+      processors:
+        - try:
+
+            ### Start Edit >>>>>>>>>>>>>>>>>>>>
+
+            - mapping: |
+                root = this
+                root.host = "smtp.techberry.co.th"
+                root.port = 587
+                root.username = "testhyper@techberry.co.th"
+                root.password = "Sa20vpKw"
+                root.tls = false
+                root.from = "testhyper@techberry.co.th"
+                root.mime = "text/html"
+                root.subject = "Test Send Mail"
+
+
+            - sendmail:
+
+            - mapping: |
+                root.status = "sent"
+
+            ### End Edit <<<<<<<<<<<<<<<<<<<<<  
+
+
+            ### Start Filter Out ###
+            - mapping: |                
+                
+                root = this
+                
+            ### End Filter Out  ###
+
+        - catch:
+          - mapping: |
+              root = {}
+              meta result_error = true
+              meta result_status = {"code" : "500", "description" : error(), "source" : {"scopeType": "mainFlow", "scopeId": "4524f6582f81e276", "nodeType" : "sendmail", "nodeId" : "060e33dec5db9de1" }}
+              meta processInfo = error()
+      result_map: |
+        root = root.copy_key(this)
+        let error = if meta("result_error") == true { meta("result_status") } else { null }
+        meta result_status = if $error != null { $error }
+        meta goto_label = match {
+          $error == nil => "this.4524f6582f81e276_096323a704d7fc33",
+            
+          $error != nil => "this.exception"
+        }

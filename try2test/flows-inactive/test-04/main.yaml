@@ -1,0 +1,17 @@
+input:
+  sequence:
+    inputs:
+      - file:
+          paths: [ /data/csv/foo.csv ]
+          scanner:
+            csv: {}
+      - file:
+          paths: [ /data/csv/bar.csv ]
+          scanner:
+            lines: {}
+
+pipeline:
+  processors:
+    - noop:
+
+output:

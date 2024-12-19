@@ -1,0 +1,6 @@
+processor_resources:
+  - label: "{package}_b49b71e7966ff6a5"
+    hp_transform:
+      statements: |-
+        root = this
+        meta output_channel = "b49b71e7966ff6a5"

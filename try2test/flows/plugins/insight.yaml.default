@@ -1,0 +1,21 @@
+# Config fields, showing default values
+# tracer:
+#    type: "open_telemetry_collector"
+#    open_telemetry_collector:
+#      enabled: true
+#      http: []
+#      grpc: 
+#        - url: <host:port>
+#          secure: false
+#          headers: 
+#            Authorization: "Basic <username:password>"
+#            organization: "<organization>"
+#            stream-name: "default"
+#      tags: {}
+
+tracer:
+  none: {}
+# Config fields, showing default values  
+metrics:
+  none: {}
+  mapping: ""

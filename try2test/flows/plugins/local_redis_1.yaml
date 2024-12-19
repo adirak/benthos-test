@@ -1,0 +1,11 @@
+ cache_plugins:
+  - label: redis_external_cache
+    redis:
+      url: redis://host.docker.internal:6379
+      kind: simple
+      master: ""
+      prefix: ""
+      retries:
+        initial_interval: 500ms
+        max_interval: 1s
+        max_elapsed_time: 5s

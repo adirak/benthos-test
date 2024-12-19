@@ -1,0 +1,1 @@
+{"filterInput":["query_customDate"],"filterOutput":["resultData","resultData.dataList"],"process":[{"__id":"r0","input":["query_customDate"],"output":["resultData.dataList"],"type":"rename_fields"}]}

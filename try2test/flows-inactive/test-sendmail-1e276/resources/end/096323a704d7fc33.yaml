@@ -1,0 +1,29 @@
+processor_resources:
+  - label: 4524f6582f81e276_096323a704d7fc33
+    branch:
+      request_map: |
+        meta nodeId = "096323a704d7fc33"
+        meta nodeType = "end"
+        meta scopeType = "mainFlow"
+        meta scopeId = "4524f6582f81e276"
+        meta processInfo = "Success"
+
+        
+        let filter = model2json("4524f6582f81e276_out")
+        root = this.json_filter($filter).catch(err -> {"_error":err})
+
+      processors:
+        - switch:
+          - check: this._error != null
+            processors:
+              - mapping: |
+                  root = {}
+                  meta result_error = true
+                  meta result_status = {"code" : "500", "description" : this._error, "source" : {"scopeType": "mainFlow", "scopeId": "4524f6582f81e276", "nodeType" : "end", "nodeId" : "096323a704d7fc33" }}
+                  meta processInfo = this._error
+          - processors:
+              - mapping: |
+                  root = this
+      result_map: |
+        root = this
+        meta goto_label = "this.endnode"

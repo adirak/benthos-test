@@ -1,0 +1,29 @@
+input:
+  generate:
+    mapping: |
+      root = {
+        "message": "Hello from Benthos!",
+        "timestamp": now()
+      }
+    interval: "2s"
+
+pipeline:
+  processors:
+    - dump_log:
+
+# Common config using exchange
+output:
+  label: "RabbitMQ_Publisher"
+  amqp_0_9:
+    urls:
+      - amqp://guest:guest@host.docker.internal:5672/
+    exchange: "test.direct"
+    exchange_declare:
+      enabled: true # ให้สร้าง exchange
+      type: direct # type เป็น fanout
+      durable: true
+    key: "hello"
+    type: ""
+    metadata:
+      exclude_prefixes: []
+    max_in_flight: 64

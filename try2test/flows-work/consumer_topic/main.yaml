@@ -1,0 +1,26 @@
+input:
+  label: "Consumer_Topic"
+  amqp_0_9:
+    urls: 
+      - amqp://guest:guest@host.docker.internal:5672/
+    queue: "thai_hello"
+    queue_declare:
+      enabled: true
+      durable: true
+    bindings_declare:
+      - exchange: "test.topic"
+        key: "thai.*"      # รับเฉพาะ key ที่ match กับ thai.*
+    prefetch_count: 10
+    auto_ack: false
+
+pipeline:
+  processors:
+    - dump_log:
+    - sleep:
+        duration: 3s
+
+
+# Config fields, showing default values
+output:
+  label: ""
+  drop: {}

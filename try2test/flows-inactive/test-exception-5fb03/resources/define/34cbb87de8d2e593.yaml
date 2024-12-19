@@ -1,0 +1,17 @@
+
+processor_resources:
+  - label: "{package}_34cbb87de8d2e593"
+    hp_function:
+      input: |-
+        meta nodeId = "34cbb87de8d2e593"
+        meta nodeType = "define"
+        meta scopeType = "mainFlow"
+        meta scopeId = "26a408247035fb03"
+        meta processInfo = "Success"
+        let filter = model2json("26a408247035fb03_34cbb87de8d2e593_in")
+        root = this.json_filter($filter)
+      processors:
+        - noop : 
+            name: "Define"
+      output: |-
+        root = root.copy_key(this)

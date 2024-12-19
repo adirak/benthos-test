@@ -1,0 +1,17 @@
+
+processor_resources:
+  - label: "{package}_a25e4868be279cb2"
+    branch:
+      request_map: |
+        meta nodeId = "a25e4868be279cb2"
+        meta nodeType = "define"
+        meta scopeType = "subFlow"
+        meta scopeId = "3d23462c08faa2ed"
+        meta processInfo = "Success"
+        let filter = model2json("38989d175b6097d1_a25e4868be279cb2_in")
+        root = this.json_filter($filter)
+      processors:
+        - noop : 
+            name: "Define"
+      result_map: |
+        root = root.copy_key(this)

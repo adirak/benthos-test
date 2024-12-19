@@ -1,0 +1,40 @@
+# Producer
+input:
+  generate:
+    mapping: |
+      root = {
+        "A": "A"
+      }
+    interval: "10s"
+
+pipeline:
+  processors:
+
+    - try:
+        - label: "Test Case 1-2"
+          hp_transform:
+            name: "hp_transform"
+            input: |
+              root.B = "B" + 1
+
+            mapping: |
+              root.C = "C"
+
+            result_mode: "void"
+        
+            output: |
+              root.D = "D"
+            
+
+    - catch: 
+        - label: "Error"
+          log:
+            level: "ERROR"
+            message: "Error occurred"
+
+    - dump_log:
+
+# No output
+output:
+  label: ""
+  drop: {}

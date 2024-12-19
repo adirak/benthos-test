@@ -1,0 +1,13 @@
+processor_resources:
+  - label: subc
+    hp_function:
+      # root คือ request ให้ processors
+      input: |-
+        root.b = this.b 
+      processors:
+        - hp_resource:
+            id: ccc
+      # this คือ result ของ processors
+      output: |-
+        root = {}
+        root.c = this.c

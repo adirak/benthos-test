@@ -1,0 +1,21 @@
+# Producer
+input:
+  generate:
+    mapping: |
+      root = {}
+    interval: "30s"
+
+pipeline:
+  processors:
+    - dump_log:
+    - hp_redis_cmd:
+        profile: redis_external_cache
+        command: get
+        args_mapping: root = [ "Test_Key_208124" ]
+        result: root.value = this
+    - dump_log:
+
+# No output
+output:
+  label: ""
+  drop: {}

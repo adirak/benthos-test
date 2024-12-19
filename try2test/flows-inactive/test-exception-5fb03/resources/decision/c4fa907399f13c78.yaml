@@ -1,0 +1,12 @@
+processor_resources:
+  - label: "{package}_c4fa907399f13c78"
+    hp_transform:
+      name: "Decision"
+      statements: |-
+        root = this
+
+        meta result_route = match {
+        input == 1 => "this.{package}_10e964222d4558ea",
+        _ => "this.{package}_5b0ce9d861520a04",
+        }
+

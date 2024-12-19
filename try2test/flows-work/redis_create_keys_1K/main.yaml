@@ -1,0 +1,37 @@
+input:
+  generate:
+    count: 1
+    mapping: |
+      meta counter = 0
+
+pipeline:
+  processors:
+    - dump_log:
+
+    - while:
+        at_least_once: true
+        max_loops: 10000000
+        check: meta("counter") < 1000
+        processors:
+          - mapping: |
+              let counter = meta("counter")
+              root = {}
+              root.key = "Test_Key_" + $counter.string()
+              root.value = $counter.string() + "__XxhD5i4flZVLo2cbqCMqJRjICg1t0mzDLScSjWUGDg2dgwtIn5uEdj3GFDX2jMmHodj5nVurgN9jxeQuF200p8eIVKFd1FPBqdHAdlZp8OYAtjqBe7xDBob8UQXejknX"
+              meta counter = $counter + 1
+          - hp_redis_cmd:
+              profile: redis_external_cache2
+              command: set
+              args_mapping: root = [ this.key.string(), this.value.string() ]
+
+    - mapping: |
+        root = {}
+        root.counter = meta("counter")
+        root.done = true 
+
+    - dump_log:
+
+# No output
+output:
+  label: ""
+  drop: {}

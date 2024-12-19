@@ -1,0 +1,22 @@
+
+processor_resources:
+  - label: "{package}_57d394183bab9722"
+    branch:
+      request_map: |
+        meta nodeId = "57d394183bab9722"
+        meta nodeType = "hyperplugin"
+        meta scopeType = "mainFlow"
+        meta scopeId = "2ae771742cc68cdf"
+        meta processInfo = "Success"
+
+        let filter = model2json("2ae771742cc68cdf_57d394183bab9722_in")
+        root = this.json_filter($filter)
+
+
+      processors:
+          - bloblang: |
+                      root.result = "hello world"
+
+
+      result_map: |
+        root = root.copy_key(this)

@@ -1,0 +1,32 @@
+input:
+  label: "Read SFTP"
+  sftp:
+    address: "naughty_mahavira:22"
+    credentials:
+      username: "admin"
+      password: "admin"
+
+    paths:
+      - "/upload/input/email.csv"
+      - "/upload/input/email.csv"
+
+    delete_on_finish: true # Delete after read
+    codec: "csv" # CSV File Format
+    split: ""
+
+    # Looping Monitoring
+    watcher:
+      enabled: true
+      minimum_age: 10s
+      poll_interval: 10s
+      cache: "defaultCache" # Keep to default cache
+
+pipeline:
+  processors:
+    - dump_log:
+
+output:
+  label: "CSV Output"
+  file:
+    path: /data/test/data.txt
+    codec: lines

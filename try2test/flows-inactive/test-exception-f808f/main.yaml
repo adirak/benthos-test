@@ -1,0 +1,97 @@
+
+input:
+  http_server:
+    timeout: 60s
+    path: "/megw/apis/stream/{service}/{version}/{action}"
+    allowed_verbs:
+      - POST
+      - GET
+
+
+pipeline:
+  processors:
+
+    - mapping: |
+        meta mainFlowId = "517a3654ca3f808f"
+        meta flowId = "517a3654ca3f808f"
+        meta subflowId = "none"
+        meta testId = if meta("X-Trace").or("false") == "true" { if this._hyper_testId != null { this._hyper_testId } else if this.testId != null { this.testId } } else { deleted() }
+        meta username = if meta("X-Trace").or("false") == "true" && this._hyper_username != null { this._hyper_username } else { meta("X-Username").or(deleted()) }
+
+        
+    
+    # Node start
+    - label: "{package}_575cf6f2bb15766d"
+      hp_resource:
+        id: "{package}_575cf6f2bb15766d"
+        goto_route:
+          success: "this.{package}_db042ff9aaec2741"
+          #failure: "this.{package}_exception"
+          
+        metadata: |-
+          {
+            "scopeType": "mainFlow",
+            "scopeId": "517a3654ca3f808f",
+            "nodeId":"575cf6f2bb15766d",
+            "nodeType":"start"
+          }
+    
+    # Node ssqsubflow
+    - label: "{package}_db042ff9aaec2741"
+      hp_resource:
+        id: "{package}_db042ff9aaec2741"
+        goto_route:
+          success: "this.{package}_d3fe2d1e1e5fefcb"
+          #failure: "this.{package}_exception"
+          
+        metadata: |-
+          {
+            "scopeType": "mainFlow",
+            "scopeId": "517a3654ca3f808f",
+            "nodeId":"db042ff9aaec2741",
+            "nodeType":"ssqsubflow"
+          }
+    
+    # Node end
+    - label: "{package}_d3fe2d1e1e5fefcb"
+      hp_resource:
+        id: "{package}_d3fe2d1e1e5fefcb"
+        goto_route:
+          success: "this.{package}_endnode"
+          
+        metadata: |-
+          {
+            "scopeType": "mainFlow",
+            "scopeId": "517a3654ca3f808f",
+            "nodeId":"d3fe2d1e1e5fefcb",
+            "nodeType":"end"
+          }
+    
+    # Exception resources
+    - catch:
+      - hp_transform:
+          statements: |-
+            meta result_status = {"description": error().or(metadata("error_message").or("Exception")), "code": metadata("error_code").or("500") }
+            meta result_error = true
+      - dump_log:
+          payload: false
+    # End flow resource
+    - label: "{package}_endnode"
+      resource: "prepare_result_other"
+#      hp_transform:
+#        name: "Pepare result"
+#        statements: |-
+#          root._hyper_code = "200"
+#          root.errors = if metadata("result_error").bool(false) { [metadata("result_status")] }
+output:
+  switch:
+    cases:
+      - check: meta("input_channel") == "http"
+        output:
+          sync_response: {}
+      - check: meta("input_channel") == "socket_sync"
+        output:
+          sync_response: {}
+      - output:
+          drop: {}
+

@@ -1,0 +1,26 @@
+# Producer
+input:
+  generate:
+    mapping: |
+      root = {
+        "message": "Hello Fanout from Benthos!",
+        "timestamp": now()
+      }
+    interval: "2s"
+
+pipeline:
+  processors:
+    - dump_log:
+
+# Producer Fanout
+output:
+  label: "FanoutProducer"
+  amqp_0_9:
+    urls: 
+      - amqp://guest:guest@host.docker.internal:5672/
+    exchange: "test.fanout.noti"     # ชื่อ exchange
+    exchange_declare:
+      enabled: true              # สร้าง exchange
+      type: fanout              # กำหนดเป็น fanout
+      durable: true             # คงอยู่แม้ restart
+    key: ""                     # ไม่จำเป็นต้องใส่ routing key สำหรับ fanout

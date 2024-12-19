@@ -1,0 +1,11 @@
+cache_plugins:
+  - label: test_event
+    redis:
+      url: redis://redis:6379
+      kind: simple
+      master: ""
+      prefix: "test"
+      retries:
+        initial_interval: 500ms
+        max_interval: 1s
+        max_elapsed_time: 5s

@@ -1,0 +1,30 @@
+# Basic Redis scan configuration
+input:
+  label: "Redis Scan"
+  redis_scan:
+    url: redis://host.docker.internal:6380
+    match: Test_*   # Pattern to match keys
+
+pipeline:
+  processors:
+    - hp_redis_cmd: # Copy data from scan and set to another redis
+        profile: redis_external_cache3
+        command: set
+        args_mapping: root = [ this.key.string(), this.value.string() ]
+      
+    - hp_redis_cmd: # Copy data from scan and set to another redis
+        profile: redis_external_cache3
+        command: DBSIZE
+        args_mapping: root = []
+        result: root.dbSize = this
+
+    - dump_log:
+
+
+# No output
+output:
+  label: ""
+  drop: {}
+
+
+

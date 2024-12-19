@@ -1,0 +1,14 @@
+{
+    "driverClassName": "org.postgresql.Driver",
+    "jdbcUrl": "jdbc:postgresql://tbbase-hyper.techberry.co.th:8808/pj0002",
+    "username": "tbbase_fnc_pj0002",
+    "password": "auto83cb02d785814c5ab72d5f2bc817d8be",
+    "connectionTestQuery": "SELECT 1",
+    "validationTimeout": 60000,
+    "connectionTimeout": 60000,
+    "idleTimeout": 60000,
+    "maxLifetime": 60000,
+    "maximumPoolSize": 2,
+    "profileName":"Test My SQL",
+    "statements":"List Students, Create Student, Search Student, ReadStudent, Delete ALL Students, Count All Students, Test Prop"
+}

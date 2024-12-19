@@ -1,0 +1,35 @@
+input:
+  generate:
+    mapping: |
+      root = {}
+      root.message = "Hello from Benthos"
+      root.timestamp = now()
+    interval: "10s"
+
+pipeline:
+  processors:
+    - dump_log:
+
+output:
+  label: Kafka_Producer # สำหรับอ้างอิงและติดตามการทำงาน
+  kafka:
+    addresses:
+      - host.docker.internal:19092 # Kafka broker address สำหรับ connect จาก Docker
+    topic: benthos-topic # Topic ที่ต้องการส่งข้อมูลไป
+    client_id: benthos-test # ID สำหรับระบุตัวตน Producer
+    max_msg_bytes: 1000000 # ขนาดสูงสุดของ message (1MB)
+    timeout: 5s # เวลาที่รอการส่ง message
+    compression: gzip # การบีบอัดข้อมูล (none, gzip, snappy, lz4, zstd)
+    max_in_flight: 128 # จำนวน message สูงสุดที่สามารถส่งพร้อมกัน
+
+    batching:
+      count: 1000 # จำนวน messages ต่อ batch
+      byte_size: 1000000 # ขนาดสูงสุดของ batch (1MB)
+      period: 1s # ระยะเวลารอก่อนส่ง batch
+
+    retry_as_batch: true # retry ทั้ง batch เมื่อเกิดข้อผิดพลาด
+    max_retries: 3 # จำนวนครั้งที่จะ retry
+
+    metadata:
+      exclude_prefixes: [] # prefix ของ metadata ที่ไม่ต้องการส่ง
+      round_trip: false # ไม่ส่ง metadata กลับ

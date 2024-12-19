@@ -1,0 +1,39 @@
+input:
+ label: Kafka_Consumer                     # ชื่อ consumer สำหรับการ monitoring
+ kafka:
+   addresses:
+     - host.docker.internal:19092          # Kafka broker address สำหรับ connect จาก Docker
+   topics:
+     - benthos-topic                       # Topic ที่ต้องการ subscribe
+   consumer_group: group-test              # Consumer group ID สำหรับการจัดการ offset
+   client_id: benthos-client               # Client ID สำหรับการ monitor
+
+   group:
+     session_timeout: 30s                  # Timeout สำหรับ session เมื่อ consumer ไม่ตอบสนอง
+     heartbeat_interval: 5s                # ความถี่ในการส่ง heartbeat ไปยัง broker
+     rebalance_timeout: 120s               # เวลาที่ใช้ในการ rebalance partitions
+
+   # Performance settings
+   fetch_buffer_cap: 1024                  # ขนาด buffer สำหรับ fetch messages (เพิ่มจาก 512)
+   max_processing_period: 500ms            # เวลาสูงสุดในการประมวลผลแต่ละ batch (เพิ่มจาก 200ms)
+   commit_period: 5s                       # ความถี่ในการ commit offset
+
+   batching:
+     count: 500                            # จำนวน messages ต่อ batch (เพิ่มจาก 100)
+     byte_size: 5242880                    # ขนาดสูงสุดของ batch (5MB) (เพิ่มจาก 1MB)
+     period: 2s                            # ระยะเวลารอสูงสุดก่อนประมวลผล batch
+
+   start_from_oldest: true                 # เริ่มอ่าน messages จาก offset เก่าสุด
+   multi_header: false                     # ไม่ใช้ multi-header format
+
+pipeline:
+  processors:
+    - dump_log:
+    - sleep:
+        duration: 3s
+
+
+# Config fields, showing default values
+output:
+  label: ""
+  drop: {}

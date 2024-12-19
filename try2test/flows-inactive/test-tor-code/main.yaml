@@ -1,0 +1,18 @@
+input:
+  generate:
+    mapping: |-
+      root = {"a":"A"}
+    count: 1
+
+pipeline:
+  processors:
+    - dump_log:
+    - hp_resource:
+        id: aaa
+        goto_route: subflow
+    - label: subflow
+      hp_resource:
+        id: subn
+    - dump_log:
+output:
+  drop:

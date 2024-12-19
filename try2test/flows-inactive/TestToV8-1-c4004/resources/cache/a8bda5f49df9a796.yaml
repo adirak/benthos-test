@@ -1,0 +1,29 @@
+
+processor_resources:
+  - label: "{package}_a8bda5f49df9a796"
+    branch:
+      request_map: |
+        meta nodeId = "a8bda5f49df9a796"
+        meta key = this.key.string()
+        
+        let filter = model2json("463af6abb11c4004_a8bda5f49df9a796_in")
+        root = this.json_filter($filter)
+        
+      processors:
+       
+
+        # - cache:
+        #     resource: redis_cache
+        #     operator: set
+        #     key: ${! meta("key") }
+        #     value: '${! content().string() }'
+        #     ttl: 30m
+        - hp_redis_cmd:
+            profile: test_event
+            command: set
+            args_mapping: root = [meta("key")]
+
+
+
+      result_map: |
+        root = root.copy_key(this)

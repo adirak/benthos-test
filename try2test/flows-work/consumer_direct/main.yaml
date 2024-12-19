@@ -1,0 +1,29 @@
+# Config connect and declare queue and binding
+input:
+  label: RabbitMQ_Cunsumer
+  amqp_0_9:
+    urls: 
+      - amqp://guest:guest@host.docker.internal:5672/
+    queue: "hello3" # No default (required)
+    consumer_tag: "test_tag"
+    prefetch_count: 1
+    queue_declare:
+      enabled: true
+      durable: true
+      auto_delete: false
+    bindings_declare:
+      - exchange: "test.direct"
+        queue: "hello3"
+        key: "hello"
+
+pipeline:
+  processors:
+    - dump_log:
+    - sleep:
+        duration: 3s
+
+
+# Config fields, showing default values
+output:
+  label: ""
+  drop: {}

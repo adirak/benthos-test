@@ -1,0 +1,29 @@
+input:
+  label: "Read SFTP"
+  sftp:
+    address: "192.168.10.233:22"
+    credentials:
+      username: "hyper01"
+      password: "hyper@1"
+
+    paths:
+      - "/home/hyper01/input/conicle_2024-06-25.csv"
+
+    delete_on_finish: false # Delete after read
+    
+    # Looping Monitoring
+    watcher:
+      enabled: true
+      minimum_age: 10s
+      poll_interval: 10s
+      cache: "defaultCache" # Keep to default cache
+
+pipeline:
+  processors:
+    - dump_log:
+
+output:
+  label: "CSV Output"
+  file:
+    path: /data/test/${! metadata("sftp_path").filepath_split().index(1)}
+    codec: lines
