@@ -5,10 +5,13 @@ input:
       root = {
         "A": "A"
       }
-    interval: "10s"
+    interval: "30s"
 
 pipeline:
   processors:
+    - label: "InputData"
+      dump_log:
+
     - label: "Test Case 1-1"
       hp_transform:
         name: "hp_transform"
@@ -19,11 +22,12 @@ pipeline:
           root.C = "C"
 
         result_mode: "void"
-        
+
         output: |
           root.D = "D"
 
-    - dump_log:
+    - label: "OutputData"
+      dump_log:
 
 # No output
 output:

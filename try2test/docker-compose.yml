@@ -1,15 +1,10 @@
-version: '3.6'
-
-networks:
-  my_custom_network:
-    external: true
-
 services:
   benthos:
     #image: wutichai/hyper-runtime:v8.3.1.4
     #image: wdsregistry1.beebuddy.net:9900/hyper-runtime:v8.3.1.4
     #image: wdsregistry1.beebuddy.net:9900/hyper-runtime:v8.3.1.8
-    image: wdsregistry1.beebuddy.net:9900/hyper-runtime:v8.3.1.9
+    #image: wdsregistry1.beebuddy.net:9900/hyper-runtime:v8.3.1.9
+    image: wdsregistry1.beebuddy.net:9900/hyper-runtime:v8.3.1.10
     container_name: benthos
     volumes:
       - /usr/share/zoneinfo/Asia/Bangkok:/etc/localtime:ro
@@ -22,23 +17,6 @@ services:
       - LOG_FORMAT=json
       - JSON_USE_NUMBER=false
       - HYPER_NODE_PATH=/data/deployed
-    networks:
-      - my_custom_network
+
     ports:
       - "8124:8124"
-    
-    depends_on:
-      - redis
-
-
-
-  redis:
-    image: redis:7-alpine
-    container_name: redis
-    networks:
-      - my_custom_network
-    # ports:
-    #   - "6379:6379" 
-
-
-

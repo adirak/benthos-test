@@ -22,13 +22,7 @@ pipeline:
             mapping: |
               root.C = "C" + this.X
 
-            result_mode: "void"
-
-            output: |
-              root.D = "D"
-
-            error: |
-              root.F = "F"
+            result_mode: "merge"
 
         - label: "OutputData"
           dump_log:
