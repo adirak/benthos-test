@@ -1,0 +1,23 @@
+# Recources
+processor_resources:
+  - label: "my_resource"
+    hp_http:
+      url: https://hyper-designer-dev-02.techberry.co.th/megw/apis/node/user-manager/system/login
+      verb: POST
+      headers:
+        Content-Type: "application/json"
+        AppKey: "LQAsyihBGw3IW0IESsNcc79xlCSeoK6C"
+      input: |
+        root.B = "B" 
+        root.data = {
+          "username": "adirak",
+          "password": "lnwtools"
+        }
+      
+      result_mode: "new"
+
+      output: |
+        root.D = this + this.X
+
+      timeout: 5s
+     

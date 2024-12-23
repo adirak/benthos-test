@@ -1,0 +1,9 @@
+# Recources
+processor_resources:
+  - label: "my_resource"
+    hp_redis_cmd:
+      profile: redis_external_cache
+      command: get
+      args_mapping: root = [ this.key ]
+      result: root = this
+     

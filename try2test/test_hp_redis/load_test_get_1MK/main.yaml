@@ -1,0 +1,43 @@
+# Producer
+input:
+  http_server:
+    timeout: 60s
+    path: "/megw/apis/stream/{service}/{version}/{action}"
+    allowed_verbs:
+      - POST
+      - GET
+
+
+pipeline:
+  processors:
+   
+    - label: "InputData"
+      dump_log:
+
+    - label: "my_resource"
+      hp_resource:
+        id: "my_resource"
+        goto_route:
+          success: "this.OutputData"
+          #failure: "this.ErrorData"
+
+    - label: "OutputData"
+      dump_log:
+
+    - catch:
+        - label: "ErrorData"
+          dump_log:
+
+
+
+output:
+  switch:
+    cases:
+      - check: meta("input_channel") == "http"
+        output:
+          sync_response: {}
+      - check: meta("input_channel") == "socket_sync"
+        output:
+          sync_response: {}
+      - output:
+          drop: {}
