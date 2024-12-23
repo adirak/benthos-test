@@ -1,0 +1,15 @@
+# Recources
+processor_resources:
+  - label: "my_resource"
+    hp_http:
+      url: https://hyper-designer-dev-02.techberry.co.th/megw/apis/node/user-manager/system/getUserInfo
+      verb: POST
+      headers:
+        Content-Type: "application/json"
+        AppKey: "LQAsyihBGw3IW0IESsNcc79xlCSeoK6C"
+
+      result_mode: "new"
+      output: |
+        root.D = "D" + this.X
+
+      timeout: 5s
