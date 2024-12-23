@@ -13,22 +13,16 @@ pipeline:
         - label: "InputData"
           dump_log:
 
-        - label: "Test Case 1-2"
+        - label: "Test Case 2-1"
           hp_transform:
             name: "hp_transform"
-            input: |
-              root.B = "B"
 
             mapping: |
-              root.C = "C"
+              root.C = "C" + this.X
 
-            result_mode: "new"
-
-            output: |
-              root.D = "D" + this.X
-
+            result_mode: "void"
             error: |
-              root.F = "F"
+              root.F = "F" 
 
         - label: "OutputData"
           dump_log:

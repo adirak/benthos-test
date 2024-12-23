@@ -1,0 +1,40 @@
+# Producer
+input:
+  generate:
+    mapping: |
+      root = {
+        "A": "A"
+      }
+    interval: "20s"
+
+pipeline:
+  processors:
+    - try:
+        - label: "InputData"
+          dump_log:
+
+        - label: "Test Case 2-1"
+          hp_transform:
+            name: "hp_transform"
+
+            mapping: |
+              root.C = "C"
+
+            result_mode: "void"
+            output: |
+              root.D = "D" + this.X
+
+            error: |
+              root.F = "F"
+
+        - label: "OutputData"
+          dump_log:
+
+    - catch:
+        - label: "ErrorData"
+          dump_log:
+
+# No output
+output:
+  label: ""
+  drop: {}

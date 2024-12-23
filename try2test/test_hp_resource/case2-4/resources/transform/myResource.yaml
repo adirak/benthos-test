@@ -1,0 +1,15 @@
+# Recources
+processor_resources:
+  - label: "my_resource"
+    hp_transform:
+      name: "hp_transform"
+
+      mapping: |
+        root.C = "C"
+
+      result_mode: "merge"
+      output: |
+        root.D = "D" + this.X
+
+      error: |
+        root.F = "F"
