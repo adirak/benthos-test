@@ -1,0 +1,23 @@
+# Recources
+processor_resources:
+  - label: "my_resource"
+    mongodb:
+      profile: "test mongodb"
+      url: mongodb://host.docker.internal:27017
+      database: test
+      username: admin
+      password: password123
+      operation: insert-one
+      collection: students
+      document_map: |
+        root = this
+
+      result_mode: "void"
+
+      input: |
+        root = {}
+        root.B = "B" + this.X
+        root.name = "Adirak"
+        root.surname = "Kaewmahing"
+        root.gender = "M"
+        root.age = 40

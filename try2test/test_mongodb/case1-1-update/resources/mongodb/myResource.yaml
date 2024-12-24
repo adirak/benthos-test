@@ -1,0 +1,24 @@
+# Recources
+processor_resources:
+  - label: "my_resource"
+    mongodb:
+      profile: "test mongodb"
+      url: mongodb://host.docker.internal:27017
+      database: test
+      username: admin
+      password: password123
+      operation: delete-one
+      collection: students
+
+      filter_map: |
+        root = {"name": "Adirak"}
+
+      result_mode: "merge"
+
+      output: |
+        root = {}
+        root.D = "D" + this.X
+
+      error: |
+        root = {}
+        root.F = "F"

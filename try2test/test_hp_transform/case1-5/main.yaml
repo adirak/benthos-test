@@ -16,18 +16,16 @@ pipeline:
         - label: "Test Case 1-5"
           hp_transform:
             name: "hp_transform"
-            input: |
-              root = {}
-              root.B = "B" 
 
             mapping: |
               root = {}
               root.C = "C"
 
-            result_mode: "new"
+            result_mode: "void"
 
             output: |
               root = {}
+              root.D = "D"
               root.D = "D" + this.X
 
             error: |

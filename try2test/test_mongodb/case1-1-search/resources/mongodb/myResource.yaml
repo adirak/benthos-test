@@ -1,0 +1,29 @@
+# Recources
+processor_resources:
+  - label: "my_resource"
+    mongodb:
+      profile: "test mongodb"
+      url: mongodb://host.docker.internal:27017
+      database: test
+      username: admin
+      password: password123
+      operation: find
+      collection: students
+      filter_map: |
+        root = {}
+        root = {"name": {
+            "$regex": ".*ad.*",
+            "$options": "i"
+        }}
+      sort_map: |
+        root = {}
+        root = {"age": -1}
+      projection_map: |
+        root = {}
+        root = {"_id": 0}
+
+      result_mode: "void"
+
+      output: |
+        root = this
+        root.D = "D"
