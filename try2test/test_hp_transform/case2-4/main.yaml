@@ -18,13 +18,16 @@ pipeline:
             name: "hp_transform"
 
             mapping: |
+              root = {}ห
               root.C = "C"
 
             result_mode: "void"
             output: |
+              root = {}
               root.D = "D" + this.X
 
             error: |
+              root = {}
               root.F = "F"
 
         - label: "OutputData"

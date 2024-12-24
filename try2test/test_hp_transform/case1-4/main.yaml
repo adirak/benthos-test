@@ -17,17 +17,17 @@ pipeline:
           hp_transform:
             name: "hp_transform"
             input: |
+              root = {}
               root.B = "B" + this.X
 
             mapping: |
+              root = {}
               root.C = "C"
 
-            result_mode: "new"
-
-            output: |
-              root.D = "D" 
+            result_mode: "void"
 
             error: |
+              root = {}
               root.F = "F"
 
         - label: "OutputData"

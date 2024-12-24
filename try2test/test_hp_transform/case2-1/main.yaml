@@ -20,7 +20,7 @@ pipeline:
             mapping: |
               root.C = "C" 
 
-            result_mode: "merge"
+            result_mode: "void"
 
             output: |
               root.D = "D"

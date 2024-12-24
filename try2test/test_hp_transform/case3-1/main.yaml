@@ -18,6 +18,7 @@ pipeline:
             name: "hp_transform"
 
             mapping: |
+              root = {}
               root.C = "C"
 
             result_mode: "void"

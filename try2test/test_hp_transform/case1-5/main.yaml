@@ -17,17 +17,21 @@ pipeline:
           hp_transform:
             name: "hp_transform"
             input: |
+              root = {}
               root.B = "B" 
 
             mapping: |
+              root = {}
               root.C = "C"
 
-            result_mode: "merge"
+            result_mode: "new"
 
             output: |
+              root = {}
               root.D = "D" + this.X
 
             error: |
+              root = {}
               root.F = "F"
 
         - label: "OutputData"

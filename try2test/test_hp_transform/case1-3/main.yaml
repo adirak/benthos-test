@@ -17,9 +17,11 @@ pipeline:
           hp_transform:
             name: "hp_transform"
             input: |
+              root = {}
               root.B = "B"
 
             mapping: |
+              root = {}
               root.C = "C" + this.X
 
             result_mode: "void"

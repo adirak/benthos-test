@@ -16,14 +16,17 @@ pipeline:
       hp_transform:
         name: "hp_transform"
         input: |
+          root = {}
           root.B = "B"
 
         mapping: |
+          root = {}
           root.C = "C"
 
-        result_mode: "void"
+        result_mode: "merge"
 
         output: |
+          root = {}
           root.D = "D"
 
     - label: "OutputData"
