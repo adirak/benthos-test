@@ -8,6 +8,7 @@ processor_resources:
         Content-Type: "application/json"
         AppKey: "LQAsyihBGw3IW0IESsNcc79xlCSeoK6C"
       input: |
+        root = {}
         root.B = "B" + this.X
         root.data = {
           "username": "adirak",

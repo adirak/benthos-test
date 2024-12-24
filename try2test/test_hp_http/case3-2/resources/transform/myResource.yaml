@@ -11,6 +11,7 @@ processor_resources:
       result_mode: "void"
 
       error: |
+        root = {}
         root.F = "F"
 
       timeout: 5s

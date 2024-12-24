@@ -8,6 +8,7 @@ processor_resources:
         Content-Type: "application/json"
         AppKey: "LQAsyihBGw3IW0IESsNcc79xlCSeoK6C"
       input: |
+        root = {}
         root.B = "B"
         root.data = {
           "username": "adirak",
@@ -17,7 +18,8 @@ processor_resources:
       result_mode: "void"
 
       output: |
-        root.D = this
+        root = {}
+        root.D = "D"
 
       timeout: 5s
      
