@@ -15,7 +15,7 @@ processor_resources:
           "password": "lnwtools"
         }
       
-      result_mode: "new"
+      result_mode: "merge"
 
       output: |
         root = {}
