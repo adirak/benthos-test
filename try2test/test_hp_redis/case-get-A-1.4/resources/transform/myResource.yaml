@@ -1,0 +1,20 @@
+# Recources
+processor_resources:
+  - label: "my_resource"
+    hp_redis_cmd:
+      profile: redis_external_cache
+      command: getxxxxx
+      args_mapping: root = [ this.A ]
+      input: |
+        root = {}
+        root.B = "Test_Key_2" + this.X
+
+      result_mode: "merge"
+
+      error: |
+        root = {}
+        root.F = "F"
+
+      
+
+     
