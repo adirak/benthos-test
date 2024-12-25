@@ -9,7 +9,7 @@ processor_resources:
       mapping: |
         root.C = "C"
 
-      result_mode: "void"
+      result_mode: "new"
 
       output: |
         root.D = "D" + this.X
