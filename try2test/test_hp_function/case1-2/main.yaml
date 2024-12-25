@@ -1,0 +1,44 @@
+# Producer
+input:
+  generate:
+    mapping: |
+      root = {
+        "A": "A"
+      }
+    interval: "30s"
+
+pipeline:
+  processors:
+    - label: "InputData"
+      dump_log:
+
+    - label: "my_function"
+      hp_function:
+        name: "test my_function"
+        input: |
+          root = {}
+          root.B = "B"
+        result_mode: "void"
+        error: |
+          root = {}
+          root.F = "F"
+        processors:
+          - label: "maping"
+            mapping: |
+              root = {}
+              root.C = "C" + this.X
+
+          - label: "LogInFunction"
+            dump_log:
+
+    - label: "OutputData"
+      dump_log:
+
+    - catch:
+        - label: "ErrorData"
+          dump_log:
+
+# No output
+output:
+  label: ""
+  drop: {}
