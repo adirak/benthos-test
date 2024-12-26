@@ -13,7 +13,7 @@ processor_resources:
         root = this
         root.C = "C" + this.X
 
-      result_mode: "new"
+      result_mode: "void"
 
       input: |
         root = {}

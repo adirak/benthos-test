@@ -7,17 +7,27 @@ processor_resources:
       database: test
       username: admin
       password: password123
-      operation: delete-one
+      operation: replace-one
       collection: students
-
+      document_map: |
+        root = this
+        root.C = "C"
+        root.H = 177
       filter_map: |
         root = {"name": "Adirak"}
 
-      result_mode: "merge"
+      result_mode: "new"
+
+      input: |
+        root = {}
+        root.name = "Adirak"
+        root.surname = "Kaewmahing"
+        root.gender = "M"
+        root.age = 41
 
       output: |
         root = {}
-        root.D = "D" + this.X
+        root.D = "D"
 
       error: |
         root = {}
