@@ -9,12 +9,8 @@ processor_resources:
         root = {}
         root.B = "Test_Key_2"
 
-      result_mode: "merge"
+      result_mode: "void"
 
       output: |
         root = {}
         root.D = this
-
-      
-
-     

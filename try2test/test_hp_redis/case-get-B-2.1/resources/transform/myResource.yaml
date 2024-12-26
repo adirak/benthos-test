@@ -14,7 +14,3 @@ processor_resources:
       output: |
         root = {}
         root.D = this
-
-      
-
-     
