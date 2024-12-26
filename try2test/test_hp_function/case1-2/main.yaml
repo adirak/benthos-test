@@ -18,7 +18,7 @@ pipeline:
         input: |
           root = {}
           root.B = "B"
-        result_mode: "void"
+        result_mode: "new"
         error: |
           root = {}
           root.F = "F"

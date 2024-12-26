@@ -1,4 +1,4 @@
- cache_plugins:
+cache_plugins:
   - label: redis_external_cache
     redis:
       url: redis://host.docker.internal:6379

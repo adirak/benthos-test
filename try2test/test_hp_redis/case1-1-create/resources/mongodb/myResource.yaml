@@ -13,7 +13,7 @@ processor_resources:
         root = this
         root.C = "C"
 
-      result_mode: "merge"
+      result_mode: "void"
 
       input: |
         root = {}
@@ -22,6 +22,6 @@ processor_resources:
         root.gender = "M"
         root.age = 40
 
-      output: |
+      error: |
         root = {}
         root.F = "F"

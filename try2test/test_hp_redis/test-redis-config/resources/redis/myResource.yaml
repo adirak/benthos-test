@@ -2,7 +2,9 @@
 processor_resources:
   - label: "my_resource"
     hp_redis_cmd:
-      profile: redis_external_cache
+      profile: redis_config_79
+      client_config: |-
+        {{myredis_config}}
       command: get
       args_mapping: root = [ this.A ]
       input: |
