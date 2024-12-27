@@ -1,0 +1,23 @@
+## MongoDB
+{
+    "profile": "my_mongo_profile01",
+    "url": "mongodb://host.docker.internal:27017",
+    "username": "admin",
+    "password": "password123",
+    "auth_source": "test",
+    "auth_mechanism": "SCRAM-SHA-256"
+}
+
+
+## Using
+mongodb:
+    name: "mongodb"
+    profile: {{escape_json(my_mongo_profile01)}}
+    database: test01
+    input: |-
+        root = {}
+        root.c = this.c
+    document_map: |-
+        root = this
+    collection: collection01
+    operation: insert-one

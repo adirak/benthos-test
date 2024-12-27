@@ -2,11 +2,8 @@
 processor_resources:
   - label: "my_resource"
     mongodb:
-      profile: "test mongodb"
-      url: mongodb://host.docker.internal:27017
+      profile: { { escape_json(mymongo) } }
       database: test
-      username: admin
-      password: password123
       operation: insert-one
       collection: students
       document_map: |

@@ -2,26 +2,25 @@
 processor_resources:
   - label: "my_resource"
     mongodb:
-      client_config: |-
-        {{mymongo}}
-
+      name: "mongodb"
+      profile: |-
+        {{json(mymongo)}}
       database: test
       operation: insert-one
       collection: students
       document_map: |
         root = this
         root.C = "C"
-        root.H = 160
 
-      result_mode: "new"
+      result_mode: "merge"
 
       input: |
         root = {}
-        root.name = "Tor"
-        root.surname = "Doorsan"
+        root.name = "Max"
+        root.surname = "Donao"
         root.gender = "M"
-        root.age = 45
+        root.age = 40
 
       output: |
         root = {}
-        root.D = "D"
+        root.F = "F"

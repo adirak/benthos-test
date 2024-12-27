@@ -3,8 +3,7 @@ input:
   generate:
     mapping: |
       root = {
-        "A": "A",
-        "B": {{mymongo}}
+        "A": "A"
       }
     interval: "300s"
 
@@ -13,7 +12,7 @@ pipeline:
     - label: "InputData"
       dump_log:
 
-    - label: "my_resource"
+    - label: "my_resource_main"
       hp_resource:
         id: "my_resource"
         goto_route:

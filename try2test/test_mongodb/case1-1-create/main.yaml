@@ -3,17 +3,17 @@ input:
   generate:
     mapping: |
       root = {
-        "A": "A"
+        "A": "A",
+        "X": "{{Test_Key_1}}"
       }
     interval: "300s"
 
 pipeline:
   processors:
-   
     - label: "InputData"
       dump_log:
 
-    - label: "my_resource"
+    - label: "my_resource_main"
       hp_resource:
         id: "my_resource"
         goto_route:
@@ -26,8 +26,6 @@ pipeline:
     - catch:
         - label: "ErrorData"
           dump_log:
-
-
 
 # No output
 output:

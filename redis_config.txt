@@ -12,14 +12,3 @@
         "max_elapsed_time": "5s"
     }
 }
-
-
-## MongoDB
-{
-    "profile": "my_mongo_profile01",
-    "url": "mongodb://localhost:27017",
-    "username": "admin",
-    "password": "Adm1n#12345",
-    "auth_source": "test01",
-    "auth_mechanism": "SCRAM-SHA-256"
-}
