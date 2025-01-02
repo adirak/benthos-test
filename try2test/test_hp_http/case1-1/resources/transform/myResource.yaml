@@ -14,12 +14,11 @@ processor_resources:
           "username": "adirak",
           "password": "lnwtools"
         }
-      
-      result_mode: "void"
+
+      result_mode: "new"
 
       output: |
         root = {}
         root.D = "D"
 
       timeout: 5s
-     

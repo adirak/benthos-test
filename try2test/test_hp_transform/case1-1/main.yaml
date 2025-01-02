@@ -23,7 +23,7 @@ pipeline:
           root = {}
           root.C = "C"
 
-        result_mode: "merge"
+        result_mode: "new"
 
         output: |
           root = {}

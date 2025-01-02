@@ -9,7 +9,6 @@ input:
 
 pipeline:
   processors:
-   
     - label: "InputData"
       dump_log:
 
@@ -26,8 +25,6 @@ pipeline:
     - catch:
         - label: "ErrorData"
           dump_log:
-
-
 
 # No output
 output:
