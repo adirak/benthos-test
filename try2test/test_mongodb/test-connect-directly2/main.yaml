@@ -1,0 +1,52 @@
+# Producer
+input:
+  generate:
+    mapping: |
+      root = {
+        "A": "A"
+      }
+    interval: "300s"
+
+pipeline:
+  processors:
+    - label: "InputData"
+      dump_log:
+
+    - label: "my_resource_main"
+      mongodb:
+        name: "mongodb"
+        profile: "test mongodb"
+        url: mongodb://54.255.42.110:47007
+        database: test
+        username: myUserAdmin
+        password: SOh3TbYhx8ypJPxmt1oOfL
+        operation: insert-one
+        collection: students
+        document_map: |
+          root = this
+          root.C = "C"
+
+        result_mode: "merge"
+
+        input: |
+          root = {}
+          root.name = "Max"
+          root.surname = "Donao"
+          root.gender = "M"
+          root.age = 40
+
+        output: |
+          root = {}
+          root.F = "F"
+
+    - label: "OutputData"
+      dump_log:
+
+    - catch:
+        - label: "ErrorData"
+          dump_log:
+
+# No output
+output:
+  label: ""
+  drop: {}

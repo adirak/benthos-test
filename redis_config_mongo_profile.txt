@@ -8,6 +8,15 @@
     "auth_mechanism": "SCRAM-SHA-256"
 }
 
+{
+    "profile": "techberry_mongo",
+    "url": "mongodb://54.255.42.110:47007",
+    "username": "myUserAdmin",
+    "password": "SOh3TbYhx8ypJPxmt1oOfL",
+    "auth_source": "test",
+    "auth_mechanism": "SCRAM-SHA-1"
+}
+
 
 ## Using
 mongodb:
