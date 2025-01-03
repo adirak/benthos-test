@@ -6,7 +6,8 @@ input:
         "A": "A",
         "to": ["adirak@gmail.com"],
         "cc": ["adirak@techberry.co.th"],
-        "body": "body test send mail"
+        "body": "body test send mail......",
+        "password":"Sa20vpKw"
       }
     interval: "300s"
 
@@ -26,11 +27,8 @@ pipeline:
         username: "testhyper@techberry.co.th"
         password: "Sa20vpKw"
         from: "testhyper@techberry.co.th"
-        to: ["adirak@gmail.com"]
-        bcc: ["adirak@techberry.co.th"]
         mime: "text/html"
         subject: "Test Send Mail"
-        body: "test send mail"
         output: |-
           root = {}
           root.sendmail = "sent"
