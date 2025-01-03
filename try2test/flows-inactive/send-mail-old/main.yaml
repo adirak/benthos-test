@@ -1,0 +1,44 @@
+# Producer
+input:
+  generate:
+    mapping: |
+      root = {
+        "A": "A",
+        "to": ["adirak@gmail.com"],
+        "cc": ["adirak@techberry.co.th"],
+        "body": "body test send mail"
+      }
+    interval: "300s"
+
+pipeline:
+  processors:
+    - label: "InputData"
+      dump_log:
+
+    - mapping: |
+        root = this
+        root.host = "smtp.techberry.co.th"
+        root.port = 587
+        root.username = "testhyper@techberry.co.th"
+        root.password = "Sa20vpKw"
+        root.tls = false
+        root.from = "testhyper@techberry.co.th"
+        root.mime = "text/html"
+        root.subject = "Test Send Mail"
+
+    - label: "Test Send Mail"
+      sendmail:
+        name: sendmail
+        connect_timeout: 10
+        send_timeout: 10
+
+    - mapping: |
+        root.status = "sent"
+
+    - label: "OutputData"
+      dump_log:
+
+# No output
+output:
+  label: ""
+  drop: {}

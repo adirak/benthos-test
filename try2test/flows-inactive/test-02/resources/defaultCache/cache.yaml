@@ -1,4 +1,0 @@
-cache_resources:
-  - label: defaultCache
-    memory:
-      default_ttl: 10s

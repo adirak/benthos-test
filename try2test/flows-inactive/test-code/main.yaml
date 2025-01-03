@@ -1,0 +1,114 @@
+
+input:
+  http_server:
+    timeout: 60s
+    path: "/megw/apis/stream/{service}/{version}/{action}"
+    allowed_verbs:
+      - POST
+      - GET
+
+
+pipeline:
+  processors:
+
+    - mapping: |
+        meta mainFlowId = "32e78590f6a95b02"
+        meta flowId = "32e78590f6a95b02"
+        meta subflowId = "none"
+        meta testId = if meta("X-Trace").or("false") == "true" { if this._hyper_testId != null { this._hyper_testId } else if this.testId != null { this.testId } } else { deleted() }
+        meta username = if meta("X-Trace").or("false") == "true" && this._hyper_username != null { this._hyper_username } else { meta("X-Username").or(deleted()) }
+
+        root = this
+        
+    
+    # Node start
+    - label: "{package}_2cf14c5848949a55"
+      hp_resource:
+        id: "{package}_2cf14c5848949a55"
+        goto_route:
+          success: "this.{package}_7a17725ca86d15f3"
+          #failure: "this.{package}_exception"
+          
+        metadata: |-
+          {
+            "scopeType": "mainFlow",
+            "scopeId": "32e78590f6a95b02",
+            "nodeId":"2cf14c5848949a55",
+            "nodeType":"start"
+          }
+    
+    # Node end
+    - label: "{package}_45c42d11b7728330"
+      hp_resource:
+        id: "{package}_45c42d11b7728330"
+        goto_route:
+          success: "this.{package}_endnode"
+          
+        metadata: |-
+          {
+            "scopeType": "mainFlow",
+            "scopeId": "32e78590f6a95b02",
+            "nodeId":"45c42d11b7728330",
+            "nodeType":"end"
+          }
+    
+    # Node code
+    - label: "{package}_7a17725ca86d15f3"
+      hp_resource:
+        id: "{package}_7a17725ca86d15f3"
+        goto_route:
+          success: "this.{package}_71871354eb061e47"
+          #failure: "this.{package}_exception"
+          
+        metadata: |-
+          {
+            "scopeType": "mainFlow",
+            "scopeId": "32e78590f6a95b02",
+            "nodeId":"7a17725ca86d15f3",
+            "nodeType":"code"
+          }
+    
+    # Node code
+    - label: "{package}_71871354eb061e47"
+      hp_resource:
+        id: "{package}_71871354eb061e47"
+        goto_route:
+          success: "this.{package}_45c42d11b7728330"
+          #failure: "this.{package}_exception"
+          
+        metadata: |-
+          {
+            "scopeType": "mainFlow",
+            "scopeId": "32e78590f6a95b02",
+            "nodeId":"71871354eb061e47",
+            "nodeType":"code"
+          }
+    
+    # Exception resources
+    - catch:
+      - hp_transform:
+          statements: |-
+            meta result_status = {"description": error().or(metadata("error_message").or("Exception")), "code": metadata("error_code").or("500") }
+            meta result_error = true
+      - dump_log:
+          payload: false
+    # End flow resource
+    - label: "{package}_endnode"
+      resource: "prepare_result_other"
+#      hp_transform:
+#        name: "Pepare result"
+#        statements: |-
+#          root._hyper_code = "200"
+#          root.errors = if metadata("result_error").bool(false) { [metadata("result_status")] }
+output:
+  switch:
+    cases:
+      - check: meta("input_channel") == "http"
+        output:
+          sync_response: {}
+      - check: meta("input_channel") == "socket_sync"
+        output:
+          sync_response: {}
+      - output:
+          drop: {}
+

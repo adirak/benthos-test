@@ -1,1 +1,0 @@
-{"all":false,"filter":[{"all":true,"max":0,"min":0,"name":"resultData","required":false,"type":"map","validated":false},{"default":null,"max":0,"min":0,"name":"resultMessage","regexp":"","required":false,"type":"string","validated":false},{"default":null,"name":"resultSuccess","required":false,"type":"boolean","validated":false}]}

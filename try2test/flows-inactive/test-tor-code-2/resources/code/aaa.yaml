@@ -1,6 +1,0 @@
-processor_resources:
-  - label: aaa
-    hp_transform:
-      statements: |-
-        root = this
-        root.b =  "B" + this.a

@@ -1,6 +1,0 @@
-connectionName: TBMySQL2
-driverClassName: com.mysql.cj.jdbc.Driver
-jdbcUrl: jdbc:mysql://mysql02.techberry.tech:3306/test_hyper
-
-profileName: TB MySQL Profile
-statements: List Students, Search Student, List Students 2, Add Student

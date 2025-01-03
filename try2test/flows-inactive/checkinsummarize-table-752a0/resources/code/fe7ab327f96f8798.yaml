@@ -1,8 +1,0 @@
-processor_resources:
-  - label: "{package}_fe7ab327f96f8798"
-    hp_transform:
-      name: "Set DMA structure"
-      statements: |-
-            root = this
-            root.resultMessage = "success"
-            root.resultSuccess = true

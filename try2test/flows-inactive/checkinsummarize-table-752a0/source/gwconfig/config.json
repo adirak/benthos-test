@@ -1,1 +1,0 @@
-{"createdTime":1725286611547,"flowId":"492a0e06af4752a0","flowName":"checkInSummarize_table","id":"b255325b-da68-4a30-b0a4-8822529ca956","route":{"host":"","name":"checkinsummarize-table-752a0","path":"/checkinsummarize-table-752a0"},"service":{"host":"checkinsummarize-table-752a0","name":"checkinsummarize-table-752a0","path":"/megw/apis/stream/microservice/v1.0/exec"}}

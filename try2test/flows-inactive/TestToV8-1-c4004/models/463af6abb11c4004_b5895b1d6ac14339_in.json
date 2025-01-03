@@ -1,1 +1,0 @@
-[{"default":0,"max":0,"min":0,"name":"action","required":false,"type":"integer","validated":false}, {"default":"MyKey00001","max":0,"min":0,"name":"key","regexp":"","required":false,"type":"string","validated":false}, {"default":"1234567890","max":0,"min":0,"name":"val","regexp":"","required":false,"type":"string","validated":false}]

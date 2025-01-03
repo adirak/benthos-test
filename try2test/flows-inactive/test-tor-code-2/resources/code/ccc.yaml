@@ -1,6 +1,0 @@
-processor_resources:
-  - label: ccc
-    hp_transform:
-      statements: |-
-        root = this
-        root.c =  "C" + this.b

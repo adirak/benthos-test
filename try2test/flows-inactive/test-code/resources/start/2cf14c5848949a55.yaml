@@ -1,0 +1,10 @@
+processor_resources:
+  - label: "{package}_2cf14c5848949a55"
+    switch:
+      - check: this.type() == "object" || this.type() == "array"
+        processors:
+          - hp_transform:
+              name: "Start"
+              statements: |
+
+                  root = this

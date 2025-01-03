@@ -1,1 +1,0 @@
-{"createdTime":1707720522238,"flowId":"4524f6582f81e276","flowName":"Test SendMail","id":"c7472a8b-86ae-4237-99fc-8b8d78f5c73d","route":{"host":"","name":"test-sendmail-1e276","path":"/test-sendmail-1e276"},"service":{"host":"test-sendmail-1e276","name":"test-sendmail-1e276","path":"/megw/apis/stream/microservice/v1.0/exec"}}
