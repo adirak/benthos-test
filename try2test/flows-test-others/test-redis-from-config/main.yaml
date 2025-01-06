@@ -1,0 +1,27 @@
+# Producer
+input:
+  generate:
+    mapping: |
+      root = {}
+    interval: "30s"
+
+pipeline:
+  processors:
+    - label: "InputData"
+      dump_log:
+
+    - label: "RedisLogic"
+      hp_redis_cmd:
+        profile: |-
+          {{json(my_redis_6379)}}
+        command: get
+        args_mapping: root = [ "Test_Key_1" ]
+        result: root.value = this
+
+    - label: "OutputData"
+      dump_log:
+
+# No output
+output:
+  label: ""
+  drop: {}

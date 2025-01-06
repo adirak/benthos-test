@@ -1,0 +1,38 @@
+# Producer
+input:
+  generate:
+    mapping: |
+      root = {}
+    interval: "30s"
+
+pipeline:
+  processors:
+    - label: "InputData"
+      dump_log:
+
+    - label: "RedisLogic"
+      hp_redis_cmd:
+        profile: |-
+          {
+            "url": "redis://host.docker.internal:6379",
+            "kind": "simple",
+            "profile": "redis_config_79",
+            "master": "",
+            "prefix": "main",
+            "retries": {
+                "initial_interval": "500ms",
+                "max_interval": "1s",
+                "max_elapsed_time": "5s"
+            }
+          }
+        command: get
+        args_mapping: root = [ "Test_Key_2" ]
+        result: root.value = this
+
+    - label: "OutputData"
+      dump_log:
+
+# No output
+output:
+  label: ""
+  drop: {}
