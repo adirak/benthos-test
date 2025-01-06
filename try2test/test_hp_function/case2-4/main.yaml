@@ -15,7 +15,7 @@ pipeline:
     - label: "my_function"
       hp_function:
         name: "test my_function"
-        result_mode: "merge"
+        result_mode: "void"
         output: |
           root = {}
           root.D = "D" + this.X
