@@ -3,7 +3,7 @@ input:
   generate:
     mapping: |
       root = {
-        "A": "{{TestKey33:Test_Key_2}}"
+        "A": "Test_Key_2"
       }
     interval: "300s"
 

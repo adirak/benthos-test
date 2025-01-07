@@ -3,7 +3,7 @@
 {
     "url": "redis://host.docker.internal:6379",
     "kind": "simple",
-    "profile": "redis_config_79",
+    "profile": "redis_default",
     "master": "",
     "prefix": "main",
     "retries": {
