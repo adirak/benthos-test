@@ -13,7 +13,7 @@ pipeline:
     - label: "RedisLogic"
       hp_redis_cmd:
         profile: |-
-          {{json(my_redis_6379)}}
+          {{json(redis_default)}}
         command: get
         args_mapping: root = [ "Test_Key_1" ]
         result: root.value = this

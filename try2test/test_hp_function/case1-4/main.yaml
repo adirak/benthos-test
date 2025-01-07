@@ -9,6 +9,7 @@ input:
 
 pipeline:
   processors:
+
     - label: "InputData"
       dump_log:
 
