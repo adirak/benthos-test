@@ -18,7 +18,7 @@ pipeline:
         input: |
           root = {}
           root.B = "B"
-        result_mode: "void"
+        result_mode: "merge"
         output: |
           root = {}
           root.D = "D"

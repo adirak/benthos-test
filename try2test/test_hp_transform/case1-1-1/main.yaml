@@ -3,7 +3,8 @@ input:
   generate:
     mapping: |
       root = {
-        "A": "A"
+        "A": "A",
+        "D": "D"
       }
     interval: "30s"
 
@@ -23,12 +24,12 @@ pipeline:
           root = {}
           root.C = "C"
 
-        result_mode: merge_replace
+        result_mode: merge
 
         output: |
           root = {}
-          root.D = "D"
-          root.A = "AA"
+          root.D = "DDD"
+          root.A = "AAA"
           
 
     - label: "OutputData"

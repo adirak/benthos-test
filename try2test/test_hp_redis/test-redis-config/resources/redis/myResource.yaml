@@ -3,7 +3,7 @@ processor_resources:
   - label: "my_resource"
     hp_redis_cmd:
       profile: |-
-        {{json(mymongo)}}
+        {{json(myredis)}}
       command: get
       args_mapping: root = [ this.A ]
       input: |

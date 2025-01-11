@@ -1,0 +1,42 @@
+# Recources
+processor_resources:
+  - label: "my_resource"
+    hp_function:
+      name: "test my_function"
+      input: |
+        root = {}
+     
+      processors:
+        - label: "hyper_cache"
+          hp_redis_cmd:
+            profile: |-
+              {
+                "url": "redis://host.docker.internal:6379",
+                "kind": "simple",
+                "profile": "hyper_cache_node",
+                "master": "",
+                "prefix": "cache_node_",
+                "retries": {
+                    "initial_interval": "500ms",
+                    "max_interval": "1s",
+                    "max_elapsed_time": "5s"
+                }
+              }
+
+            command: get
+            args_mapping: root = [ "Test_Key_1" ]
+            input: |
+              root = {}
+            result_mode: "new"
+            output: |
+              root = {}
+              root.cacheValue = this 
+
+      result_mode: "merge"
+      output: |
+        root = {}
+        let data = if this.cacheValue.is_not_empty() { this.cacheValue.parse_json().catch(throw("The value is not in valid JSON format")) } else { throw("key not found") }
+        root = if $data != nil { $data } else { {} }
+
+
+    
