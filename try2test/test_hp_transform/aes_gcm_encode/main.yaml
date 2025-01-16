@@ -1,0 +1,35 @@
+# Producer
+input:
+  generate:
+    mapping: |
+      root = {
+        "A": "A"
+      }
+    interval: "60s"
+
+pipeline:
+  processors:
+    - label: "InputData"
+      dump_log:
+
+    - label: "Test Case 1-1"
+      hp_transform:
+        name: "hp_transform"
+        input: |
+          root = {}
+          root.key  = "jLeGEuLycPA0ZcrwECdk2X85OcT0QhCl"
+          root.data = "HELLO"
+
+        mapping: |
+          root = {}
+          root.response = this.request.gcm_encode(this.key.string(), this.data.string(), -1)
+
+        result_mode: new        
+
+    - label: "OutputData"
+      dump_log:
+
+# No output
+output:
+  label: ""
+  drop: {}
