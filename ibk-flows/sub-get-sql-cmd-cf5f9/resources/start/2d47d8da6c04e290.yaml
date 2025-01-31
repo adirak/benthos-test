@@ -1,0 +1,21 @@
+processor_resources:
+  - label: "{package}_2d47d8da6c04e290"
+    switch:
+      - check: this.type() == "object" || this.type() == "array"
+        processors:
+          - hp_transform:
+              name: "Start"
+              input: |-
+                root = this
+              mapping: |
+
+                  let body = this.parse_json().catch({})
+                  let filter = model2json("e52ad75f1c8cf5f9_in")
+                  let data = $body.json_filter($filter).catch(err -> {"_error":err})
+                  meta _error_message = if $data._error != null { $data._error}
+                  meta _error_code = if $data._error != null {"400"}
+                  root = if $data._error == null { $data } else { throw($data._error) }
+
+              result_mode: merge
+              output: |-
+                root = this

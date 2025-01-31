@@ -1,0 +1,1 @@
+[{"default":"","max":0,"min":0,"name":"redis_key","regexp":"","required":false,"type":"string","validated":false}, {"all":true,"default":"{}","max":0,"min":0,"name":"result","notEmpty":true,"required":false,"type":"map","validated":false}, {"default":false,"name":"not_found","required":false,"type":"boolean","validated":false}]

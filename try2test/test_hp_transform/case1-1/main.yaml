@@ -3,7 +3,10 @@ input:
   generate:
     mapping: |
       root = {
-        "A": "A"
+        "A": "A",
+        "M": {
+          "N": "NN"
+        }
       }
     interval: "30s"
 
@@ -16,19 +19,20 @@ pipeline:
       hp_transform:
         name: "hp_transform"
         input: |
-          root = {}
+          root = this
           root.B = "B"
 
         mapping: |
-          root = {}
+          root = this
           root.C = "C"
 
-        result_mode: merge_replace
+        result_mode: merge
 
         output: |
           root = {}
           root.D = "D"
           root.A = "AA"
+          root.X = json("M.N")
           
 
     - label: "OutputData"

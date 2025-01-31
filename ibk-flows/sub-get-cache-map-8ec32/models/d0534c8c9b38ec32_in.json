@@ -1,0 +1,1 @@
+{"all":false,"filter":[{"default":null,"max":0,"min":0,"name":"cache_key","regexp":"","required":false,"type":"string","validated":false},{"default":null,"max":0,"min":0,"name":"redis_key","regexp":"","required":false,"type":"string","validated":false}]}

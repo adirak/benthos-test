@@ -1,0 +1,15 @@
+processor_resources:
+  - label: "{package}_e677753a1f118c29"
+    hp_redis_cmd:
+      profile: |-
+        {{hyper_ibank_redis_config}}
+      command: get
+      args_mapping: root = [ this.cache_key ]
+      input: |
+        root = this
+    
+      result_mode: "new"
+    
+      output: |
+        root = {}
+        root.strResult = this

@@ -5,7 +5,7 @@ processor_resources:
       profile: |-
         {{json(myredis)}}
       command: get
-      args_mapping: root = [ this.A ]
+      args_mapping: root = [ this.A+"xxx" ]
       input: |
         root = {}
         root.B = "Test_Key_2"

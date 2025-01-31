@@ -1,0 +1,54 @@
+# Producer
+input:
+  generate:
+    mapping: |
+      root = {
+        "A": "A",
+        "M": {
+          "N": "NN"
+        },
+        "id_prefix": "X0"
+      }
+    interval: "30s"
+
+pipeline:
+  processors:
+    - label: "InputData"
+      dump_log:
+
+    - label: "Test Case 1-1"
+      hp_transform:
+        name: "hp_transform"
+        input: |
+          root = this
+          let timestamp = timestamp_unix_micro()
+          root.yy = $timestamp.ts_format("06")
+          root.ddd = $timestamp.ts_format("002")
+          root.HHmmss = $timestamp.ts_format("150405")
+          root.microsec = $timestamp.ts_format(".000000")
+
+        mapping: |
+          root = {}
+          let us = this.microsec.replace(".", "")
+          root.ttxid = this.yy+ this.ddd + this.id_prefix + this.HHmmss + $us
+
+        result_mode: merge
+
+        output: |
+          root = {}
+          let needLen = 25 - this.ttxid.length()
+          let charRan = nanoid($needLen, "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+          root.ttxID = this.ttxid + $charRan
+
+          root.ttxID2 = generate_random_string(8)
+          root.ttxID3 = generate_random_string(length: 10, upper: true, lower: false, number: true, symbol: false)
+          root.timestampNano = timestamp_unix_nano_add(0, 0, 0)
+
+
+    - label: "OutputData"
+      dump_log:
+
+# No output
+output:
+  label: ""
+  drop: {}

@@ -1,0 +1,52 @@
+# Producer
+input:
+  generate:
+    mapping: |
+      root = {
+        "A": "A",
+        "Value99": "112233445566778899",
+        "key1": "Value",
+        "key2": 99
+      }
+    interval: "30s"
+
+pipeline:
+  processors:
+    - label: "InputData"
+      dump_log:
+
+    - label: "my_function"
+      hp_function:
+        name: "test my_function"
+        input: |
+          root = this
+          root.B = "B"
+        result_mode: "new"
+        output: |
+          map myFunc  {
+            root.value = json(this.key1 + this.key2.string())
+          }
+          root = {}
+          root.D = "D"
+          root.YY = this.apply("myFunc")
+          
+        processors:
+          - label: "maping"
+            mapping: |
+              root = this
+              root.C = "C"
+
+          - label: "LogInFunction"
+            dump_log:
+
+    - label: "OutputData"
+      dump_log:
+
+    - catch:
+        - label: "ErrorData"
+          dump_log:
+
+# No output
+output:
+  label: ""
+  drop: {}
