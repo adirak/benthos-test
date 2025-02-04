@@ -1,1 +1,0 @@
-{"createdTime":1738215490384,"flowId":"d0534c8c9b38ec32","flowName":"sub-get-cache-map","id":"9ca72585-dbc7-4f1b-94ef-5dc99fb4c67f","route":{"host":"","name":"sub-get-cache-map-8ec32","path":"/sub-get-cache-map-8ec32"},"service":{"host":"sub-get-cache-map-8ec32","name":"sub-get-cache-map-8ec32","path":"/megw/apis/stream/microservice/v1.0/exec"}}

@@ -1,0 +1,54 @@
+# Producer
+input:
+  generate:
+    mapping: |
+      root = {
+        "A": "A",
+        "B": "B",
+      }
+    interval: "30s"
+
+pipeline:
+  processors:
+    - label: "InputData"
+      dump_log:
+
+    - label: "my_function"
+      hp_function:
+        name: "test my_function"
+        input: |
+          root = this
+
+        result_mode: "new"
+        output: |
+          map myFunc  {
+            root = this
+            root.Y = "YYY"
+          }
+          root.X = this.apply("myFunc")
+          root.status.status = if action == "debtor" {
+              2101
+          } else {
+              2201
+          }
+          
+        processors:
+          - label: "maping"
+            mapping: |
+              root = this
+              root.C = "C"
+
+          - label: "LogInFunction"
+            dump_log:
+
+    - label: "OutputData"
+      dump_log:
+
+    - catch:
+        - label: "ErrorData"
+          dump_log:
+
+# No output
+output:
+  label: ""
+  drop: {}

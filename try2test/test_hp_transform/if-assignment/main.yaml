@@ -1,0 +1,47 @@
+# Producer
+input:
+  generate:
+    mapping: |
+      root = {
+        "A": "A",
+        "M": {
+          "N": "NN"
+        },
+        
+      }
+    interval: "30s"
+
+pipeline:
+  processors:
+    - label: "InputData"
+      dump_log:
+
+    - label: "Test Case 1-1"
+      hp_transform:
+        name: "hp_transform"
+        input: |
+          root = this
+          root.B = "B"
+
+        mapping: |
+          root = this
+          root.C = "C"
+
+        result_mode: merge
+
+        output: |
+          root = {}
+          root.D = "D"
+          root.A = "AA"
+          root.X = json("M.N")
+          root.Arr = [this.C, json("M.N")]
+
+          root.number = this.No.number().or(0)
+
+    - label: "OutputData"
+      dump_log:
+
+# No output
+output:
+  label: ""
+  drop: {}

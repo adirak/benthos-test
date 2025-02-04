@@ -1,1 +1,0 @@
-{"filterInput":["result"],"filterOutput":["sql_cmd","sql_cmd.refield","sql_cmd.sqlcmd"],"process":[{"__id":"r0","input":["result"],"output":["sql_cmd"],"type":"rename_fields"}]}
