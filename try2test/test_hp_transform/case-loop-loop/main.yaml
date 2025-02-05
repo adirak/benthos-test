@@ -1,0 +1,76 @@
+# Producer
+input:
+  generate:
+    mapping: |
+      root = {
+        "A": "A",
+        "arr": [
+          {"customerID":310001462, "restriction_cif":[{ "exdt": "20211011", "rflg": "11"},{ "exdt": "20211011", "rflg": "13"}]},
+          {"customerID":310001463, "restriction_cif":[{ "exdt": "20211011", "rflg": "11"},{ "exdt": "20211011", "rflg": "13"}]}
+        ]
+      }
+    interval: "20s"
+
+pipeline:
+  processors:
+    - try:
+        - label: "InputData"
+          dump_log:
+
+        - label: "Test Case 1-2"
+          hp_transform:
+            name: "hp_transform"
+            input: |
+              root = this
+
+            mapping: |
+              root = {}
+              
+              map myFunc2 {
+                let cur_date = "20211011".number()
+                let rflg = this.rflg.string()
+                let exdt = this.exdt.number()
+                let result = if $exdt >= $cur_date {
+                  if $rflg == "11" {
+                   $rflg
+                  } else {
+                    "98"
+                  }
+                } 
+                root = if $result != null {
+                    { "result": $result}
+                   }else{
+                    { "result": "99"}
+                   }
+              }
+
+              map myFunc {
+                let rflg = this.restriction_cif.map_each( a -> a.apply("myFunc2"))
+                let rflg2 = $rflg.filter( a -> a.result == "11").index(0)
+
+                let customerID = this.customerID.string()
+                root = if $rflg2 != null {
+                      { $customerID : $rflg2.result}
+                    }else{
+                      {}
+                    }
+                  
+                   }
+              
+
+              root.result = this.arr.fold({}, item -> item.tally.merge(item.value.apply("myFunc")))
+              
+            result_mode: "new"
+
+
+        - label: "OutputData"
+          dump_log:
+
+    - catch:
+        - label: "ErrorData"
+          dump_log:
+
+# No output
+output:
+  label: ""
+  drop: {}
