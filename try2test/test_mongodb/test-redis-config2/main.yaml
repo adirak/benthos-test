@@ -16,7 +16,7 @@ pipeline:
       mongodb:
         name: "mongodb"
         profile: |-
-          {{json(mymongo)}}
+          {{mymongo}}
         database: test
         operation: insert-one
         collection: students
@@ -34,7 +34,7 @@ pipeline:
           root.age = 40
 
         output: |
-          root = {}
+          root = this
           root.F = "F"
 
     - label: "OutputData"

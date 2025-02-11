@@ -1,0 +1,42 @@
+# Producer
+input:
+  generate:
+    mapping: |
+      root = {
+        "A": "A",
+        "list": [1]
+      }
+    interval: "20s"
+
+pipeline:
+  processors:
+    - try:
+        - label: "InputData"
+          dump_log:
+
+        - label: "Test Case 1-2"
+          hp_transform:
+            name: "hp_transform"
+            input: |
+              root = this
+
+            mapping: |
+              root = this
+              root.str = this.list.map_each(item -> item.string()).join(",")
+
+ 
+          
+            result_mode: "new"
+
+
+        - label: "OutputData"
+          dump_log:
+
+    - catch:
+        - label: "ErrorData"
+          dump_log:
+
+# No output
+output:
+  label: ""
+  drop: {}

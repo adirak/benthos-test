@@ -1,0 +1,63 @@
+[
+    {
+        "all": true,
+        "default": "[{\"aftId\":\"0\",\"amount\":0,\"ccy\":\"THB\",\"crAccountName\":\"\",\"crAccountNumber\":\"\",\"crBankCode\":\"006\",\"crBankName\":\"\",\"crProductName\":\"\",\"crSequence\":1,\"createdDateTime\":\"\",\"customerId\":\"\",\"dateEnd\":\"\",\"dateStart\":\"\",\"days\":1,\"drAccountName\":\"\",\"drAccountNumber\":\"\",\"drBankCode\":\"066\",\"drBankName\":\"\",\"drFee\":0,\"drProductName\":\"\",\"frequency\":\"\",\"lastDate\":\"\",\"nextDate\":\"\",\"status\":\"\",\"totalTimes\":5,\"transRef\":\"\",\"transTimes\":2,\"ttxComment\":\"\",\"ttxPurpose\":\"\",\"updatedDateTime\":\"\"}]",
+        "max": 0,
+        "min": 0,
+        "name": "aft_list",
+        "notEmpty": true,
+        "required": false,
+        "type": "array",
+        "validated": false
+    },
+    {
+        "default": "",
+        "max": 0,
+        "min": 0,
+        "name": "drAccountNumber",
+        "regexp": "",
+        "required": false,
+        "type": "string",
+        "validated": false
+    },
+    {
+        "all": false,
+        "children": [
+            {
+                "default": "Success",
+                "max": 0,
+                "min": 0,
+                "name": "description",
+                "regexp": "",
+                "required": false,
+                "type": "string",
+                "validated": false
+            },
+            {
+                "default": 0,
+                "max": 0,
+                "min": 0,
+                "name": "status",
+                "required": false,
+                "type": "integer",
+                "validated": false
+            }
+        ],
+        "max": 0,
+        "min": 0,
+        "name": "status",
+        "notEmpty": true,
+        "required": false,
+        "type": "map",
+        "validated": false
+    },
+    {
+        "default": 0,
+        "max": 0,
+        "min": 0,
+        "name": "totalActive",
+        "required": false,
+        "type": "integer",
+        "validated": false
+    }
+]

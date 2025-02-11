@@ -1,0 +1,320 @@
+{
+    "all": false,
+    "filter": [
+        {
+            "all": false,
+            "children": [
+                {
+                    "default": null,
+                    "max": 0,
+                    "min": 0,
+                    "name": "aftId",
+                    "regexp": "",
+                    "required": false,
+                    "type": "string",
+                    "validated": false
+                },
+                {
+                    "default": null,
+                    "max": 0,
+                    "min": 0,
+                    "name": "amount",
+                    "required": false,
+                    "type": "integer",
+                    "validated": false
+                },
+                {
+                    "default": null,
+                    "max": 0,
+                    "min": 0,
+                    "name": "ccy",
+                    "regexp": "",
+                    "required": false,
+                    "type": "string",
+                    "validated": false
+                },
+                {
+                    "default": null,
+                    "max": 0,
+                    "min": 0,
+                    "name": "crAccountName",
+                    "regexp": "",
+                    "required": false,
+                    "type": "string",
+                    "validated": false
+                },
+                {
+                    "default": null,
+                    "max": 0,
+                    "min": 0,
+                    "name": "crAccountNumber",
+                    "regexp": "",
+                    "required": false,
+                    "type": "string",
+                    "validated": false
+                },
+                {
+                    "default": null,
+                    "max": 0,
+                    "min": 0,
+                    "name": "crBankCode",
+                    "regexp": "",
+                    "required": false,
+                    "type": "string",
+                    "validated": false
+                },
+                {
+                    "default": null,
+                    "max": 0,
+                    "min": 0,
+                    "name": "crBankName",
+                    "regexp": "",
+                    "required": false,
+                    "type": "string",
+                    "validated": false
+                },
+                {
+                    "default": null,
+                    "max": 0,
+                    "min": 0,
+                    "name": "createdDateTime",
+                    "regexp": "",
+                    "required": false,
+                    "type": "string",
+                    "validated": false
+                },
+                {
+                    "default": null,
+                    "max": 0,
+                    "min": 0,
+                    "name": "crProductName",
+                    "regexp": "",
+                    "required": false,
+                    "type": "string",
+                    "validated": false
+                },
+                {
+                    "default": null,
+                    "max": 0,
+                    "min": 0,
+                    "name": "crSequence",
+                    "required": false,
+                    "type": "integer",
+                    "validated": false
+                },
+                {
+                    "default": null,
+                    "max": 0,
+                    "min": 0,
+                    "name": "customerId",
+                    "regexp": "",
+                    "required": false,
+                    "type": "string",
+                    "validated": false
+                },
+                {
+                    "default": null,
+                    "max": 0,
+                    "min": 0,
+                    "name": "dateEnd",
+                    "regexp": "",
+                    "required": false,
+                    "type": "string",
+                    "validated": false
+                },
+                {
+                    "default": null,
+                    "max": 0,
+                    "min": 0,
+                    "name": "dateStart",
+                    "regexp": "",
+                    "required": false,
+                    "type": "string",
+                    "validated": false
+                },
+                {
+                    "default": null,
+                    "max": 0,
+                    "min": 0,
+                    "name": "days",
+                    "required": false,
+                    "type": "integer",
+                    "validated": false
+                },
+                {
+                    "default": null,
+                    "max": 0,
+                    "min": 0,
+                    "name": "drAccountName",
+                    "regexp": "",
+                    "required": false,
+                    "type": "string",
+                    "validated": false
+                },
+                {
+                    "default": null,
+                    "max": 0,
+                    "min": 0,
+                    "name": "drAccountNumber",
+                    "regexp": "",
+                    "required": false,
+                    "type": "string",
+                    "validated": false
+                },
+                {
+                    "default": null,
+                    "max": 0,
+                    "min": 0,
+                    "name": "drBankCode",
+                    "regexp": "",
+                    "required": false,
+                    "type": "string",
+                    "validated": false
+                },
+                {
+                    "default": null,
+                    "max": 0,
+                    "min": 0,
+                    "name": "drBankName",
+                    "regexp": "",
+                    "required": false,
+                    "type": "string",
+                    "validated": false
+                },
+                {
+                    "default": null,
+                    "max": 0,
+                    "min": 0,
+                    "name": "drFee",
+                    "required": false,
+                    "type": "integer",
+                    "validated": false
+                },
+                {
+                    "default": null,
+                    "max": 0,
+                    "min": 0,
+                    "name": "drProductName",
+                    "regexp": "",
+                    "required": false,
+                    "type": "string",
+                    "validated": false
+                },
+                {
+                    "default": null,
+                    "max": 0,
+                    "min": 0,
+                    "name": "frequency",
+                    "regexp": "",
+                    "required": false,
+                    "type": "string",
+                    "validated": false
+                },
+                {
+                    "default": null,
+                    "max": 0,
+                    "min": 0,
+                    "name": "lastDate",
+                    "regexp": "",
+                    "required": false,
+                    "type": "string",
+                    "validated": false
+                },
+                {
+                    "default": null,
+                    "max": 0,
+                    "min": 0,
+                    "name": "nextDate",
+                    "regexp": "",
+                    "required": false,
+                    "type": "string",
+                    "validated": false
+                },
+                {
+                    "default": null,
+                    "max": 0,
+                    "min": 0,
+                    "name": "status",
+                    "regexp": "",
+                    "required": false,
+                    "type": "string",
+                    "validated": false
+                },
+                {
+                    "default": null,
+                    "max": 0,
+                    "min": 0,
+                    "name": "totalTimes",
+                    "required": false,
+                    "type": "integer",
+                    "validated": false
+                },
+                {
+                    "default": null,
+                    "max": 0,
+                    "min": 0,
+                    "name": "transRef",
+                    "regexp": "",
+                    "required": false,
+                    "type": "string",
+                    "validated": false
+                },
+                {
+                    "default": null,
+                    "max": 0,
+                    "min": 0,
+                    "name": "transTimes",
+                    "required": false,
+                    "type": "integer",
+                    "validated": false
+                },
+                {
+                    "default": null,
+                    "max": 0,
+                    "min": 0,
+                    "name": "ttxComment",
+                    "regexp": "",
+                    "required": false,
+                    "type": "string",
+                    "validated": false
+                },
+                {
+                    "default": null,
+                    "max": 0,
+                    "min": 0,
+                    "name": "ttxPurpose",
+                    "regexp": "",
+                    "required": false,
+                    "type": "string",
+                    "validated": false
+                },
+                {
+                    "default": null,
+                    "max": 0,
+                    "min": 0,
+                    "name": "updatedDateTime",
+                    "regexp": "",
+                    "required": false,
+                    "type": "string",
+                    "validated": false
+                }
+            ],
+            "max": 0,
+            "min": 0,
+            "name": "data",
+            "required": false,
+            "type": "map",
+            "validated": false
+        },
+        {
+            "default": null,
+            "max": 0,
+            "min": 0,
+            "name": "id",
+            "regexp": "",
+            "required": false,
+            "type": "string",
+            "validated": false
+        }
+    ]
+}

@@ -1,0 +1,22 @@
+processor_resources:
+  - label: "{package}_d76ac0e2e97326ce"
+    mongodb:
+      name: "CreateAdvanceTransfer"
+      profile: |-
+        {{hyper_ibank_mongo_config}}
+      database: advance_transfer
+      operation: find
+      collection: advance_transfer_info
+      
+      input: |-
+        root = this
+    
+      filter_map: |-
+            root = {"drAccountNumber": this.drAccountNumber}
+    
+    
+      result_mode: "merge"
+    
+      output: |-
+        root = {}
+        root.aft_list = this.result

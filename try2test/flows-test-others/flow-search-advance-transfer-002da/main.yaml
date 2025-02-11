@@ -1,0 +1,154 @@
+
+input:
+  http_server:
+    timeout: 60s
+    path: "/megw/apis/stream/{service}/{version}/{action}"
+    allowed_verbs:
+      - POST
+      - GET
+
+
+pipeline:
+  processors:
+
+
+    # Filter Input
+    - label: "FilterInputMainflow"
+      hp_transform:
+        name: "Filter Input"
+        result_mode: new
+        mapping: |-
+          meta mainFlowId = "af5e10ca35c002da"
+          meta flowId = "af5e10ca35c002da"
+          meta subflowId = "none"
+          meta testId = if meta("X-Trace").or("false") == "true" { if this._hyper_testId != null { this._hyper_testId } else if this.testId != null { this.testId } } else { deleted() }
+          meta username = if meta("X-Trace").or("false") == "true" && this._hyper_username != null { this._hyper_username } else { meta("X-Username").or(deleted()) }
+
+          root = this
+          
+      
+
+    # Node start
+    - label: "{package}_58dbf3faae35a9ad"
+      hp_resource:
+        id: "{package}_58dbf3faae35a9ad"
+        goto_route:
+          success: "this.{package}_a951687f66b5ba89"
+          #failure: "this.{package}_exception"
+          
+        metadata: |-
+          {
+            "scopeType": "mainFlow",
+            "scopeId": "af5e10ca35c002da",
+            "nodeId":"58dbf3faae35a9ad",
+            "nodeType":"start"
+          }
+    
+
+    # Node define
+    - label: "{package}_a951687f66b5ba89"
+      hp_resource:
+        id: "{package}_a951687f66b5ba89"
+        goto_route:
+          success: "this.{package}_d76ac0e2e97326ce"
+          #failure: "this.{package}_exception"
+          
+        metadata: |-
+          {
+            "scopeType": "mainFlow",
+            "scopeId": "af5e10ca35c002da",
+            "nodeId":"a951687f66b5ba89",
+            "nodeType":"define"
+          }
+    
+
+    # Node code
+    - label: "{package}_d76ac0e2e97326ce"
+      hp_resource:
+        id: "{package}_d76ac0e2e97326ce"
+        goto_route:
+          success: "this.{package}_29851797992c90ff"
+          #failure: "this.{package}_exception"
+          
+        metadata: |-
+          {
+            "scopeType": "mainFlow",
+            "scopeId": "af5e10ca35c002da",
+            "nodeId":"d76ac0e2e97326ce",
+            "nodeType":"code"
+          }
+    
+
+    # Node code
+    - label: "{package}_29851797992c90ff"
+      hp_resource:
+        id: "{package}_29851797992c90ff"
+        goto_route:
+          success: "this.{package}_dd392d1fdde7496f"
+          #failure: "this.{package}_exception"
+          
+        metadata: |-
+          {
+            "scopeType": "mainFlow",
+            "scopeId": "af5e10ca35c002da",
+            "nodeId":"29851797992c90ff",
+            "nodeType":"code"
+          }
+    
+
+    # Node end
+    - label: "{package}_dd392d1fdde7496f"
+      hp_resource:
+        id: "{package}_dd392d1fdde7496f"
+        goto_route:
+          success: "this.{package}_endnode"
+          
+        metadata: |-
+          {
+            "scopeType": "mainFlow",
+            "scopeId": "af5e10ca35c002da",
+            "nodeId":"dd392d1fdde7496f",
+            "nodeType":"end"
+          }
+    
+    # Exception resources
+    - catch:
+      - hp_transform:
+          name: "Prepare Exception"
+          input: |-
+            root = this
+          mapping: |-
+            meta result_status = {"description": error().or(metadata("error_message").or("Exception")), "code": metadata("error_code").or("500") }
+            meta result_error = true
+          result_mode: merge
+          output: |-
+            root = this
+      - dump_log:
+          payload: false
+
+
+    # End flow (Standard-Format)
+    - label: "{package}_endnode"
+      hp_transform:
+        name: "Pepare Result"
+        mapping: |-
+          let result_status = meta("result_status")
+          let code = $result_status.code.or("200")
+          let description = $result_status.description.or("Success")
+          root = this
+          root._hyper_code = $code
+          root._hyper_message = $description
+        result_mode: new
+
+output:
+  switch:
+    cases:
+      - check: meta("input_channel") == "http"
+        output:
+          sync_response: {}
+      - check: meta("input_channel") == "socket_sync"
+        output:
+          sync_response: {}
+      - output:
+          drop: {}
+

@@ -4,18 +4,26 @@
     "url": "mongodb://host.docker.internal:27017",
     "username": "admin",
     "password": "password123",
-    "auth_source": "test",
+    "auth_source": "admin",
     "auth_mechanism": "SCRAM-SHA-256"
 }
 
 {
-    "profile": "techberry_mongo",
+    "profile": "test mongodb",
     "url": "mongodb://54.255.42.110:47007",
     "username": "myUserAdmin",
     "password": "SOh3TbYhx8ypJPxmt1oOfL",
-    "auth_source": "test",
-    "auth_mechanism": "SCRAM-SHA-1"
+    "auth_source": "admin"
 }
+
+{
+    "profile": "hyper_ibank_mongo_config",
+    "url": "mongodb://host.docker.internal:27017",
+    "username": "admin",
+    "password": "password123",
+    "auth_source": "admin"
+}
+
 
 
 ## Using

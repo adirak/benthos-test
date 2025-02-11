@@ -1,0 +1,14 @@
+processor_resources:
+  - label: "{package}_29851797992c90ff"
+    hp_transform:
+      name: "Get Size of List"
+      inputs: |-
+            root = this
+      mapping: |-
+            root = this
+            root.totalActive = this.aft_list.length()
+            root.status.status = 0
+            root.status.description = "Success"
+      result_mode: merge
+      output: |-
+            root = this

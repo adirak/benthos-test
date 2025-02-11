@@ -1,0 +1,23 @@
+processor_resources:
+  - label: "{package}_72463e1ccd867f45"
+    mongodb:
+      name: "CreateAdvanceTransfer"
+      profile: |-
+        {{hyper_ibank_mongo_config}}
+      database: advance_transfer
+      operation: insert-one
+      collection: advance_transfer_info
+      
+      input: |-
+        root = this
+    
+      document_map: |-
+        root = this.data
+    
+    
+      result_mode: "merge"
+    
+      output: |-
+        root = {}
+        root.description = "Success"
+        root.status = 0

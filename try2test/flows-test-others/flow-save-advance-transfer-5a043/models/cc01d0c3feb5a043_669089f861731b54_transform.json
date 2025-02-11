@@ -1,0 +1,1 @@
+{"filterInput":["id"],"filterOutput":["data","data._id","data.aftId","id"],"process":[{"__id":"r0","input":["id","id"],"output":["data._id","data.aftId"],"type":"rename_fields"}]}

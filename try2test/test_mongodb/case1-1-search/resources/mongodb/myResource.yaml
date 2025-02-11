@@ -7,7 +7,7 @@ processor_resources:
       database: test
       username: admin
       password: password123
-      operation: find
+      operation: find-one
       collection: students
       filter_map: |
         root = {}
@@ -20,9 +20,9 @@ processor_resources:
         root = {"age": -1}
       projection_map: |
         root = {}
-        root = {"_id": 0}
+        root = {"_id": 1, "name": 1}
 
-      result_mode: "void"
+      result_mode: "new"
 
       output: |
         root = this

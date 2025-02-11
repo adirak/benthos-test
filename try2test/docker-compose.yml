@@ -17,7 +17,8 @@ services:
       - LOG_FORMAT=json
       - JSON_USE_NUMBER=false
       - HYPER_NODE_PATH=/data/deployed
-      - HYPER_REDIS=redis://host.docker.internal:6379
+      #- HYPER_REDIS=redis://host.docker.internal:6379
+      - HYPER_REDIS=redis://default:securepassword@host.docker.internal:16379
 
     ports:
       - "8124:8124"

@@ -1,0 +1,23 @@
+# Recources
+processor_resources:
+  - label: "my_resource"
+    hp_redis_cmd:
+      profile: |-
+        {{hyper_ibank_redis_config}}
+        
+      input: |
+        root = this
+        let value = {
+                "cache_value": {
+                "sqlcmd": " select exdt,acn,rflg from rflgc where acn in ({}) and rflg = '11' ",
+                "refield": "exdt,acn,rflg"
+              }
+            }
+        root.strValue = $value.string()
+
+      command: set
+      args_mapping: root = [ this.redis_key, this.strValue ]
+      
+
+
+      result_mode: void

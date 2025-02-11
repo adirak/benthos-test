@@ -1,0 +1,14 @@
+{
+    "all": false,
+    "filter": [
+        {
+            "all": true,
+            "max": 0,
+            "min": 0,
+            "name": "status",
+            "required": false,
+            "type": "map",
+            "validated": false
+        }
+    ]
+}

@@ -1,0 +1,69 @@
+# Producer
+input:
+  generate:
+    mapping: |
+      root = {
+          "A": "A",
+          "dbrc": [
+              {
+                  "exdt": "20211011",
+                  "rflg": "11",
+                  "acn": "00000000"
+              },
+              {
+                  "exdt": "20211010",
+                  "rflg": "13",
+                  "acn": "11111111"
+              }
+          ],
+          "result2": {
+              "999999999": "11"
+          }
+      }
+
+    interval: "20s"
+
+pipeline:
+  processors:
+    - try:
+        - label: "InputData"
+          dump_log:
+
+        - label: "Test Case 1-2"
+          hp_transform:
+            name: "hp_transform"
+            input: |
+              root = this
+
+            mapping: |
+              root = this
+
+              map transform {
+                let cur_date = "20211011".number()
+                root = if exdt.number() >=  $cur_date {
+                  {this.acn : this.rflg}
+                } else {
+                  {}
+                }
+              }
+              
+              root.rest = this.dbrc.map_each(item -> item.apply("transform"))
+
+            output: |
+              root = {}
+              root.rest = this.rest.merge(this.result2)
+          
+            result_mode: "new"
+
+
+        - label: "OutputData"
+          dump_log:
+
+    - catch:
+        - label: "ErrorData"
+          dump_log:
+
+# No output
+output:
+  label: ""
+  drop: {}
