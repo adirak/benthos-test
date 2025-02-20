@@ -1,0 +1,109 @@
+processor_resources:
+  - label: "{package}_35256fcf5dfe5b2d"
+    hp_function:
+      name: "flow-setting-config-yaml"
+      input: |-
+
+        root = this
+
+
+      processors:
+        
+        # Node startsub
+        - label: "{package}_b6aac101577e73f0"
+          hp_resource:
+            id: "{package}_b6aac101577e73f0"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "35256fcf5dfe5b2d",
+                "nodeId":"b6aac101577e73f0",
+                "nodeType":"startsub"
+              }
+            goto_route:
+              success: "this.{package}_d5c2280b73b877d7"
+              #failure: "this.{package}_35256fcf5dfe5b2d_exception"
+              
+        # Node define
+        - label: "{package}_d5c2280b73b877d7"
+          hp_resource:
+            id: "{package}_d5c2280b73b877d7"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "35256fcf5dfe5b2d",
+                "nodeId":"d5c2280b73b877d7",
+                "nodeType":"define"
+              }
+            goto_route:
+              success: "this.{package}_28b5e5a2c66c3df9"
+              #failure: "this.{package}_35256fcf5dfe5b2d_exception"
+              
+        # Node endsub
+        - label: "{package}_2136e5a4ca19fce7"
+          hp_resource:
+            id: "{package}_2136e5a4ca19fce7"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "35256fcf5dfe5b2d",
+                "nodeId":"2136e5a4ca19fce7",
+                "nodeType":"endsub"
+              }
+            goto_route:
+              success: "this.{package}_35256fcf5dfe5b2d_endnode"
+              
+        # Node ssqsubflow
+        - label: "{package}_28b5e5a2c66c3df9"
+          hp_resource:
+            id: "{package}_28b5e5a2c66c3df9"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "35256fcf5dfe5b2d",
+                "nodeId":"28b5e5a2c66c3df9",
+                "nodeType":"ssqsubflow"
+              }
+            goto_route:
+              success: "this.{package}_328ebb953cc8b39b"
+              #failure: "this.{package}_35256fcf5dfe5b2d_exception"
+              
+        # Node decision
+        - label: "{package}_328ebb953cc8b39b"
+          hp_resource:
+            id: "{package}_328ebb953cc8b39b"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "35256fcf5dfe5b2d",
+                "nodeId":"328ebb953cc8b39b",
+                "nodeType":"decision"
+              }
+            goto_route:
+              success: '${! metadata("result_route") }'
+              #failure: "this.{package}_35256fcf5dfe5b2d_exception"
+              
+        # Node code
+        - label: "{package}_90f95a0345242416"
+          hp_resource:
+            id: "{package}_90f95a0345242416"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "35256fcf5dfe5b2d",
+                "nodeId":"90f95a0345242416",
+                "nodeType":"code"
+              }
+            goto_route:
+              success: "this.{package}_2136e5a4ca19fce7"
+              #failure: "this.{package}_35256fcf5dfe5b2d_exception"
+              
+        
+        # End flow resource
+        - label: "{package}_35256fcf5dfe5b2d_endnode"
+          noop:
+
+      result_mode: new
+      output: |-
+
+        root = this

@@ -1,0 +1,1 @@
+{"createdTime":1739881667921,"flowId":"472a8ae2136c0969","flowName":"gateway-validate-token","id":"4ef3e106-6081-4d9c-aa4c-3c6ea0e479f4","route":{"host":"","name":"gateway-validate-token-c0969","path":"/gateway-validate-token-c0969"},"service":{"host":"gateway-validate-token-c0969","name":"gateway-validate-token-c0969","path":"/megw/apis/stream/microservice/v1.0/exec"}}

@@ -1,0 +1,63 @@
+# Producer
+# input:
+#   generate:
+#     mapping: |
+#       root = {
+#         "message": "Hello Toppic from Benthos!",
+#         "timestamp": now()
+#       }
+#     interval: "2s"
+
+input:
+  http_server:
+    timeout: 60s
+    path: "/megw/apis/stream/{service}/{version}/{action}"
+    allowed_verbs:
+      - POST
+      - GET
+
+pipeline:
+  processors:
+    - label: "{package}_endnode"
+      hp_transform:
+        name: "Pepare Result"
+        mapping: |-
+          root = {
+              "message": "Hello world...",
+              "timestamp": now()
+          }
+
+        result_mode: new
+
+    - dump_log:
+
+
+output:
+  label: ""
+  broker:
+    pattern: fan_out
+    outputs: 
+      - label: "Producer_Topic"
+        amqp_0_9:
+          urls:
+            - amqp://guest:guest@host.docker.internal:5672/
+          exchange: "test.topic"
+          exchange_declare:
+            enabled: true # ให้สร้าง exchange
+            type: topic # type เป็น topic
+            durable: true
+          key: "thai.hello"
+          type: "topic"
+          metadata:
+            exclude_prefixes: []
+          max_in_flight: 64
+      - switch:
+          cases:
+            - check: meta("input_channel") == "http"
+              output:
+                sync_response: {}
+            - check: meta("input_channel") == "socket_sync"
+              output:
+                sync_response: {}
+            - output:
+                drop: {}

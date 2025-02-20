@@ -1,0 +1,36 @@
+# Producer
+input:
+  generate:
+    mapping: |
+      root = {
+        "key": "aBcDeFgHiJkLmNoPqRsTuVwXyZ#$0123",
+        "data": "AAAAEIknT9gWWSPMLoGVHKmvzquF3Saz322ovBqpiATQyddC/rWFBjIWSh0VJo+Jq2rWNt5nXFO9XQE3sTPKm9wMdYrBs9gVVdynOMrCG89BuQEpID2grPVl3kTSkr+pU2FHXAMhJxAdgu50St/2eNy0XZ01X+NRF8lG3Luqa4ZT21x6beSsWV2rsfyygIdJTsCrxP2q+Zh+w4Sn5Iyxd2vyuCIvlvR4vHkoWLLOOB2BeXWHkdVGhtNqyFuHVPDgHKvTn56D8/+T74II591Q0VkOgSx4+QQ1KnWEbhg+LKBF2zgCDF9A+E6KrG0afS82bJBLvj7iq3Fci09u+xIVvb9UXj/CHmOrhTl1GhXkvNNUd7mOqhl2JOAGKbIbCFXRDPDC7PUAaz2hJQV+ybJ1JzG9tbyJv4WpVNGE+DN2I7z7k7MF4n4Ha/kXDhOQsapJgAjGho0OQJUUdBouD6CBAZh1sibVdIkcnsXa0C6Tn2rzFEcPGf1GXHzkCsNPKLwsghENdwYJEIf62ZYQwKoeBaww9pq0TjSNUuiAy9/FSHwm0UYdWhjl5c2GYs0d92P3vqMSBeMBVcqIA2tW7DmyjpG0jEFIVzdnRfL8uSgaa3hC0uDrjmwP3IE1iTTolQzJgiZ+xlnrNaxYrHBKtBPkHSbWCukRysX3qMF/LBSfvJjm2x3mrQsxLsSJjZPh3enhiNxviB2Dsg2SiAVPVeu94YtPefQBsbLJ2qpjd5BgRmVxOWguSfAxRvZIQmeX+9t4cOb9wBs="
+      }
+    interval: "30s"
+
+pipeline:
+  processors:
+    - label: "InputData"
+      dump_log:
+
+    - label: "Test Case 1-1"
+      hp_transform:
+        name: "hp_transform"
+        input: |
+            root = this
+
+
+        mapping: |
+            root = {}
+            root.decrypted = this.data.gcm_decode(this.key.string(), this.data.string(), -1)
+
+        result_mode: new    
+          
+
+    - label: "OutputData"
+      dump_log:
+
+# No output
+output:
+  label: ""
+  drop: {}

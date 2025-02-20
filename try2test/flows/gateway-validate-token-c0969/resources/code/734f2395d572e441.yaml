@@ -1,0 +1,14 @@
+processor_resources:
+  - label: "{package}_734f2395d572e441"
+    hp_transform:
+        name: "hp_transform"
+        input: |
+          root = this
+    
+        mapping: |
+          root = {}
+          root.status.status = 0
+    
+        result_mode: new
+    
+    

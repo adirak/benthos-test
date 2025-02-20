@@ -4,12 +4,7 @@ input:
     mapping: |
       root = {
         "A": "A",
-        "M": {
-          "N": "NN"
-        },
-        "frequency": {
-           "dateStart": "2025-03-01"
-        }
+        "D": "D"
       }
     interval: "30s"
 
@@ -22,17 +17,20 @@ pipeline:
       hp_transform:
         name: "hp_transform"
         input: |
-          root = this
+          root = {}
           root.B = "B"
 
         mapping: |
-          root = this
+          root = {}
+          root.C = "C"
 
         result_mode: merge
 
         output: |
           root = {}
-          root.next_month = this.frequency.dateStart.ts_next_month("2006-01-02", "Asia/Bangkok", 1)
+          root.D = "DDD"
+          root.A = "AAA"
+          
 
     - label: "OutputData"
       dump_log:

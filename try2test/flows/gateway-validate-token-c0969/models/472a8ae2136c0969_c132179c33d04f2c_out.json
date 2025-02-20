@@ -1,0 +1,1 @@
+[{"default":null,"max":0,"min":0,"name":"code","required":false,"type":"integer","validated":false}, {"all":true,"default":"{}","max":0,"min":0,"name":"token_header","required":false,"type":"map","validated":false}, {"all":true,"default":"{}","max":0,"min":0,"name":"token_payload","required":false,"type":"map","validated":false}]

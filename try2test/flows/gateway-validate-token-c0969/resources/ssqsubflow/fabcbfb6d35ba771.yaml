@@ -1,0 +1,41 @@
+
+processor_resources:
+  - label: "{package}_fabcbfb6d35ba771"
+    hp_function:
+      input: |-
+        meta 35256fcf5dfe5b2d_parrent = meta("flowId")
+        meta flowId = "35256fcf5dfe5b2d"
+        meta subflowId = "35256fcf5dfe5b2d"
+        
+
+        let filter = model2json("472a8ae2136c0969_fabcbfb6d35ba771_in")
+        root = this.json_filter($filter)
+
+
+      processors:
+        - hp_resource: 
+            id: "{package}_35256fcf5dfe5b2d"
+            name: "Read Setting Config"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "2dfb873d855e2391"
+              }
+
+        - label: "endsub"
+          hp_transform:
+            result_mode: merge
+            mapping: |-
+      
+              let filter = model2json("472a8ae2136c0969_fabcbfb6d35ba771_out")
+              root = this.json_filter($filter)
+
+
+      result_mode: merge
+      output: |-
+        meta flowId = metadata("35256fcf5dfe5b2d_parrent")
+        meta 35256fcf5dfe5b2d_parrent = deleted()
+        meta subflowId = meta("parrent_fabcbfb6d35ba771_subflowId")
+        meta parrent_fabcbfb6d35ba771_subflowId = deleted()
+      
+      

@@ -1,1 +1,0 @@
-{"filterInput":["data","data.nextDate","data.transTimes"],"filterOutput":["dataOlder","dataOlder.nextDate","dataOlder.transTimes"],"process":[{"__id":"r0","input":["data.transTimes","data.nextDate"],"output":["dataOlder.transTimes","dataOlder.nextDate"],"type":"rename_fields"}]}

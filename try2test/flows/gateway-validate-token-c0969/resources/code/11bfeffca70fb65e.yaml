@@ -1,0 +1,12 @@
+processor_resources:
+  - label: "{package}_11bfeffca70fb65e"
+    hp_transform:
+      name: "hp_transform"
+      input: |
+          root = this
+    
+      mapping: |
+          root = {}
+          root.strReq = if request != "" {this.request.gcm_decode(this.key.string(), this.request.string(), -1)}
+    
+      result_mode: new      

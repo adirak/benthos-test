@@ -1,0 +1,16 @@
+processor_resources:
+  - label: "{package}_6cada974011071eb"
+    switch:
+      - check: this.type() == "object" || this.type() == "array"
+        processors:
+          - hp_transform:
+              name: "Start"
+              input: |-
+                root = this
+              mapping: |
+
+                  root = this
+
+              result_mode: merge
+              output: |-
+                root = this

@@ -1,0 +1,183 @@
+processor_resources:
+  - label: "{package}_2dfb873d855e2391"
+    hp_function:
+      name: "sub-validate-secret"
+      input: |-
+
+        root = this
+
+
+      processors:
+        
+        # Node startsub
+        - label: "{package}_8ecddc8f9a20686c"
+          hp_resource:
+            id: "{package}_8ecddc8f9a20686c"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "2dfb873d855e2391",
+                "nodeId":"8ecddc8f9a20686c",
+                "nodeType":"startsub"
+              }
+            goto_route:
+              success: "this.{package}_266d18d3fef11c2b"
+              #failure: "this.{package}_2dfb873d855e2391_exception"
+              
+        # Node define
+        - label: "{package}_266d18d3fef11c2b"
+          hp_resource:
+            id: "{package}_266d18d3fef11c2b"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "2dfb873d855e2391",
+                "nodeId":"266d18d3fef11c2b",
+                "nodeType":"define"
+              }
+            goto_route:
+              success: "this.{package}_3206e1fe4094ac77"
+              #failure: "this.{package}_2dfb873d855e2391_exception"
+              
+        # Node code
+        - label: "{package}_3206e1fe4094ac77"
+          hp_resource:
+            id: "{package}_3206e1fe4094ac77"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "2dfb873d855e2391",
+                "nodeId":"3206e1fe4094ac77",
+                "nodeType":"code"
+              }
+            goto_route:
+              success: "this.{package}_dadc486981ec0d74"
+              #failure: "this.{package}_2dfb873d855e2391_exception"
+              
+        # Node decision
+        - label: "{package}_dadc486981ec0d74"
+          hp_resource:
+            id: "{package}_dadc486981ec0d74"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "2dfb873d855e2391",
+                "nodeId":"dadc486981ec0d74",
+                "nodeType":"decision"
+              }
+            goto_route:
+              success: '${! metadata("result_route") }'
+              #failure: "this.{package}_2dfb873d855e2391_exception"
+              
+        # Node endsub
+        - label: "{package}_19b010a35302da84"
+          hp_resource:
+            id: "{package}_19b010a35302da84"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "2dfb873d855e2391",
+                "nodeId":"19b010a35302da84",
+                "nodeType":"endsub"
+              }
+            goto_route:
+              success: "this.{package}_2dfb873d855e2391_endnode"
+              
+        # Node code
+        - label: "{package}_52f04873b0837e0d"
+          hp_resource:
+            id: "{package}_52f04873b0837e0d"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "2dfb873d855e2391",
+                "nodeId":"52f04873b0837e0d",
+                "nodeType":"code"
+              }
+            goto_route:
+              success: "this.{package}_806efbd0d89c1bbf"
+              #failure: "this.{package}_2dfb873d855e2391_exception"
+              
+        # Node decision
+        - label: "{package}_806efbd0d89c1bbf"
+          hp_resource:
+            id: "{package}_806efbd0d89c1bbf"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "2dfb873d855e2391",
+                "nodeId":"806efbd0d89c1bbf",
+                "nodeType":"decision"
+              }
+            goto_route:
+              success: '${! metadata("result_route") }'
+              #failure: "this.{package}_2dfb873d855e2391_exception"
+              
+        # Node code
+        - label: "{package}_27c5f2265df7cc07"
+          hp_resource:
+            id: "{package}_27c5f2265df7cc07"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "2dfb873d855e2391",
+                "nodeId":"27c5f2265df7cc07",
+                "nodeType":"code"
+              }
+            goto_route:
+              success: "this.{package}_80da27a3c7bd3639"
+              #failure: "this.{package}_2dfb873d855e2391_exception"
+              
+        # Node code
+        - label: "{package}_f3d8eba8d08d1704"
+          hp_resource:
+            id: "{package}_f3d8eba8d08d1704"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "2dfb873d855e2391",
+                "nodeId":"f3d8eba8d08d1704",
+                "nodeType":"code"
+              }
+            goto_route:
+              success: "this.{package}_80da27a3c7bd3639"
+              #failure: "this.{package}_2dfb873d855e2391_exception"
+              
+        # Node endsub
+        - label: "{package}_80da27a3c7bd3639"
+          hp_resource:
+            id: "{package}_80da27a3c7bd3639"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "2dfb873d855e2391",
+                "nodeId":"80da27a3c7bd3639",
+                "nodeType":"endsub"
+              }
+            goto_route:
+              success: "this.{package}_2dfb873d855e2391_endnode"
+              
+        # Node ssqsubflow
+        - label: "{package}_fabcbfb6d35ba771"
+          hp_resource:
+            id: "{package}_fabcbfb6d35ba771"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "2dfb873d855e2391",
+                "nodeId":"fabcbfb6d35ba771",
+                "nodeType":"ssqsubflow"
+              }
+            goto_route:
+              success: "this.{package}_52f04873b0837e0d"
+              #failure: "this.{package}_2dfb873d855e2391_exception"
+              
+        
+        # End flow resource
+        - label: "{package}_2dfb873d855e2391_endnode"
+          noop:
+
+      result_mode: new
+      output: |-
+
+        root = this

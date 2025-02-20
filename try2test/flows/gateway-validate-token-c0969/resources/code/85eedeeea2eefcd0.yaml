@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_85eedeeea2eefcd0"
+    hp_transform:
+      name: "Prepare for Validate Secret"
+      inputs: |-
+            root = this
+      mapping: |-
+            root = this
+            root.tokenData = this.token_payload.or({})
+            root.customerID = this.decryptedRequest.customerID.or("")
+      result_mode: merge
+      output: |-
+            root = this

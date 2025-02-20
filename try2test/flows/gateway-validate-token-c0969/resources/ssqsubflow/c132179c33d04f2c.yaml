@@ -1,0 +1,41 @@
+
+processor_resources:
+  - label: "{package}_c132179c33d04f2c"
+    hp_function:
+      input: |-
+        meta de9f5d6922628783_parrent = meta("flowId")
+        meta flowId = "de9f5d6922628783"
+        meta subflowId = "de9f5d6922628783"
+        
+
+        let filter = model2json("472a8ae2136c0969_c132179c33d04f2c_in")
+        root = this.json_filter($filter)
+
+
+      processors:
+        - hp_resource: 
+            id: "{package}_de9f5d6922628783"
+            name: "Validate Token"
+            metadata: |-
+              {
+                "scopeType": "mainFlow",
+                "scopeId": "472a8ae2136c0969"
+              }
+
+        - label: "endsub"
+          hp_transform:
+            result_mode: merge
+            mapping: |-
+      
+              let filter = model2json("472a8ae2136c0969_c132179c33d04f2c_out")
+              root = this.json_filter($filter)
+
+
+      result_mode: merge
+      output: |-
+        meta flowId = metadata("de9f5d6922628783_parrent")
+        meta de9f5d6922628783_parrent = deleted()
+        meta subflowId = meta("parrent_c132179c33d04f2c_subflowId")
+        meta parrent_c132179c33d04f2c_subflowId = deleted()
+      
+      

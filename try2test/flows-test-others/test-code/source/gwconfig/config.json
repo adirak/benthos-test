@@ -1,1 +1,0 @@
-{"createdTime":1735873416425,"flowId":"32e78590f6a95b02","flowName":"Test Code Node 2","id":"5be1c915-f3e7-409b-b512-f9519c339e75","route":{"host":"","name":"test-code-node-2-95b02","path":"/test-code-node-2-95b02"},"service":{"host":"test-code-node-2-95b02","name":"test-code-node-2-95b02","path":"/megw/apis/stream/microservice/v1.0/exec"}}
