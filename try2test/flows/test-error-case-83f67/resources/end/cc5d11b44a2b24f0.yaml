@@ -1,0 +1,15 @@
+processor_resources:
+  - label: "{package}_cc5d11b44a2b24f0"
+    switch:
+      - check: this.type() == "object" || this.type() == "array"
+        processors:
+          - hp_transform:
+              name: "End"
+              input: |-
+                root = this
+              result_mode: new
+              mapping: |-
+
+                  root = this
+
+                  meta output_channel = "cc5d11b44a2b24f0"

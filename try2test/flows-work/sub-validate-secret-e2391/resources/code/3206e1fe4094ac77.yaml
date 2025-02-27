@@ -1,0 +1,15 @@
+processor_resources:
+  - label: "{package}_3206e1fe4094ac77"
+    hp_transform:
+      name: "Prepare CustomerID"
+      inputs: |-
+            root = this
+      mapping: |-
+            root = this
+            root.customerID = if this.customerID == null || this.customerID == "" {
+                this.trans.debtor.Account.customerID.or("")
+            }
+            root.encCustomerID = this.tokenData.secret.customerID.or("")
+      result_mode: merge
+      output: |-
+            root = this

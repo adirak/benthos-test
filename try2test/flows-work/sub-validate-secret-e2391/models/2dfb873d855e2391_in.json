@@ -1,0 +1,1 @@
+{"all":false,"filter":[{"default":null,"max":0,"min":0,"name":"customerID","regexp":"","required":false,"type":"string","validated":false},{"all":true,"max":0,"min":0,"name":"tokenData","required":false,"type":"map","validated":false},{"all":true,"max":0,"min":0,"name":"trans","required":false,"type":"map","validated":false}]}

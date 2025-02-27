@@ -1,0 +1,15 @@
+processor_resources:
+  - label: "{package}_0b9d0882e6df7c87"
+    hp_transform:
+      name: "Check Trans_Code"
+      result_mode: merge
+      mapping: |-
+        root = this
+
+        meta result_route = match {
+        trans_code != "" && trans_code == "TRANONUS" => "this.{package}_d3a452e1735a4b33",
+        trans_code != "" && trans_code == "TRANOFFUS" => "this.{package}_cf28845c4dfc2d80",
+        trans_code != "" && trans_code == "BILLCROSS" => "this.{package}_78012f1cb2f405ed",
+        _ => "this.{package}_8081da51503ff525",
+        }
+

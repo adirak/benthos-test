@@ -1,0 +1,14 @@
+processor_resources:
+  - label: "{package}_8081da51503ff525"
+    hp_transform:
+      name: "Exception"
+      result_mode: merge
+      mapping: |-
+        let error_code = if meta("result_status") != null { meta("result_status").code.string() } else { "500" }
+        let error_message = if meta("result_status") != null { meta("result_status").description } else { "Exception" }
+        let error_code = "500"
+        let error_message = "trans_code invalid"
+        
+
+        meta error_code = $error_code
+        root = throw($error_message)

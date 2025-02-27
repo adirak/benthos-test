@@ -1,0 +1,12 @@
+processor_resources:
+  - label: "{package}_cf28845c4dfc2d80"
+    hp_transform:
+      name: "Prefix is Offus"
+      inputs: |-
+            root = this
+      mapping: |-
+            root = this
+            id_prefix = "X0"
+      result_mode: merge
+      output: |-
+            root = this

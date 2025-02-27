@@ -1,0 +1,24 @@
+processor_resources:
+  - label: "{package}_f9b5d406337b450a"
+    hp_transform:
+      name: "gen_ttxid"
+      input: |
+        root = this
+        let timestamp = now()
+        root.yy = $timestamp.ts_format("06")
+        root.ddd = $timestamp.ts_format("002")
+        root.HHmmss = $timestamp.ts_format("150405")
+        root.microsec = $timestamp.ts_format(".000000")
+    
+      mapping: |
+        root = this
+        let us = this.microsec.replace(".", "")
+        root.ttxid = this.yy+ this.ddd + this.id_prefix + this.HHmmss + $us
+    
+      result_mode: merge
+    
+      output: |
+        root = {}
+        let needLen = 25 - this.ttxid.length()
+        let charRan = generate_random_string(length: $needLen, upper: true, lower: false, number: true, symbol: false)
+        root.ttxID = this.ttxid + $charRan

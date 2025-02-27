@@ -1,0 +1,23 @@
+{
+    "all": false,
+    "filter": [
+        {
+            "all": true,
+            "max": 0,
+            "min": 0,
+            "name": "token_header",
+            "required": false,
+            "type": "map",
+            "validated": false
+        },
+        {
+            "all": true,
+            "max": 0,
+            "min": 0,
+            "name": "token_payload",
+            "required": false,
+            "type": "map",
+            "validated": false
+        }
+    ]
+}

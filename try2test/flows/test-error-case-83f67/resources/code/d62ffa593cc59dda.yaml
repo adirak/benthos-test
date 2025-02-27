@@ -1,0 +1,21 @@
+processor_resources:
+  - label: "{package}_d62ffa593cc59dda"
+    hp_transform:
+        name: "hp_transform"
+        input: |
+          root = {}
+          root.key  = "jLeGEuLycPA0ZcrwECdk2X85OcT0QhCl"
+          root.request = "AAAADVV8tE8yydJ19EFjgryLjv4xenNUep4o4QkDEmFwjOAK+0k="
+
+        mapping: |
+          root = {}
+          root.data = this.request.gcm_decode(this.key.string(), this.request.string(), -1)
+
+          meta error_code = 500
+          root = throw("Something went wrong")
+
+        result_mode: merge
+
+        error: |
+          root = {}
+          root.data = "ERROR"

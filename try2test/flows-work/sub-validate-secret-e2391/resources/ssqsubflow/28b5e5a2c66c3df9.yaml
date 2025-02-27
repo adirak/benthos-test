@@ -1,0 +1,41 @@
+
+processor_resources:
+  - label: "{package}_28b5e5a2c66c3df9"
+    hp_function:
+      input: |-
+        meta d0534c8c9b38ec32_parrent = meta("flowId")
+        meta flowId = "d0534c8c9b38ec32"
+        meta subflowId = "d0534c8c9b38ec32"
+        
+
+        let filter = model2json("2dfb873d855e2391_28b5e5a2c66c3df9_in")
+        root = this.json_filter($filter)
+
+
+      processors:
+        - hp_resource: 
+            id: "{package}_d0534c8c9b38ec32"
+            name: "Get Config from Redis"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "35256fcf5dfe5b2d"
+              }
+
+        - label: "endsub"
+          hp_transform:
+            result_mode: merge
+            mapping: |-
+      
+              let filter = model2json("2dfb873d855e2391_28b5e5a2c66c3df9_out")
+              root = this.json_filter($filter)
+
+
+      result_mode: merge
+      output: |-
+        meta flowId = metadata("d0534c8c9b38ec32_parrent")
+        meta d0534c8c9b38ec32_parrent = deleted()
+        meta subflowId = meta("parrent_28b5e5a2c66c3df9_subflowId")
+        meta parrent_28b5e5a2c66c3df9_subflowId = deleted()
+      
+      

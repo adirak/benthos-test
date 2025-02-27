@@ -1,0 +1,6 @@
+processor_resources:
+  - label: "{package}_344cb20fa1df4724"
+    dump_log:
+      name: logging
+      payload: true
+      metadata: true

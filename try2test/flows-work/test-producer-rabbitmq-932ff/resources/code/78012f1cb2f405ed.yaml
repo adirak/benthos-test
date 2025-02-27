@@ -1,0 +1,12 @@
+processor_resources:
+  - label: "{package}_78012f1cb2f405ed"
+    hp_transform:
+      name: "Prefix is Bill Payment"
+      inputs: |-
+            root = this
+      mapping: |-
+            root = this
+            id_prefix = "BX"
+      result_mode: merge
+      output: |-
+            root = this

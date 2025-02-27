@@ -1,0 +1,47 @@
+# Producer
+input:
+  generate:
+    mapping: |
+      root = {
+        "A": "A"
+      }
+    interval: "300s"
+
+pipeline:
+  processors:
+    - label: "InputData"
+      dump_log:
+
+    - label: "my_resource_main"
+      mongodb:
+        name: "mongodb"
+        profile: |-
+          {{mymongo}}
+        database: test
+        operation: update-one
+        collection: students
+        document_map: |
+          root = {"$set": {"C": "D", "age":55, "_id": "67bd3fba79a08b7e92e923fd"}}
+
+        result_mode: "merge"
+        filter_map: |
+          root = {"name": "Max"}
+
+        input: |
+          root = {}
+          root.name = "Max"
+          root.surname = "Donao"
+          root.gender = "M"
+          root.age = 40
+
+    - label: "OutputData"
+      dump_log:
+
+    - catch:
+        - label: "ErrorData"
+          dump_log:
+
+# No output
+output:
+  label: ""
+  drop: {}

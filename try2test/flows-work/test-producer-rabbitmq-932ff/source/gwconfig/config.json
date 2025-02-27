@@ -1,0 +1,1 @@
+{"createdTime":1739856035567,"flowId":"15e71a21446932ff","flowName":"Test Producer RabbitMQ","id":"ad1765de-8e4d-4316-84b9-b0a71cfd5289","route":{"host":"","name":"test-producer-rabbitmq-932ff","path":"/test-producer-rabbitmq-932ff"},"service":{"host":"test-producer-rabbitmq-932ff","name":"test-producer-rabbitmq-932ff","path":"/megw/apis/stream/microservice/v1.0/exec"}}

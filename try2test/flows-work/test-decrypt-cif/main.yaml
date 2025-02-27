@@ -1,0 +1,40 @@
+# Producer
+input:
+  generate:
+    mapping: |
+      root = {
+        "key": "rgls83p54^cap)21c(ak(&_kiho+meztq1b-o(xwbk*!kisruo",
+        "data": "1JwpLJ0apGr98jbN8aPCfvouYyRVKQxJ5gozWNbVMtKabA2Aiz+bqx/v181LzlIg4kHh94t8coO3pyC/uYPG9+SmO385xkshn9/GAde+1Gk="
+      }
+    interval: "30s"
+
+pipeline:
+  processors:
+    - label: "InputData"
+      dump_log:
+
+    - label: "Test Case 1-1"
+      hp_transform:
+        name: "hp_transform"
+        input: |
+            root = this
+
+
+        mapping: |
+            root = {}
+            root.decrypted = this.data.cif_decode(50158, "GIT3f+DWZxNpYDxGl1x6MuEH1RiKa4ntc7pPq/i+fj+iScaFmmFTmbG5LQPFFMdZ1qsxQgYy1oXVJsVio2gK7YShLmpicyCk1zWFY8693Xo=").or("")
+
+        result_mode: new  
+          
+
+    - label: "OutputData"
+      dump_log:
+
+    - label: "Error"
+      catch:
+        - dump_log:
+
+# No output
+output:
+  label: ""
+  drop: {}

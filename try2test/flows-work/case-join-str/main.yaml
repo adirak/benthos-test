@@ -1,0 +1,48 @@
+# Producer
+input:
+  generate:
+    mapping: |
+      root = {
+        "A": "A",
+        "rowData": [
+            "MOSACB",
+            "DEP",
+            "1",
+            "11166266",
+            "-20.50",
+            "0.00",
+            "0.00",
+            "0.00",
+            "0.00",
+            "xxxxxxxxx",
+            "",
+            ""
+        ],
+        "trn_dtl_prep":["9|8|7"]
+      }
+    interval: "30s"
+
+pipeline:
+  processors:
+    - label: "InputData"
+      dump_log:
+
+    - label: "Test Case 1-1"
+      hp_transform:
+        name: "hp_transform"
+        input: |
+          root = this
+
+        mapping: |
+          let joinRow = this.rowData.join("|").or("")
+          root.trn_dtl_prep = this.trn_dtl_prep.append($joinRow)
+
+        result_mode: new
+
+    - label: "OutputData"
+      dump_log:
+
+# No output
+output:
+  label: ""
+  drop: {}

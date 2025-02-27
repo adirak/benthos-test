@@ -1,0 +1,14 @@
+_format_version: "3.0"
+_transform: true
+
+services:
+  - name: example-service
+    url: http://mockbin.org
+    routes:
+      - name: example-route
+        paths:
+          - /example
+    plugins:
+      - name: custom-response-modifier
+        config:
+          external_api_url: http://example-external-api.com/data

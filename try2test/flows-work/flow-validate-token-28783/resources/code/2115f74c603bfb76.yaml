@@ -1,0 +1,18 @@
+processor_resources:
+  - label: "{package}_2115f74c603bfb76"
+    hp_transform:
+        name: "Convert"
+        input: |
+            root = this
+    
+        mapping: |
+            root = {}
+            root.tkDecrypted = this.token.gcm_decode(this.fix_key_01.string(), this.token.string(), -1)
+    
+        result_mode: merge 
+        
+        output: |
+            root = {}
+            root.tkArr = this.tkDecrypted.split(".")
+        
+        

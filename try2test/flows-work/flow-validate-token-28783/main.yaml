@@ -1,0 +1,187 @@
+
+input:
+  http_server:
+    timeout: 60s
+    path: "/megw/apis/stream/{service}/{version}/{action}"
+    allowed_verbs:
+      - POST
+      - GET
+
+
+pipeline:
+  processors:
+
+
+    # Filter Input
+    - label: "FilterInputMainflow"
+      hp_transform:
+        name: "Filter Input"
+        result_mode: new
+        mapping: |-
+          meta mainFlowId = "de9f5d6922628783"
+          meta flowId = "de9f5d6922628783"
+          meta subflowId = "none"
+          meta testId = if meta("X-Trace").or("false") == "true" { if this._hyper_testId != null { this._hyper_testId } else if this.testId != null { this.testId } } else { deleted() }
+          meta username = if meta("X-Trace").or("false") == "true" && this._hyper_username != null { this._hyper_username } else { meta("X-Username").or(deleted()) }
+
+          root = this
+          
+      
+
+    # Node start
+    - label: "{package}_52e8c70785f341a3"
+      hp_resource:
+        id: "{package}_52e8c70785f341a3"
+        goto_route:
+          success: "this.{package}_4c997e25c80a7e0b"
+          #failure: "this.{package}_exception"
+          
+        metadata: |-
+          {
+            "scopeType": "mainFlow",
+            "scopeId": "de9f5d6922628783",
+            "nodeId":"52e8c70785f341a3",
+            "nodeType":"start"
+          }
+    
+
+    # Node define
+    - label: "{package}_4c997e25c80a7e0b"
+      hp_resource:
+        id: "{package}_4c997e25c80a7e0b"
+        goto_route:
+          success: "this.{package}_2115f74c603bfb76"
+          #failure: "this.{package}_exception"
+          
+        metadata: |-
+          {
+            "scopeType": "mainFlow",
+            "scopeId": "de9f5d6922628783",
+            "nodeId":"4c997e25c80a7e0b",
+            "nodeType":"define"
+          }
+    
+
+    # Node code
+    - label: "{package}_2115f74c603bfb76"
+      hp_resource:
+        id: "{package}_2115f74c603bfb76"
+        goto_route:
+          success: "this.{package}_d86b3ee5a75f1126"
+          #failure: "this.{package}_exception"
+          
+        metadata: |-
+          {
+            "scopeType": "mainFlow",
+            "scopeId": "de9f5d6922628783",
+            "nodeId":"2115f74c603bfb76",
+            "nodeType":"code"
+          }
+    
+
+    # Node code
+    - label: "{package}_d2010b915b280273"
+      hp_resource:
+        id: "{package}_d2010b915b280273"
+        goto_route:
+          success: "this.{package}_34725811f261bc2b"
+          #failure: "this.{package}_exception"
+          
+        metadata: |-
+          {
+            "scopeType": "mainFlow",
+            "scopeId": "de9f5d6922628783",
+            "nodeId":"d2010b915b280273",
+            "nodeType":"code"
+          }
+    
+
+    # Node decision
+    - label: "{package}_d86b3ee5a75f1126"
+      hp_resource:
+        id: "{package}_d86b3ee5a75f1126"
+        goto_route:
+          success: '${! metadata("result_route") }'
+          #failure: "this.{package}_exception"
+          
+        metadata: |-
+          {
+            "scopeType": "mainFlow",
+            "scopeId": "de9f5d6922628783",
+            "nodeId":"d86b3ee5a75f1126",
+            "nodeType":"decision"
+          }
+    
+
+    # Node exception
+    - label: "{package}_1d30b1a4a6f2bfad"
+      hp_resource:
+        id: "{package}_1d30b1a4a6f2bfad"
+        goto_route:
+          success: "this.{package}_endnode"
+          
+        metadata: |-
+          {
+            "scopeType": "mainFlow",
+            "scopeId": "de9f5d6922628783",
+            "nodeId":"1d30b1a4a6f2bfad",
+            "nodeType":"exception"
+          }
+    
+
+    # Node end
+    - label: "{package}_34725811f261bc2b"
+      hp_resource:
+        id: "{package}_34725811f261bc2b"
+        goto_route:
+          success: "this.{package}_endnode"
+          
+        metadata: |-
+          {
+            "scopeType": "mainFlow",
+            "scopeId": "de9f5d6922628783",
+            "nodeId":"34725811f261bc2b",
+            "nodeType":"end"
+          }
+    
+    # Exception resources
+    - catch:
+      - hp_transform:
+          name: "Prepare Exception"
+          input: |-
+            root = this
+          mapping: |-
+            meta result_status = {"description": error().or(metadata("error_message").or("Exception")), "code": metadata("error_code").or("500") }
+            meta result_error = true
+          result_mode: merge
+          output: |-
+            root = this
+      - dump_log:
+          payload: false
+
+
+    # End flow (Standard-Format)
+    - label: "{package}_endnode"
+      hp_transform:
+        name: "Pepare Result"
+        mapping: |-
+          let result_status = meta("result_status")
+          let code = $result_status.code.or("200")
+          let description = $result_status.description.or("Success")
+          root = this
+          root._hyper_code = $code
+          root._hyper_message = $description
+        result_mode: new
+
+output:
+  switch:
+    cases:
+      - check: meta("input_channel") == "http"
+        output:
+          sync_response: {}
+      - check: meta("input_channel") == "socket_sync"
+        output:
+          sync_response: {}
+      - output:
+          drop: {}
+
