@@ -1,12 +1,12 @@
 processor_resources:
-  - label: "{package}_d62ffa593cc59dda"
+  - label: "{package}_a3b0d4be2b64ed2b"
     hp_transform:
-      name: "Error Code"
+      name: "Code"
       inputs: |-
             root = this
       mapping: |-
             root = this
-            root.C = this.A + this.X
+            root.response = "error"
       result_mode: merge
       output: |-
             root = this

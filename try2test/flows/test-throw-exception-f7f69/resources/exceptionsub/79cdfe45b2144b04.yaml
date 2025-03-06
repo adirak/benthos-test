@@ -1,0 +1,14 @@
+processor_resources:
+  - label: "{package}_79cdfe45b2144b04"
+    hp_transform:
+      name: "Exception"
+      result_mode: merge
+      mapping: |-
+        let error_code = if meta("result_status") != null { meta("result_status").code.string() } else { "500" }
+        let error_message = if meta("result_status") != null { meta("result_status").description } else { "Exception" }
+        let error_code = "EWI-3002W"
+        let error_message = "User Expired"
+        
+
+        meta error_code = $error_code
+        root = throw($error_message)

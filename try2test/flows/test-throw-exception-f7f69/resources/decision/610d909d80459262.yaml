@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_610d909d80459262"
+    hp_transform:
+      name: "Decision"
+      result_mode: merge
+      mapping: |-
+        root = this
+
+        meta result_route = match {
+        error => "this.{package}_38ef8513ac2d8fbf",
+        _ => "this.{package}_5b4074b863974872",
+        }
+

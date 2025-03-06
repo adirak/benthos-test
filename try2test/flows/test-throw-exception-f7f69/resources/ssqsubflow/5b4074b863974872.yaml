@@ -1,0 +1,41 @@
+
+processor_resources:
+  - label: "{package}_5b4074b863974872"
+    hp_function:
+      input: |-
+        meta 2c25ca71bcc27c50_parrent = meta("flowId")
+        meta flowId = "2c25ca71bcc27c50"
+        meta subflowId = "2c25ca71bcc27c50"
+        
+
+        let filter = model2json("4f9cdf83e9ef7f69_5b4074b863974872_in")
+        root = this.json_filter($filter)
+
+
+      processors:
+        - hp_resource: 
+            id: "{package}_2c25ca71bcc27c50"
+            name: "Exception Subflow"
+            metadata: |-
+              {
+                "scopeType": "mainFlow",
+                "scopeId": "4f9cdf83e9ef7f69"
+              }
+
+        - label: "endsub"
+          hp_transform:
+            result_mode: merge
+            mapping: |-
+      
+              let filter = model2json("4f9cdf83e9ef7f69_5b4074b863974872_out")
+              root = this.json_filter($filter)
+
+
+      result_mode: merge
+      output: |-
+        meta flowId = metadata("2c25ca71bcc27c50_parrent")
+        meta 2c25ca71bcc27c50_parrent = deleted()
+        meta subflowId = meta("parrent_5b4074b863974872_subflowId")
+        meta parrent_5b4074b863974872_subflowId = deleted()
+      
+      

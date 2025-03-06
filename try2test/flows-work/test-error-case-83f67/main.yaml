@@ -118,36 +118,18 @@ pipeline:
           input: |-
             root = this
           mapping: |-
-            let result_status = {"description": error().or(metadata("error_message").or("Exception")), "code": metadata("error_code").or("500") }
-            
-            meta result_status = $result_status
+            meta result_status = {"description": error().or(metadata("error_message").or("Exception")), "code": metadata("error_code").or("500") }
             meta result_error = true
-
-            root = this
-
-            root._hyper_code = $result_status.code
-            root._hyper_message = $result_status.description
-
           result_mode: merge
-
+          output: |-
+            root = this
       - dump_log:
-          payload: true
-
+          payload: false
 
 
     # End flow (Standard-Format)
     - label: "{package}_endnode"
-      hp_transform:
-        name: "Pepare Result"
-        mapping: |-
-          let result_status = meta("result_status")
-          let code = $result_status.code.or("200")
-          let description = $result_status.description.or("Success")
-          root = this
-          
-          let del_result_status = meta_delete("result_status")
-
-        result_mode: new
+      dump_log:
 
 output:
   switch:

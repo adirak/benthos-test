@@ -18,8 +18,8 @@ pipeline:
         name: "Filter Input"
         result_mode: new
         mapping: |-
-          meta mainFlowId = "33cb48c797b83f67"
-          meta flowId = "33cb48c797b83f67"
+          meta mainFlowId = "4bf82fdb553a38fc"
+          meta flowId = "4bf82fdb553a38fc"
           meta subflowId = "none"
           meta testId = if meta("X-Trace").or("false") == "true" { if this._hyper_testId != null { this._hyper_testId } else if this.testId != null { this.testId } } else { deleted() }
           meta username = if meta("X-Trace").or("false") == "true" && this._hyper_username != null { this._hyper_username } else { meta("X-Username").or(deleted()) }
@@ -29,86 +29,103 @@ pipeline:
       
 
     # Node start
-    - label: "{package}_a673acae0ecdbdd4"
+    - label: "{package}_3eaff8e24ee876ea"
       hp_resource:
-        id: "{package}_a673acae0ecdbdd4"
+        id: "{package}_3eaff8e24ee876ea"
         goto_route:
-          success: "this.{package}_199cc5c3d9e85d93"
+          success: "this.{package}_a74b5755b718656d"
           #failure: "this.{package}_exception"
           
         metadata: |-
           {
             "scopeType": "mainFlow",
-            "scopeId": "33cb48c797b83f67",
-            "nodeId":"a673acae0ecdbdd4",
+            "scopeId": "4bf82fdb553a38fc",
+            "nodeId":"3eaff8e24ee876ea",
             "nodeType":"start"
           }
     
 
-    # Node define
-    - label: "{package}_199cc5c3d9e85d93"
-      hp_resource:
-        id: "{package}_199cc5c3d9e85d93"
-        goto_route:
-          success: "this.{package}_d62ffa593cc59dda"
-          #failure: "this.{package}_exception"
-          
-        metadata: |-
-          {
-            "scopeType": "mainFlow",
-            "scopeId": "33cb48c797b83f67",
-            "nodeId":"199cc5c3d9e85d93",
-            "nodeType":"define"
-          }
-    
-
     # Node code
-    - label: "{package}_d62ffa593cc59dda"
+    - label: "{package}_a9789635755201a2"
       hp_resource:
-        id: "{package}_d62ffa593cc59dda"
+        id: "{package}_a9789635755201a2"
         goto_route:
-          success: "this.{package}_4157283405a7a98d"
-          #failure: "this.{package}_exception"
+          success: "this.{package}_c254331f7edd078e"
+          failure: "this.{package}_a3b0d4be2b64ed2b"
           
         metadata: |-
           {
             "scopeType": "mainFlow",
-            "scopeId": "33cb48c797b83f67",
-            "nodeId":"d62ffa593cc59dda",
-            "nodeType":"code"
-          }
-    
-
-    # Node code
-    - label: "{package}_4157283405a7a98d"
-      hp_resource:
-        id: "{package}_4157283405a7a98d"
-        goto_route:
-          success: "this.{package}_cc5d11b44a2b24f0"
-          #failure: "this.{package}_exception"
-          
-        metadata: |-
-          {
-            "scopeType": "mainFlow",
-            "scopeId": "33cb48c797b83f67",
-            "nodeId":"4157283405a7a98d",
+            "scopeId": "4bf82fdb553a38fc",
+            "nodeId":"a9789635755201a2",
             "nodeType":"code"
           }
     
 
     # Node end
-    - label: "{package}_cc5d11b44a2b24f0"
+    - label: "{package}_ce72d9ddef3b6ac4"
       hp_resource:
-        id: "{package}_cc5d11b44a2b24f0"
+        id: "{package}_ce72d9ddef3b6ac4"
         goto_route:
           success: "this.{package}_endnode"
           
         metadata: |-
           {
             "scopeType": "mainFlow",
-            "scopeId": "33cb48c797b83f67",
-            "nodeId":"cc5d11b44a2b24f0",
+            "scopeId": "4bf82fdb553a38fc",
+            "nodeId":"ce72d9ddef3b6ac4",
             "nodeType":"end"
+          }
+    
+
+    # Node define
+    - label: "{package}_a74b5755b718656d"
+      hp_resource:
+        id: "{package}_a74b5755b718656d"
+        goto_route:
+          success: "this.{package}_a9789635755201a2"
+          #failure: "this.{package}_exception"
+          
+        metadata: |-
+          {
+            "scopeType": "mainFlow",
+            "scopeId": "4bf82fdb553a38fc",
+            "nodeId":"a74b5755b718656d",
+            "nodeType":"define"
+          }
+    
+
+    # Node code
+    - label: "{package}_c254331f7edd078e"
+      hp_resource:
+        id: "{package}_c254331f7edd078e"
+        goto_route:
+          success: "this.{package}_ce72d9ddef3b6ac4"
+          #failure: "this.{package}_exception"
+          
+        metadata: |-
+          {
+            "scopeType": "mainFlow",
+            "scopeId": "4bf82fdb553a38fc",
+            "nodeId":"c254331f7edd078e",
+            "nodeType":"code"
+          }
+    
+
+    # Node code
+    - label: "{package}_a3b0d4be2b64ed2b"
+      hp_resource:
+        id: "{package}_a3b0d4be2b64ed2b"
+        goto_route:
+          success: "this.{package}_ce72d9ddef3b6ac4"
+          #failure: "this.{package}_exception"
+          
+        metadata: |-
+          {
+            "scopeType": "mainFlow",
+            "scopeId": "4bf82fdb553a38fc",
+            "nodeId":"a3b0d4be2b64ed2b",
+            "nodeType":"code"
           }
     
     # Exception resources
@@ -118,21 +135,13 @@ pipeline:
           input: |-
             root = this
           mapping: |-
-            let result_status = {"description": error().or(metadata("error_message").or("Exception")), "code": metadata("error_code").or("500") }
-            
-            meta result_status = $result_status
+            meta result_status = {"description": error().or(metadata("error_message").or("Exception")), "code": metadata("error_code").or("500") }
             meta result_error = true
-
-            root = this
-
-            root._hyper_code = $result_status.code
-            root._hyper_message = $result_status.description
-
           result_mode: merge
-
+          output: |-
+            root = this
       - dump_log:
-          payload: true
-
+          payload: false
 
 
     # End flow (Standard-Format)

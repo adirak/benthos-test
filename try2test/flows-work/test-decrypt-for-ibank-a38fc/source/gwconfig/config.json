@@ -1,0 +1,1 @@
+{"createdTime":1738812891080,"flowId":"4bf82fdb553a38fc","flowName":"Test Decrypt for iBank","id":"d894f83c-fff9-44fb-bc09-e0c156e193a3","route":{"host":"","name":"test-decrypt-for-ibank-a38fc","path":"/test-decrypt-for-ibank-a38fc"},"service":{"host":"test-decrypt-for-ibank-a38fc","name":"test-decrypt-for-ibank-a38fc","path":"/megw/apis/stream/microservice/v1.0/exec"}}

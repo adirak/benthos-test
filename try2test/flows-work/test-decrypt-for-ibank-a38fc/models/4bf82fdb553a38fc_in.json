@@ -1,0 +1,1 @@
+{"all":false,"filter":[{"default":null,"max":0,"min":0,"name":"key","regexp":"","required":false,"type":"string","validated":false},{"default":null,"max":0,"min":0,"name":"request","regexp":"","required":false,"type":"string","validated":false},{"default":null,"max":0,"min":0,"name":"response","regexp":"","required":false,"type":"string","validated":false}]}

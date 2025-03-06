@@ -1,0 +1,49 @@
+# Producer
+input:
+  generate:
+    mapping: |
+      root = {
+        "A": "A",
+        "D": "D"
+      }
+    interval: "30s"
+
+pipeline:
+  processors:
+    - label: "InputData"
+      dump_log:
+
+    - label: "Test Case 1-1"
+      hp_transform:
+        name: "hp_transform"
+        input: |
+          root = {}
+          root.B = "B"
+
+        mapping: |
+          root = {}
+          root.C = "C"
+
+        result_mode: merge
+
+        output: |
+          let A = "ABCDEF"
+          let A = $A.replace_all("A", "1")
+          let A = $A.replace_all("B", "2")
+          let A = $A.replace_all("C", "3")
+          let B = "%s---%s".format("XXXX", "YYYY")
+          let C = "1234567890".slice(-1)
+          
+          root = {}
+          root.A = $A
+          root.B = $B
+          root.C = $C
+          
+
+    - label: "OutputData"
+      dump_log:
+
+# No output
+output:
+  label: ""
+  drop: {}

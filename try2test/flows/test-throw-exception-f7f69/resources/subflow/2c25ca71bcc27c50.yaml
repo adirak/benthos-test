@@ -1,0 +1,63 @@
+processor_resources:
+  - label: "{package}_2c25ca71bcc27c50"
+    hp_function:
+      name: "Test Throw Exception Sub"
+      input: |-
+
+        root = this
+
+
+      processors:
+        
+        # Node startsub
+        - label: "{package}_0d5297a24e4001d8"
+          hp_resource:
+            id: "{package}_0d5297a24e4001d8"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "2c25ca71bcc27c50",
+                "nodeId":"0d5297a24e4001d8",
+                "nodeType":"startsub"
+              }
+            goto_route:
+              success: "this.{package}_79cdfe45b2144b04"
+              #failure: "this.{package}_2c25ca71bcc27c50_exception"
+              
+        # Node exceptionsub
+        - label: "{package}_79cdfe45b2144b04"
+          hp_resource:
+            id: "{package}_79cdfe45b2144b04"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "2c25ca71bcc27c50",
+                "nodeId":"79cdfe45b2144b04",
+                "nodeType":"exceptionsub"
+              }
+            goto_route:
+              success: "this.{package}_2c25ca71bcc27c50_endnode"
+              
+        
+        # Node endsub
+        - label: "{package}_301e2f498c860a87"
+          hp_resource:
+            id: "{package}_301e2f498c860a87"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "2c25ca71bcc27c50",
+                "nodeId":"301e2f498c860a87",
+                "nodeType":"endsub"
+              }
+            goto_route:
+              success: "this.{package}_2c25ca71bcc27c50_endnode"
+              
+        # End flow resource
+        - label: "{package}_2c25ca71bcc27c50_endnode"
+          noop:
+
+      result_mode: new
+      output: |-
+
+        root = this

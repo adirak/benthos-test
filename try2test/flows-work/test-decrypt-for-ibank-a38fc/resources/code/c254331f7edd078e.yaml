@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_c254331f7edd078e"
+    hp_transform:
+      name: "hp_transform"
+      input: |
+          root = this
+    
+      mapping: |
+          root = {}
+          root.decryptedRequest = if strReq != null {this.strReq.parse_json()} else {{}}
+          root.decryptedResponse = if strRes != null {this.strRes.parse_json()} else {{}}
+    
+      result_mode: new      
