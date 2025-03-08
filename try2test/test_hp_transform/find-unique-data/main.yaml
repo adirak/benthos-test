@@ -1,0 +1,63 @@
+# Producer
+input:
+  generate:
+    mapping: |
+      root = {
+        "A": "A",
+        "jobs": [
+            {
+                "_id": "407e38c1-0949-46bc-89f4-ceadbf6b8951",
+                "drAccountNumber": "1000000002"
+            },
+            {
+                "_id": "4b425e46-de2f-4ae2-8259-2f1c459784b3",
+                "drAccountNumber": "1000000002"
+            },
+            {
+                "_id": "e2da30fd-6198-4578-82af-fa27431cd1dc",
+                "drAccountNumber": "4041995896"
+            },
+            {
+                "_id": "78c95e62-babd-43dc-b814-f43b1ab41f3f",
+                "drAccountNumber": "4041995896"
+            },
+            {
+                "_id": "b52bc304-d899-4567-b899-6787e5cc8267",
+                "drAccountNumber": "4041995896"
+            }
+        ]
+      }
+    interval: "20s"
+
+pipeline:
+  processors:
+    - try:
+        - label: "InputData"
+          dump_log:
+
+        - label: "Test Case 1-2"
+          hp_transform:
+            name: "hp_transform"
+            input: |
+              root = this
+
+            mapping: |
+              root = {}
+              
+              let unique_values = this.jobs.map_each(item -> item.drAccountNumber).unique()
+              root.unique_items = $unique_values
+              
+            result_mode: "new"
+
+
+        - label: "OutputData"
+          dump_log:
+
+    - catch:
+        - label: "ErrorData"
+          dump_log:
+
+# No output
+output:
+  label: ""
+  drop: {}
