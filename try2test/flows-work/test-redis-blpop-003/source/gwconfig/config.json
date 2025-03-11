@@ -1,0 +1,1 @@
+{"createdTime":1741491016980,"flowId":"0fd0fab415392e94","flowName":"Test Redis BLPop","id":"84fb62f7-67a0-44f0-8566-c7b97c8353f4","route":{"host":"","name":"test-redis-blpop-92e94","path":"/test-redis-blpop-92e94"},"service":{"host":"test-redis-blpop-92e94","name":"test-redis-blpop-92e94","path":"/megw/apis/stream/microservice/v1.0/exec"}}

@@ -1,0 +1,1 @@
+{"createdTime":1741483906889,"flowId":"2040740a710a3b74","flowName":"Test Redis RPush","id":"09c9c13f-1521-42c4-b103-a79bb503d45e","route":{"host":"","name":"test-redis-rpush-a3b74","path":"/test-redis-rpush-a3b74"},"service":{"host":"test-redis-rpush-a3b74","name":"test-redis-rpush-a3b74","path":"/megw/apis/stream/microservice/v1.0/exec"}}

@@ -1,0 +1,40 @@
+[
+    {
+        "default": 10,
+        "max": 0,
+        "min": 0,
+        "name": "size",
+        "required": false,
+        "type": "integer",
+        "validated": false
+    },
+    {
+        "default": 0,
+        "max": 0,
+        "min": 0,
+        "name": "index",
+        "required": false,
+        "type": "integer",
+        "validated": false
+    },
+    {
+        "default": "Supote",
+        "max": 0,
+        "min": 0,
+        "name": "name",
+        "regexp": "",
+        "required": false,
+        "type": "string",
+        "validated": false
+    },
+    {
+        "default": "hyper_test_users",
+        "max": 0,
+        "min": 0,
+        "name": "redis_key",
+        "regexp": "",
+        "required": false,
+        "type": "string",
+        "validated": false
+    }
+]

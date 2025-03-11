@@ -1,0 +1,16 @@
+processor_resources:
+  - label: "{package}_7b4d4e0e427c4c60"
+    hp_redis_cmd:
+      profile: |-
+        {{hyper_ibank_redis_default_config}}
+        
+      command: rpush
+      args_mapping: root = [ this.redis_key, this.redis_value.string()]
+      input: |
+        root = this
+    
+      result_mode: "void"
+    
+      output: |
+        root = {}
+    

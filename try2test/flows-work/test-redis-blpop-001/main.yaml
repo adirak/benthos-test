@@ -1,0 +1,153 @@
+
+input:
+  redis_list:
+    url: "redis://host.docker.internal:6379"
+    kind: simple
+    master: ""
+    key: "hyper_test_users"
+    max_in_flight: 8
+    timeout: 5s
+    command: blpop
+
+pipeline:
+  processors:
+
+
+    # Filter Input
+    - label: "FilterInputMainflow"
+      hp_transform:
+        name: "Filter Input"
+        result_mode: new
+        mapping: |-
+          meta mainFlowId = "0fd0fab415392e94"
+          meta flowId = "0fd0fab415392e94"
+          meta subflowId = "none"
+          meta testId = if meta("X-Trace").or("false") == "true" { if this._hyper_testId != null { this._hyper_testId } else if this.testId != null { this.testId } } else { deleted() }
+          meta username = if meta("X-Trace").or("false") == "true" && this._hyper_username != null { this._hyper_username } else { meta("X-Username").or(deleted()) }
+
+          root = this
+          
+      
+
+    # Node start
+    - label: "{package}_c92223bb29e49a4d"
+      hp_resource:
+        id: "{package}_c92223bb29e49a4d"
+        goto_route:
+          success: "this.{package}_8e64c8c802cdcb30"
+          #failure: "this.{package}_exception"
+          
+        metadata: |-
+          {
+            "scopeType": "mainFlow",
+            "scopeId": "0fd0fab415392e94",
+            "nodeId":"c92223bb29e49a4d",
+            "nodeType":"start"
+          }
+    
+
+    # Node code
+    - label: "{package}_8e64c8c802cdcb30"
+      hp_resource:
+        id: "{package}_8e64c8c802cdcb30"
+        goto_route:
+          success: "this.{package}_556d023988a3f323"
+          #failure: "this.{package}_exception"
+          
+        metadata: |-
+          {
+            "scopeType": "mainFlow",
+            "scopeId": "0fd0fab415392e94",
+            "nodeId":"8e64c8c802cdcb30",
+            "nodeType":"code"
+          }
+    
+
+    # Node logdata
+    - label: "{package}_98311f9b05d9a866"
+      hp_resource:
+        id: "{package}_98311f9b05d9a866"
+        goto_route:
+          success: "this.{package}_558b84f95eb88397"
+          #failure: "this.{package}_exception"
+          
+        metadata: |-
+          {
+            "scopeType": "mainFlow",
+            "scopeId": "0fd0fab415392e94",
+            "nodeId":"98311f9b05d9a866",
+            "nodeType":"logdata"
+          }
+    
+
+    # Node end
+    - label: "{package}_558b84f95eb88397"
+      hp_resource:
+        id: "{package}_558b84f95eb88397"
+        goto_route:
+          success: "this.{package}_endnode"
+          
+        metadata: |-
+          {
+            "scopeType": "mainFlow",
+            "scopeId": "0fd0fab415392e94",
+            "nodeId":"558b84f95eb88397",
+            "nodeType":"end"
+          }
+    
+
+    # Node timedelay
+    - label: "{package}_556d023988a3f323"
+      hp_resource:
+        id: "{package}_556d023988a3f323"
+        goto_route:
+          success: "this.{package}_98311f9b05d9a866"
+          #failure: "this.{package}_exception"
+          
+        metadata: |-
+          {
+            "scopeType": "mainFlow",
+            "scopeId": "0fd0fab415392e94",
+            "nodeId":"556d023988a3f323",
+            "nodeType":"timedelay"
+          }
+    
+    # Exception resources
+    - catch:
+      - hp_transform:
+          name: "Prepare Exception"
+          input: |-
+            root = this
+          mapping: |-
+            let result_status = {"description": error().or(metadata("error_message").or("Exception")), "code": metadata("error_code").or("500") }
+            
+            meta result_status = $result_status
+            meta result_error = true
+
+            root = this
+
+            root._hyper_code = $result_status.code
+            root._hyper_message = $result_status.description
+
+          result_mode: merge
+
+      - dump_log:
+          payload: true
+
+
+
+    # End flow (Standard-Format)
+    - label: "{package}_endnode"
+      hp_transform:
+        name: "Pepare Result"
+        mapping: |-
+          let result_status = meta("result_status")
+          let code = $result_status.code.or("200")
+          let description = $result_status.description.or("Success")
+          root = this
+          
+          let del_result_status = meta_delete("result_status")
+
+        result_mode: new
+
+

@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_aae0b7b2e75c7f92"
+    hp_transform:
+      name: "Looping"
+      result_mode: merge
+      mapping: |-
+        root = this
+
+        meta result_route = match {
+        index < size => "this.{package}_b3b8663b2548a369",
+        _ => "this.{package}_4f368651b593cc94",
+        }
+

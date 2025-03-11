@@ -1,0 +1,12 @@
+processor_resources:
+  - label: "{package}_160128c86a737f0e"
+    hp_transform:
+      name: "Increase Index"
+      inputs: |-
+            root = this
+      mapping: |-
+            root = this
+            root.index = this.index + 1
+      result_mode: merge
+      output: |-
+            root = this

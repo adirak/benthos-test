@@ -1,0 +1,4 @@
+processor_resources:
+  - label: "{package}_556d023988a3f323"
+    sleep:
+      duration: "500ms"

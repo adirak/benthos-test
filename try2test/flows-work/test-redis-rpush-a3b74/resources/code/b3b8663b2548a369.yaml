@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_b3b8663b2548a369"
+    hp_transform:
+      name: "Prepare"
+      inputs: |-
+            root = this
+      mapping: |-
+            root = this
+            let name = this.name + "_" + "%d".format(this.index.int())
+            root.redis_value = {"name":$name}
+      result_mode: merge
+      output: |-
+            root = this

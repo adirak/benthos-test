@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_8e64c8c802cdcb30"
+    hp_transform:
+      name: "Get Worker Id"
+      inputs: |-
+            root = this
+      mapping: |-
+            root = this
+            let workerId = env("WORKER_ID")
+            root.workerId = $workerId.or("no-worker-id")
+      result_mode: merge
+      output: |-
+            root = this

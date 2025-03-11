@@ -1,0 +1,20 @@
+processor_resources:
+  - label: "{package}_4f368651b593cc94"
+    switch:
+      - check: this.type() == "object" || this.type() == "array"
+        processors:
+          - hp_transform:
+              name: "End"
+              input: |-
+                root = this
+              result_mode: new
+              mapping: |-
+
+                  let body = this.parse_json().catch({})
+                  let filter = model2json("2040740a710a3b74_out")
+                  let data = $body.json_filter($filter).catch(err -> {"_error":err})
+                  meta _error_message = if $data._error != null { $data._error}
+                  meta _error_code = if $data._error != null {"500"}
+                  root = if $data._error == null { $data } else { throw($data._error) }
+
+                  meta output_channel = "4f368651b593cc94"
