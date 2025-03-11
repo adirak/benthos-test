@@ -1,0 +1,60 @@
+# Producer
+input:
+  generate:
+    mapping: |
+      root = {
+        "A": "A"
+      }
+    interval: "300s"
+
+pipeline:
+  processors:
+    - label: "InputData"
+      dump_log:
+
+    - hp_transform:
+        name: "hp_transform"
+        input: |
+          root = this
+
+        mapping: |
+          root = {}
+          meta collection = "students"
+
+        result_mode: merge
+
+    - label: "my_resource_main"
+      mongodb:
+        name: "mongodb"
+        profile: {{mymongo}}
+        database: test
+        operation: insert-one
+        collection: ${! meta("collection") }
+        document_map: |
+          root = this
+          root.C = "C"
+
+        result_mode: "merge"
+
+        input: |
+          root = {}
+          root.name = "Max"
+          root.surname = "Donao"
+          root.gender = "M"
+          root.age = 40
+
+        output: |
+          root = this
+          root.F = "F"
+
+    - label: "OutputData"
+      dump_log:
+
+    - catch:
+        - label: "ErrorData"
+          dump_log:
+
+# No output
+output:
+  label: ""
+  drop: {}
