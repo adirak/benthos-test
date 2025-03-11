@@ -3,7 +3,9 @@ input:
   generate:
     mapping: |
       root = {
-        "A": "A"
+        "A": "A",
+        "base_url": "https://6625c975052332d55320b488.mockapi.io",
+        "path": ""
       }
     interval: "300s"
 

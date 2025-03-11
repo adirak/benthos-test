@@ -1,0 +1,56 @@
+# Producer
+input:
+  generate:
+    mapping: |
+      root = {
+        "A": "A",
+        "D": "D"
+      }
+    interval: "30s"
+
+pipeline:
+  processors:
+    - label: "InputData"
+      dump_log:
+
+    - label: "Test Case 1-1"
+      hp_transform:
+        name: "hp_transform"
+        input: |
+          root = {}
+          root.B = "B"
+
+        mapping: |
+
+          let current_year = now().ts_format("2006", "UTC").int64()
+          let current_month = now().ts_format("01", "UTC").int64()
+
+            
+          let days_in_month = if $current_month == 2 {
+            if ($current_year % 4 == 0 && $current_year % 100 != 0) || ($current_year % 400 == 0) {
+              29
+            } else {
+              28
+            }
+          } else if $current_month == 4 || $current_month == 6 || $current_month == 9 || $current_month == 11 {
+            30
+          } else {
+            31
+          }
+
+          root.days_in_month = $days_in_month
+
+        result_mode: merge
+
+        output: |
+          root = this
+          root.D = "DDD"
+          root.A = "AAA"
+
+    - label: "OutputData"
+      dump_log:
+
+# No output
+output:
+  label: ""
+  drop: {}
