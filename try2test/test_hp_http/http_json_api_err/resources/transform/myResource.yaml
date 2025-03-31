@@ -1,0 +1,21 @@
+# Recources
+processor_resources:
+  - label: "my_resource"
+    hp_http:
+      url: "https://6625c975052332d55320b488.mockapi.ioXXXX/api/v1/example/1"
+      verb: GET
+
+      input: |
+        root = this
+
+      result_mode: "new"
+
+      output: |
+        root = {}
+        root.result = this
+
+      # error: |
+      #   root = {}
+      #   root.error = "Error HTTP"
+
+      timeout: 5s

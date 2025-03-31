@@ -5,7 +5,8 @@ services:
     #image: wdsregistry1.beebuddy.net:9900/hyper-runtime:v8.3.1.8
     #image: wdsregistry1.beebuddy.net:9900/hyper-runtime:v8.3.1.9
     #image: wdsregistry1.beebuddy.net:9900/hyper-runtime:v8.3.1.10
-    image: wdsregistry1.beebuddy.net:9900/hyper-runtime:v8.3.2.0
+    #image: wdsregistry1.beebuddy.net:9900/hyper-runtime:v8.3.2.0
+    image: wutichai/hyper-runtime:v8.3.2.0
     container_name: benthos
     volumes:
       - /usr/share/zoneinfo/Asia/Bangkok:/etc/localtime:ro

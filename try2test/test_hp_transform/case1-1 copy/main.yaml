@@ -1,0 +1,41 @@
+# Producer
+input:
+  generate:
+    mapping: |
+      root = {
+        "A": "A",
+        "D": "D"
+      }
+    interval: "30s"
+
+pipeline:
+  processors:
+    - label: "InputData"
+      dump_log:
+
+    - label: "Test Case 1-1"
+      hp_transform:
+        name: "hp_transform"
+        input: |
+          root = {}
+          root.B = "B"
+
+        mapping: |
+          root = {}
+          root.C = "C"
+
+        result_mode: merge
+
+        output: |
+          root = {}
+          root.D = "DDD"
+          root.A = "AAA"
+          
+
+    - label: "OutputData"
+      dump_log:
+
+# No output
+output:
+  label: ""
+  drop: {}

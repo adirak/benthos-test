@@ -1,0 +1,44 @@
+# Producer
+input:
+  generate:
+    mapping: |
+      root = {
+        "A": "A",
+        "D": "D"
+      }
+    interval: "30s"
+
+pipeline:
+  processors:
+    - label: "InputData"
+      dump_log:
+
+    - label: "Test Case 1-1"
+      hp_transform:
+        name: "hp_transform"
+        input: |
+          root = {}
+          root.B = "B"
+
+        mapping: |
+          let acct = this.trans.prepare.trans.debtor.AccountID
+          let accname = this.trans.prepare.trans.debtor.AccountName
+          let dtl = "TTXID=%s#FRMACC=%s#FRMNAME=%s#PSTDT=%s".format("IDDDDDDD", "ACCT", "ACCNAME", "DATE")
+
+
+          let comment = if this.ttx_comment != null && this.ttx_comment != "" {
+              "%s#COMMENT=%s".format($dtl, this.ttx_comment)
+          } else {
+              $dtl
+          }
+          root.comment = "%s#CMTSEP=CMTSEP".format($comment)
+
+        result_mode: merge
+
+    - label: "OutputData"
+      dump_log:
+
+# No output
+output:
+  label: ""
+  drop: {}
