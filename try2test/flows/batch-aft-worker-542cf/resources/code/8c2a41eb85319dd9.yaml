@@ -1,0 +1,12 @@
+processor_resources:
+  - label: "{package}_8c2a41eb85319dd9"
+    hp_transform:
+      name: "Add cr_acct to cid"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.cid = this.cid.append(this.cr_acct)
+      result_mode: merge
+      output: |-
+            root = this

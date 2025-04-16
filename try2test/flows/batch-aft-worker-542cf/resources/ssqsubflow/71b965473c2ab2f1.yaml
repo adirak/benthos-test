@@ -1,0 +1,41 @@
+
+processor_resources:
+  - label: "{package}_71b965473c2ab2f1"
+    hp_function:
+      input: |-
+        meta c0c0990f5432c76e_parrent = meta("flowId")
+        meta flowId = "c0c0990f5432c76e"
+        meta subflowId = "c0c0990f5432c76e"
+        
+
+        let filter = model2json("1ce814de46f542cf_71b965473c2ab2f1_in")
+        root = this.json_filter($filter)
+
+
+      processors:
+        - hp_resource: 
+            id: "{package}_c0c0990f5432c76e"
+            name: "Get Offus Flag"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "82478eb4bb06f1f1"
+              }
+
+        - label: "endsub"
+          hp_transform:
+            result_mode: merge
+            mapping: |-
+      
+              let filter = model2json("1ce814de46f542cf_71b965473c2ab2f1_out")
+              root = this.json_filter($filter)
+
+
+      result_mode: merge
+      output: |-
+        meta flowId = metadata("c0c0990f5432c76e_parrent")
+        meta c0c0990f5432c76e_parrent = deleted()
+        meta subflowId = meta("parrent_71b965473c2ab2f1_subflowId")
+        meta parrent_71b965473c2ab2f1_subflowId = deleted()
+      
+      

@@ -1,0 +1,41 @@
+
+processor_resources:
+  - label: "{package}_590531b9edbe5161"
+    hp_function:
+      input: |-
+        meta 63362a2352402a36_parrent = meta("flowId")
+        meta flowId = "63362a2352402a36"
+        meta subflowId = "63362a2352402a36"
+        
+
+        let filter = model2json("1ce814de46f542cf_590531b9edbe5161_in")
+        root = this.json_filter($filter)
+
+
+      processors:
+        - hp_resource: 
+            id: "{package}_63362a2352402a36"
+            name: "Trans Post Own Inst"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "1ab7e1e8737b2879"
+              }
+
+        - label: "endsub"
+          hp_transform:
+            result_mode: merge
+            mapping: |-
+      
+              let filter = model2json("1ce814de46f542cf_590531b9edbe5161_out")
+              root = this.json_filter($filter)
+
+
+      result_mode: merge
+      output: |-
+        meta flowId = metadata("63362a2352402a36_parrent")
+        meta 63362a2352402a36_parrent = deleted()
+        meta subflowId = meta("parrent_590531b9edbe5161_subflowId")
+        meta parrent_590531b9edbe5161_subflowId = deleted()
+      
+      

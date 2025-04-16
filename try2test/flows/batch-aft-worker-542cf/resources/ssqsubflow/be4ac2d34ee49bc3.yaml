@@ -1,0 +1,41 @@
+
+processor_resources:
+  - label: "{package}_be4ac2d34ee49bc3"
+    hp_function:
+      input: |-
+        meta 636876f9d7a52f1d_parrent = meta("flowId")
+        meta flowId = "636876f9d7a52f1d"
+        meta subflowId = "636876f9d7a52f1d"
+        
+
+        let filter = model2json("1ce814de46f542cf_be4ac2d34ee49bc3_in")
+        root = this.json_filter($filter)
+
+
+      processors:
+        - hp_resource: 
+            id: "{package}_636876f9d7a52f1d"
+            name: "Call Trans Prepost"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "598bf9af6d2d40d2"
+              }
+
+        - label: "endsub"
+          hp_transform:
+            result_mode: merge
+            mapping: |-
+      
+              let filter = model2json("1ce814de46f542cf_be4ac2d34ee49bc3_out")
+              root = this.json_filter($filter)
+
+
+      result_mode: merge
+      output: |-
+        meta flowId = metadata("636876f9d7a52f1d_parrent")
+        meta 636876f9d7a52f1d_parrent = deleted()
+        meta subflowId = meta("parrent_be4ac2d34ee49bc3_subflowId")
+        meta parrent_be4ac2d34ee49bc3_subflowId = deleted()
+      
+      

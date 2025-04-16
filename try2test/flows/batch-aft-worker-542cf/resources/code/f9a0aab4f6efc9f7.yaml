@@ -1,0 +1,12 @@
+processor_resources:
+  - label: "{package}_f9a0aab4f6efc9f7"
+    hp_transform:
+      name: "Set XChange Result"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.trans.exchange.posted = this.result
+      result_mode: merge
+      output: |-
+            root = this

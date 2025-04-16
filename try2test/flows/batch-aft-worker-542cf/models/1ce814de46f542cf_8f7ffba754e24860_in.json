@@ -1,0 +1,1 @@
+[{"all":true,"default":"{\"dateEnd\":\"\",\"dateStart\":\"\",\"days\":0}","max":0,"min":0,"name":"frequency","required":false,"type":"map","validated":false}, {"default":null,"name":"isUpdated","required":false,"type":"boolean","validated":false}]

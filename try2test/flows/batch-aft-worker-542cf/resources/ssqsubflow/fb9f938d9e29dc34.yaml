@@ -1,0 +1,41 @@
+
+processor_resources:
+  - label: "{package}_fb9f938d9e29dc34"
+    hp_function:
+      input: |-
+        meta 24985262e8ba3f78_parrent = meta("flowId")
+        meta flowId = "24985262e8ba3f78"
+        meta subflowId = "24985262e8ba3f78"
+        
+
+        let filter = model2json("1ce814de46f542cf_fb9f938d9e29dc34_in")
+        root = this.json_filter($filter)
+
+
+      processors:
+        - hp_resource: 
+            id: "{package}_24985262e8ba3f78"
+            name: "Keep Trans API"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "deed31ffd7f76ae3"
+              }
+
+        - label: "endsub"
+          hp_transform:
+            result_mode: merge
+            mapping: |-
+      
+              let filter = model2json("1ce814de46f542cf_fb9f938d9e29dc34_out")
+              root = this.json_filter($filter)
+
+
+      result_mode: merge
+      output: |-
+        meta flowId = metadata("24985262e8ba3f78_parrent")
+        meta 24985262e8ba3f78_parrent = deleted()
+        meta subflowId = meta("parrent_fb9f938d9e29dc34_subflowId")
+        meta parrent_fb9f938d9e29dc34_subflowId = deleted()
+      
+      

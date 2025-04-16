@@ -1,0 +1,12 @@
+processor_resources:
+  - label: "{package}_98abd47cf399afd6"
+    hp_transform:
+      name: "List Cutoff Time"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.tKeys = this.trans_cfg.cutoff_time.keys().or([])
+      result_mode: merge
+      output: |-
+            root = this

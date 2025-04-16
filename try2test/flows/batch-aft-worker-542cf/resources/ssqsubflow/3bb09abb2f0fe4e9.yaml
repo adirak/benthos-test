@@ -1,0 +1,41 @@
+
+processor_resources:
+  - label: "{package}_3bb09abb2f0fe4e9"
+    hp_function:
+      input: |-
+        meta c8321dd1b85ed73a_parrent = meta("flowId")
+        meta flowId = "c8321dd1b85ed73a"
+        meta subflowId = "c8321dd1b85ed73a"
+        
+
+        let filter = model2json("1ce814de46f542cf_3bb09abb2f0fe4e9_in")
+        root = this.json_filter($filter)
+
+
+      processors:
+        - hp_resource: 
+            id: "{package}_c8321dd1b85ed73a"
+            name: "Call CBS Trans Post"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "435b940d3622e52b"
+              }
+
+        - label: "endsub"
+          hp_transform:
+            result_mode: merge
+            mapping: |-
+      
+              let filter = model2json("1ce814de46f542cf_3bb09abb2f0fe4e9_out")
+              root = this.json_filter($filter)
+
+
+      result_mode: merge
+      output: |-
+        meta flowId = metadata("c8321dd1b85ed73a_parrent")
+        meta c8321dd1b85ed73a_parrent = deleted()
+        meta subflowId = meta("parrent_3bb09abb2f0fe4e9_subflowId")
+        meta parrent_3bb09abb2f0fe4e9_subflowId = deleted()
+      
+      

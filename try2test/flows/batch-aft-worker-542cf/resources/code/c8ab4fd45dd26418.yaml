@@ -1,0 +1,24 @@
+processor_resources:
+  - label: "{package}_c8ab4fd45dd26418"
+    mongodb:
+      name: "Read Mongo"
+      profile: |-
+        {{hyper_ibank_mongo_config}}
+      database: advance_transfer
+      operation: find-one
+      collection: advance_transfer_info
+      
+      input: |-
+        root = this
+    
+      filter_map: |-
+        root = {"aftID": this.aftID}
+            
+    
+      result_mode: "new"
+      
+      json_marshal_mode: relaxed
+    
+      output: |-
+        root = {}
+        root.aft = this

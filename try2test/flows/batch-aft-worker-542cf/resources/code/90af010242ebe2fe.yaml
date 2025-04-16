@@ -1,0 +1,15 @@
+processor_resources:
+  - label: "{package}_90af010242ebe2fe"
+    hp_transform:
+      name: "Calculate Time"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            let eTime = timestamp_unix_milli()
+            
+            root.useTime = $eTime - this.sTime
+            
+      result_mode: merge
+      output: |-
+            root = this

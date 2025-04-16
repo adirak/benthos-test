@@ -1,0 +1,13 @@
+
+processor_resources:
+  - label: "{package}_50f66c06b38c8d7c"
+    hp_transform:
+      name: "Define Input"
+      input: |-
+        root = this
+      mapping: |-
+        root = this
+      result_mode: merge
+      output: |-
+        let filter = model2json("1ce814de46f542cf_50f66c06b38c8d7c_in")
+        root = this.json_filter($filter)

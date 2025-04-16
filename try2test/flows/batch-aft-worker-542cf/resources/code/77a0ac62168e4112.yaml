@@ -1,0 +1,11 @@
+processor_resources:
+  - label: "{package}_77a0ac62168e4112"
+    hp_redis_cmd:
+      profile: |-
+        {{hyper_ibank_redis_config}}
+      command: set
+      args_mapping: root = [ this.redis_key, this.strValue ]
+      input: |
+        root = this
+        
+    

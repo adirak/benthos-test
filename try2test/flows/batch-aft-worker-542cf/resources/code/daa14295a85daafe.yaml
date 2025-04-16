@@ -1,0 +1,20 @@
+processor_resources:
+  - label: "{package}_daa14295a85daafe"
+    hp_transform:
+      name: "Prepare Own Creditor"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.trans.pp_creditor = this.pp_creditor
+            root.trans.pp_creditor.AccountName = this.trans.creditor.AccountName.or("")
+            root.trans.ownInst = true
+            
+            root.trans.owner = if this.trans.debtor.customerID == this.trans.creditor.customerID {
+                    1
+                }
+            
+            
+      result_mode: merge
+      output: |-
+            root = this

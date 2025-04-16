@@ -1,0 +1,5 @@
+processor_resources:
+  - label: "{package}_537760bc37607a38"
+    log:
+      level: "INFO"
+      message: "KTB error: ${! this.mob_code }, message: ${! this.mob_message }"

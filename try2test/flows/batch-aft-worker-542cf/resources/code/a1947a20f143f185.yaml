@@ -1,0 +1,26 @@
+processor_resources:
+  - label: "{package}_a1947a20f143f185"
+    hp_transform:
+      name: "Prepare Data"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            let body = this.header + "|" + this.detail.join("|")
+            
+            
+            meta reqUrl = this.baseUrl + this.sql_key
+            root.reqUrl = this.baseUrl + this.sql_key
+            
+            root.mrpcData = { 
+                    "data": $body
+                }
+                
+            meta apiKey = if this.hyper_cbs.api_key != null {
+                this.hyper_cbs.api_key
+            } else {
+                "12345678"
+            }
+      result_mode: merge
+      output: |-
+            root = this

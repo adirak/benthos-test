@@ -1,0 +1,79 @@
+processor_resources:
+  - label: "{package}_b4074896e7da61a6"
+    hp_function:
+      name: "sub-prepare-acc-display"
+      input: |-
+
+        root = this
+
+
+      processors:
+        
+        # Node startsub
+        - label: "{package}_07b20387f2d47e62"
+          hp_resource:
+            id: "{package}_07b20387f2d47e62"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "b4074896e7da61a6",
+                "nodeId":"07b20387f2d47e62",
+                "nodeType":"startsub"
+              }
+            goto_route:
+              success: "this.{package}_b263a6956c3bbf8b"
+              #failure: "this.{package}_b4074896e7da61a6_exception"
+              
+        # Node define
+        - label: "{package}_b263a6956c3bbf8b"
+          hp_resource:
+            id: "{package}_b263a6956c3bbf8b"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "b4074896e7da61a6",
+                "nodeId":"b263a6956c3bbf8b",
+                "nodeType":"define"
+              }
+            goto_route:
+              success: "this.{package}_0d496beb1a3333da"
+              #failure: "this.{package}_b4074896e7da61a6_exception"
+              
+        # Node code
+        - label: "{package}_0d496beb1a3333da"
+          hp_resource:
+            id: "{package}_0d496beb1a3333da"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "b4074896e7da61a6",
+                "nodeId":"0d496beb1a3333da",
+                "nodeType":"code"
+              }
+            goto_route:
+              success: "this.{package}_05cdd528844981b2"
+              #failure: "this.{package}_b4074896e7da61a6_exception"
+              
+        # Node endsub
+        - label: "{package}_05cdd528844981b2"
+          hp_resource:
+            id: "{package}_05cdd528844981b2"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "b4074896e7da61a6",
+                "nodeId":"05cdd528844981b2",
+                "nodeType":"endsub"
+              }
+            goto_route:
+              success: "this.{package}_b4074896e7da61a6_endnode"
+              
+        
+        # End flow resource
+        - label: "{package}_b4074896e7da61a6_endnode"
+          noop:
+
+      result_mode: new
+      output: |-
+
+        root = this

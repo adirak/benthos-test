@@ -1,0 +1,23 @@
+processor_resources:
+  - label: "{package}_940d86a7624faba1"
+    hp_transform:
+      name: "Set Result"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.code = this.code
+            root.post_status = this.code
+            
+            let trans_post = {
+                "detail":this.trans_post.detail,
+                "header": this.trans_post.header,
+                "result": this.result
+            }
+            
+            root.trans_post.result = $trans_post
+            root.trans.trans_post = $trans_post
+            
+      result_mode: merge
+      output: |-
+            root = this

@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_419351679bbc603c"
+    hp_transform:
+      name: "Check Amount"
+      result_mode: merge
+      mapping: |-
+        root = this
+
+        meta result_route = match {
+        trans.ttxAmt.amt >= 0.01 => "this.{package}_0cf5f7036b2802ac",
+        _ => "this.{package}_2d3ef8c3fdd72a46",
+        }
+

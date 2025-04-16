@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_41e7910fab90fd2d"
+    hp_transform:
+      name: "Check Response"
+      result_mode: merge
+      mapping: |-
+        root = this
+
+        meta result_route = match {
+        result != null && result.response != null => "this.{package}_a0f5b228ecbd4674",
+        _ => "this.{package}_a2d50a1e7c95b218",
+        }
+

@@ -1,0 +1,1 @@
+[{"default":"N0","max":0,"min":0,"name":"id_prefix","regexp":"","required":false,"type":"string","validated":false}, {"default":"","max":0,"min":0,"name":"trans_code","regexp":"","required":false,"type":"string","validated":false}, {"default":"","max":0,"min":0,"name":"ttxID","regexp":"","required":false,"type":"string","validated":false}]

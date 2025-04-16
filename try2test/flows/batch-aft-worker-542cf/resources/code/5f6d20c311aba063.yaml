@@ -1,0 +1,29 @@
+processor_resources:
+  - label: "{package}_5f6d20c311aba063"
+    hp_transform:
+      name: "hp_transform"
+      input: |
+        root = this
+    
+      mapping: |
+        root = this
+        root.aftID = this.aft.aftID
+        root.logID = this.logID
+        root.data.code = this.status.status
+        root.data.transDateTime = ""
+        root.data.description = if metadata("error_message") != null && metadata("error_message") != "" {
+            metadata("error_message")
+        } else {
+            "Credit Transfer error, check app log for more info"
+        }
+        root.data.ttxID = this.ttxID.or("")
+    
+      result_mode: merge
+    
+      output: |
+        root = this
+        root.data.description = if this.status.description != null && this.status.description != "" {
+            this.status.description
+        } else {
+            this.data.description
+        }

@@ -1,0 +1,41 @@
+
+processor_resources:
+  - label: "{package}_8656a0da83343225"
+    hp_function:
+      input: |-
+        meta 050fed1567eed5e1_parrent = meta("flowId")
+        meta flowId = "050fed1567eed5e1"
+        meta subflowId = "050fed1567eed5e1"
+        
+
+        let filter = model2json("1ce814de46f542cf_8656a0da83343225_in")
+        root = this.json_filter($filter)
+
+
+      processors:
+        - hp_resource: 
+            id: "{package}_050fed1567eed5e1"
+            name: "Log KTB Error"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "a0892606a07fdb82"
+              }
+
+        - label: "endsub"
+          hp_transform:
+            result_mode: merge
+            mapping: |-
+      
+              let filter = model2json("1ce814de46f542cf_8656a0da83343225_out")
+              root = this.json_filter($filter)
+
+
+      result_mode: merge
+      output: |-
+        meta flowId = metadata("050fed1567eed5e1_parrent")
+        meta 050fed1567eed5e1_parrent = deleted()
+        meta subflowId = meta("parrent_8656a0da83343225_subflowId")
+        meta parrent_8656a0da83343225_subflowId = deleted()
+      
+      

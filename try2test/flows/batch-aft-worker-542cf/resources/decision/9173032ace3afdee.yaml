@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_9173032ace3afdee"
+    hp_transform:
+      name: "Check Stat"
+      result_mode: merge
+      mapping: |-
+        root = this
+
+        meta result_route = match {
+        stat != 0 => "this.{package}_3965ca96527a91c0",
+        _ => "this.{package}_dd089252ae09a9d3",
+        }
+

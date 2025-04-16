@@ -1,0 +1,26 @@
+processor_resources:
+  - label: "{package}_0d496beb1a3333da"
+    hp_transform:
+      name: "Prepare Account Display"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            let title1 = result.title1.or("")
+            let title2 = result.title2.or("")
+            let title3 = result.title3.or("")
+            let title4 = result.title4.or("")
+            let rs = $title1.trim() + $title2
+            let rs = $rs.trim() + $title3
+            let rs = $rs.trim() + $title4
+            root.result.AccountName = $rs.trim()
+            
+            let title_en = result.title_en.trim().or("")
+            let firstName_en = result.firstName_en.trim().or("")
+            let lastName_en = result.lastName_en.trim().or("")
+            root.result.AccountDisplay = $title_en + $firstName_en + " " + $lastName_en
+            
+            
+      result_mode: merge
+      output: |-
+            root = this

@@ -1,0 +1,41 @@
+
+processor_resources:
+  - label: "{package}_55dd531925f567e2"
+    hp_function:
+      input: |-
+        meta 07695fb03e2fcb67_parrent = meta("flowId")
+        meta flowId = "07695fb03e2fcb67"
+        meta subflowId = "07695fb03e2fcb67"
+        
+
+        let filter = model2json("1ce814de46f542cf_55dd531925f567e2_in")
+        root = this.json_filter($filter)
+
+
+      processors:
+        - hp_resource: 
+            id: "{package}_07695fb03e2fcb67"
+            name: "Get Creditor Flag"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "82478eb4bb06f1f1"
+              }
+
+        - label: "endsub"
+          hp_transform:
+            result_mode: merge
+            mapping: |-
+      
+              let filter = model2json("1ce814de46f542cf_55dd531925f567e2_out")
+              root = this.json_filter($filter)
+
+
+      result_mode: merge
+      output: |-
+        meta flowId = metadata("07695fb03e2fcb67_parrent")
+        meta 07695fb03e2fcb67_parrent = deleted()
+        meta subflowId = meta("parrent_55dd531925f567e2_subflowId")
+        meta parrent_55dd531925f567e2_subflowId = deleted()
+      
+      

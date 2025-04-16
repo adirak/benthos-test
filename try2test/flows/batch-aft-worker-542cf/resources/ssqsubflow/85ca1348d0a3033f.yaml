@@ -1,0 +1,41 @@
+
+processor_resources:
+  - label: "{package}_85ca1348d0a3033f"
+    hp_function:
+      input: |-
+        meta 12a08f3a3d297cfc_parrent = meta("flowId")
+        meta flowId = "12a08f3a3d297cfc"
+        meta subflowId = "12a08f3a3d297cfc"
+        
+
+        let filter = model2json("1ce814de46f542cf_85ca1348d0a3033f_in")
+        root = this.json_filter($filter)
+
+
+      processors:
+        - hp_resource: 
+            id: "{package}_12a08f3a3d297cfc"
+            name: "Get Debtor Data"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "9f8c562f37f973be"
+              }
+
+        - label: "endsub"
+          hp_transform:
+            result_mode: merge
+            mapping: |-
+      
+              let filter = model2json("1ce814de46f542cf_85ca1348d0a3033f_out")
+              root = this.json_filter($filter)
+
+
+      result_mode: merge
+      output: |-
+        meta flowId = metadata("12a08f3a3d297cfc_parrent")
+        meta 12a08f3a3d297cfc_parrent = deleted()
+        meta subflowId = meta("parrent_85ca1348d0a3033f_subflowId")
+        meta parrent_85ca1348d0a3033f_subflowId = deleted()
+      
+      

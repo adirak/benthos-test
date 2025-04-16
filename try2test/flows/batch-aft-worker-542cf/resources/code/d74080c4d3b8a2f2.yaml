@@ -1,0 +1,16 @@
+processor_resources:
+  - label: "{package}_d74080c4d3b8a2f2"
+    hp_transform:
+      name: "Rename to payment_info"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.payment_info = if not_found {
+                {}
+            } else {
+                this.result
+            }
+      result_mode: merge
+      output: |-
+            root = this

@@ -1,0 +1,14 @@
+processor_resources:
+  - label: "{package}_68ea2ee8795cbcf7"
+    hp_transform:
+      name: "Prepare Collection "
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            meta collection = this.collection
+            
+            root.ttx_data._id = this.ttx_id
+      result_mode: merge
+      output: |-
+            root = this

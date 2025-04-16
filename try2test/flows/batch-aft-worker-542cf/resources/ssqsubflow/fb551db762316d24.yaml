@@ -1,0 +1,41 @@
+
+processor_resources:
+  - label: "{package}_fb551db762316d24"
+    hp_function:
+      input: |-
+        meta 44772c568b376c60_parrent = meta("flowId")
+        meta flowId = "44772c568b376c60"
+        meta subflowId = "44772c568b376c60"
+        
+
+        let filter = model2json("1ce814de46f542cf_fb551db762316d24_in")
+        root = this.json_filter($filter)
+
+
+      processors:
+        - hp_resource: 
+            id: "{package}_44772c568b376c60"
+            name: "Get Cust Retrict"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "d9502c8029f26c87"
+              }
+
+        - label: "endsub"
+          hp_transform:
+            result_mode: merge
+            mapping: |-
+      
+              let filter = model2json("1ce814de46f542cf_fb551db762316d24_out")
+              root = this.json_filter($filter)
+
+
+      result_mode: merge
+      output: |-
+        meta flowId = metadata("44772c568b376c60_parrent")
+        meta 44772c568b376c60_parrent = deleted()
+        meta subflowId = meta("parrent_fb551db762316d24_subflowId")
+        meta parrent_fb551db762316d24_subflowId = deleted()
+      
+      

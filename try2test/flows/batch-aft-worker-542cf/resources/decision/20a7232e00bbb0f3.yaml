@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_20a7232e00bbb0f3"
+    hp_transform:
+      name: "Check Cr Trans"
+      result_mode: merge
+      mapping: |-
+        root = this
+
+        meta result_route = match {
+        prod_cfg.cr_trans != null => "this.{package}_204bdeadaacc5552",
+        _ => "this.{package}_e7c9fe9c450a8978",
+        }
+

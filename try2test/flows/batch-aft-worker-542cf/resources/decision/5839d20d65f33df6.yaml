@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_5839d20d65f33df6"
+    hp_transform:
+      name: "Check After"
+      result_mode: merge
+      mapping: |-
+        root = this
+
+        meta result_route = match {
+        after => "this.{package}_03ddee8680785b35",
+        _ => "this.{package}_a937fe5c107bb01c",
+        }
+

@@ -1,0 +1,14 @@
+processor_resources:
+  - label: "{package}_3965ca96527a91c0"
+    hp_transform:
+      name: "Set Code 4xxx"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            let stat = 4000 + this.stat
+            root.code = $stat
+            root.trans.creditor.status = $stat
+      result_mode: merge
+      output: |-
+            root = this

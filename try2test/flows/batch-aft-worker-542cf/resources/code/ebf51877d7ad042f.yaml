@@ -1,0 +1,27 @@
+processor_resources:
+  - label: "{package}_ebf51877d7ad042f"
+    hp_transform:
+      name: "Prepare Trans Api"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            let transData = {
+                "status": this.code,
+                "post_status":this.post_status,
+                "trans":this.trans,
+                "ttxID":this.ttx_id
+            }
+            
+            root.redis_key = "cbs_trans_api_offus_" + this.ttx_id
+            root.redis_value = $transData
+            root.in_cache_value = true
+            root.expire = 605000
+            
+            root.ttx_data = $transData
+            root.collection = "ttx_xchange"
+            
+            
+      result_mode: merge
+      output: |-
+            root = this

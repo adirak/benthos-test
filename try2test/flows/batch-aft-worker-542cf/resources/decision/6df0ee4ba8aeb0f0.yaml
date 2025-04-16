@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_6df0ee4ba8aeb0f0"
+    hp_transform:
+      name: "Check Error"
+      result_mode: merge
+      mapping: |-
+        root = this
+
+        meta result_route = match {
+        error => "this.{package}_e065c2b84e77933a",
+        _ => "this.{package}_eee92f0c67016f8f",
+        }
+

@@ -1,0 +1,28 @@
+processor_resources:
+  - label: "{package}_30e0f70e615d33f4"
+    hp_transform:
+      name: "merge_restrict"
+      input: |
+        root = this
+    
+      mapping: |
+        root = this
+        let acn = this.result.customerID.string()
+        
+        let restTmp = this.result.restriction_cif.map_each(item -> if item.rflg == "11" && item.exdt.number().or(0) >= this.cur_date {
+          item
+        } else {
+          deleted()
+        })
+    
+        root.rest = if $restTmp.length().or(0) > 0 {
+            {$acn : $restTmp.index(0).rflg}
+          } else {
+            {}
+          }
+    
+      output: |
+        root = {}
+        root.cus_rest = this.rest.merge(this.cus_rest)
+    
+      result_mode: merge

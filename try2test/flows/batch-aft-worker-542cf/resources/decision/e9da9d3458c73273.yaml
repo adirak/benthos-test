@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_e9da9d3458c73273"
+    hp_transform:
+      name: "Check Value in Cache"
+      result_mode: merge
+      mapping: |-
+        root = this
+
+        meta result_route = match {
+        cid != null && cid !="" && !not_found && result.accountNumber == cid => "this.{package}_37f2cda3b4445d08",
+        _ => "this.{package}_3490c62ec4650fcf",
+        }
+

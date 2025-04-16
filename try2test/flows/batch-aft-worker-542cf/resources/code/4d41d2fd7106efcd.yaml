@@ -1,0 +1,12 @@
+processor_resources:
+  - label: "{package}_4d41d2fd7106efcd"
+    hp_transform:
+      name: "Set Code to Status"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.code = this.payment_info.status
+      result_mode: merge
+      output: |-
+            root = this

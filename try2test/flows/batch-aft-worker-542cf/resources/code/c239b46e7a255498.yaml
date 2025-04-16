@@ -1,0 +1,12 @@
+processor_resources:
+  - label: "{package}_c239b46e7a255498"
+    hp_transform:
+      name: "Get Default TransCode"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.trans_code = this.transInput.transCode.trncde
+      result_mode: merge
+      output: |-
+            root = this

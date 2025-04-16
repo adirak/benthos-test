@@ -1,0 +1,29 @@
+processor_resources:
+  - label: "{package}_41d01f299843e803"
+    hp_transform:
+      name: "hp_transform"
+      input: |
+        root = this
+    
+      mapping: |
+        root = this
+        root.data = this.aft
+        root.aftID = this.aft.aftID
+        root.data.mobAction = this.action
+        root.data.mobCode = this.mob_code
+        root.data.mobMessage = this.mob_message
+        root.data.description = if metadata("error_message") != null && metadata("error_message") != "" {
+            metadata("error_message")
+        } else {
+            "KTB service error, check app log for more info"
+        }
+    
+      result_mode: merge
+    
+      output: |
+        root = this
+        root.data.mob_message = if this.data.mob_message != null || this.data.mob_message != "" {
+            this.data.mob_message
+        } else {
+            this.data.description
+        }

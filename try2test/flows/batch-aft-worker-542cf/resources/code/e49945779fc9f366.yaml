@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_e49945779fc9f366"
+    hp_transform:
+      name: "Set Creditor Status"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.status.status = code
+            
+      result_mode: merge
+      output: |-
+            root = this

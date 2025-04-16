@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_4cce4223abf4496b"
+    hp_transform:
+      name: "Prepare for Deptor"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.transInput = this.trans.debtor
+            root.ttxInput = this.trans.ttxAmt
+      result_mode: merge
+      output: |-
+            root = this

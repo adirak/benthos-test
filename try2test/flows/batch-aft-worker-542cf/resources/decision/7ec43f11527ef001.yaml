@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_7ec43f11527ef001"
+    hp_transform:
+      name: "Check EffDate in Config"
+      result_mode: merge
+      mapping: |-
+        root = this
+
+        meta result_route = match {
+        this.trans_cfg.cutoff_time_effdate == null || this.trans_cfg.cutoff_time_effdate == "" => "this.{package}_b62477e934f7ced8",
+        _ => "this.{package}_76d40e72283518c1",
+        }
+

@@ -1,0 +1,12 @@
+processor_resources:
+  - label: "{package}_29bc62431a5203de"
+    hp_transform:
+      name: "Code"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.code = 0
+      result_mode: merge
+      output: |-
+            root = this

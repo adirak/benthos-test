@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_4ad611230a66a11f"
+    hp_transform:
+      name: "Check KTB Action"
+      result_mode: merge
+      mapping: |-
+        root = this
+
+        meta result_route = match {
+        adv_transfer.batch_job.notSendKtbAction.or(false) == true => "this.{package}_ae4d93d25339f7d1",
+        _ => "this.{package}_1566fff24513ea16",
+        }
+

@@ -1,0 +1,31 @@
+processor_resources:
+  - label: "{package}_9f8fc8345817f3b0"
+    hp_transform:
+      name: "Prepare Data"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.xtrans.transaction.transactionDateTime = this.currTime
+            root.xtrans.transaction.refId = this.ttx_id
+            
+            let ttx_amt = this.prepare.trans.ttxAmt.amt
+            root.xtrans.transaction.amount = "%0.2f".format($ttx_amt)
+            root.xtrans.transaction.rrn = this.prepare.trans.creditor.info.transaction.rrn
+            
+            root.xtrans.promptpay.fromAcctNo = this.prepare.trans.debtor.Account
+            root.xtrans.promptpay.fromAcctName = this.prepare.trans.debtor.AccountName
+            
+            root.xtrans.promptpay.senderTaxId = if $ttx_amt > 700000 {
+                this.prepare.trans.creditor.info.promptpay.senderTaxId
+            }
+            
+            root.xtrans.promptpay.senderType = this.prepare.trans.creditor.info.promptpay.senderType
+            root.xtrans.promptpay.receiverType = this.prepare.trans.creditor.info.promptpay.receiverType
+            root.xtrans.promptpay.proxyId = this.trans.creditor.Account
+            
+            root.inst = this.trans.creditor.Inst
+            
+      result_mode: merge
+      output: |-
+            root = this

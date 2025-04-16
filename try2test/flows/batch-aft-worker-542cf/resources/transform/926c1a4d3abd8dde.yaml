@@ -1,0 +1,15 @@
+
+processor_resources:
+  - label: "{package}_926c1a4d3abd8dde"
+    hp_function:
+      input: |-
+        meta nodeId = "926c1a4d3abd8dde"
+        root = this
+
+      processors:       
+        - transform:
+            config_path: "1ce814de46f542cf_926c1a4d3abd8dde_transform"
+   
+      result_mode: merge
+      output: |-
+        root = this

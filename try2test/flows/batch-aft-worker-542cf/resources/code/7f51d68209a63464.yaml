@@ -1,0 +1,5 @@
+processor_resources:
+  - label: "{package}_7f51d68209a63464"
+    log:
+      level: "INFO"
+      message: "End Job by aftID:${! this.job.aftID }, drAccountNumber:${! this.job.drAccountNumber }"

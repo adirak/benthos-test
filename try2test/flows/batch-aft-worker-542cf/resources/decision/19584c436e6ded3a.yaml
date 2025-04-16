@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_19584c436e6ded3a"
+    hp_transform:
+      name: "Check Onus"
+      result_mode: merge
+      mapping: |-
+        root = this
+
+        meta result_route = match {
+        code != 0 => "this.{package}_692d9b964ebffb84",
+        _ => "this.{package}_b32f274abc23613f",
+        }
+

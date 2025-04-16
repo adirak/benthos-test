@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_a96ac80377838288"
+    hp_transform:
+      name: "Check PMP"
+      result_mode: merge
+      mapping: |-
+        root = this
+
+        meta result_route = match {
+        inst == "PMP" => "this.{package}_77668a13fd0ebedf",
+        _ => "this.{package}_80af185ab5dc2684",
+        }
+

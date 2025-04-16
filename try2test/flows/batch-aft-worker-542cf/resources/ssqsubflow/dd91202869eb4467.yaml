@@ -1,0 +1,41 @@
+
+processor_resources:
+  - label: "{package}_dd91202869eb4467"
+    hp_function:
+      input: |-
+        meta cb9a4efaae74767a_parrent = meta("flowId")
+        meta flowId = "cb9a4efaae74767a"
+        meta subflowId = "cb9a4efaae74767a"
+        
+
+        let filter = model2json("1ce814de46f542cf_dd91202869eb4467_in")
+        root = this.json_filter($filter)
+
+
+      processors:
+        - hp_resource: 
+            id: "{package}_cb9a4efaae74767a"
+            name: "Update to Mongo"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "3194fcc1569cd905"
+              }
+
+        - label: "endsub"
+          hp_transform:
+            result_mode: merge
+            mapping: |-
+      
+              let filter = model2json("1ce814de46f542cf_dd91202869eb4467_out")
+              root = this.json_filter($filter)
+
+
+      result_mode: merge
+      output: |-
+        meta flowId = metadata("cb9a4efaae74767a_parrent")
+        meta cb9a4efaae74767a_parrent = deleted()
+        meta subflowId = meta("parrent_dd91202869eb4467_subflowId")
+        meta parrent_dd91202869eb4467_subflowId = deleted()
+      
+      

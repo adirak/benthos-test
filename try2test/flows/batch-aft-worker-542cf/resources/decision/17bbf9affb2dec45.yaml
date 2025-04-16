@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_17bbf9affb2dec45"
+    hp_transform:
+      name: "Check Own Inst"
+      result_mode: merge
+      mapping: |-
+        root = this
+
+        meta result_route = match {
+        this.own_inst == true => "this.{package}_590531b9edbe5161",
+        _ => "this.{package}_56bfc0c479c6cf23",
+        }
+

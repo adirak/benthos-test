@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_5897d3500d1e2fda"
+    hp_transform:
+      name: "Convert to Json"
+      inputs: |-
+          root = {}
+      mapping: |-
+          root = {}
+          root.trans_cfg = json("trans_cfg."+trans_type)
+      result_mode: new
+      output: |-
+          root = this
+          root.not_found = false

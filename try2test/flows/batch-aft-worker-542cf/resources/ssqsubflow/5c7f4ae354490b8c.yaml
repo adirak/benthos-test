@@ -1,0 +1,41 @@
+
+processor_resources:
+  - label: "{package}_5c7f4ae354490b8c"
+    hp_function:
+      input: |-
+        meta 24985262e8ba3f78_parrent = meta("flowId")
+        meta flowId = "24985262e8ba3f78"
+        meta subflowId = "24985262e8ba3f78"
+        
+
+        let filter = model2json("1ce814de46f542cf_5c7f4ae354490b8c_in")
+        root = this.json_filter($filter)
+
+
+      processors:
+        - hp_resource: 
+            id: "{package}_24985262e8ba3f78"
+            name: "Set SQL to Cache"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "5189f73358669805"
+              }
+
+        - label: "endsub"
+          hp_transform:
+            result_mode: merge
+            mapping: |-
+      
+              let filter = model2json("1ce814de46f542cf_5c7f4ae354490b8c_out")
+              root = this.json_filter($filter)
+
+
+      result_mode: merge
+      output: |-
+        meta flowId = metadata("24985262e8ba3f78_parrent")
+        meta 24985262e8ba3f78_parrent = deleted()
+        meta subflowId = meta("parrent_5c7f4ae354490b8c_subflowId")
+        meta parrent_5c7f4ae354490b8c_subflowId = deleted()
+      
+      

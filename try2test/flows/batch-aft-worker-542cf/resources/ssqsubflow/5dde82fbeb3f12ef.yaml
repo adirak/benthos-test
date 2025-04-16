@@ -1,0 +1,41 @@
+
+processor_resources:
+  - label: "{package}_5dde82fbeb3f12ef"
+    hp_function:
+      input: |-
+        meta 392383523cc657ab_parrent = meta("flowId")
+        meta flowId = "392383523cc657ab"
+        meta subflowId = "392383523cc657ab"
+        
+
+        let filter = model2json("1ce814de46f542cf_5dde82fbeb3f12ef_in")
+        root = this.json_filter($filter)
+
+
+      processors:
+        - hp_resource: 
+            id: "{package}_392383523cc657ab"
+            name: "Save TTX Data"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "deed31ffd7f76ae3"
+              }
+
+        - label: "endsub"
+          hp_transform:
+            result_mode: merge
+            mapping: |-
+      
+              let filter = model2json("1ce814de46f542cf_5dde82fbeb3f12ef_out")
+              root = this.json_filter($filter)
+
+
+      result_mode: merge
+      output: |-
+        meta flowId = metadata("392383523cc657ab_parrent")
+        meta 392383523cc657ab_parrent = deleted()
+        meta subflowId = meta("parrent_5dde82fbeb3f12ef_subflowId")
+        meta parrent_5dde82fbeb3f12ef_subflowId = deleted()
+      
+      

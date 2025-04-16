@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_c5b7e98acc0eea53"
+    hp_transform:
+      name: "Check Offus"
+      result_mode: merge
+      mapping: |-
+        root = this
+
+        meta result_route = match {
+        trans.ownInst.bool() == true => "this.{package}_287e95ce75ebf818",
+        _ => "this.{package}_787f61d7bc513d84",
+        }
+

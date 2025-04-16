@@ -1,0 +1,23 @@
+processor_resources:
+  - label: "{package}_9f895a54abeb85f0"
+    hp_transform:
+      name: "Prepare Creditor transCode"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.trans.creditor.transCode = this.trncde
+            root.trans.creditor.glaccount = this.trncde.parm.glaccount.or(0)
+            
+            root.transInput = this.trans.debtor
+            root.ttxInput = this.trans.ttxAmt
+            
+            root.trans_code = if this.trans.debtor.transCode.trncde.or("") != "" {
+                this.trans.debtor.transCode.trncde
+            } else {
+                "MOSWTF"
+            }
+            
+      result_mode: merge
+      output: |-
+            root = this

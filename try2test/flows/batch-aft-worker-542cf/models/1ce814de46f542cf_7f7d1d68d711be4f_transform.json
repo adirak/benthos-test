@@ -1,0 +1,1 @@
+{"filterInput":["action","mob_code","mob_message"],"filterOutput":["mobAction","mobCode","mobDescription"],"process":[{"__id":"r0","input":["action","mob_message","mob_code"],"output":["mobAction","mobDescription","mobCode"],"type":"rename_fields"}]}

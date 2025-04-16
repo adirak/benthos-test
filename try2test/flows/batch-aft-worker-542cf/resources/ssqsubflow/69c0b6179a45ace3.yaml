@@ -1,0 +1,41 @@
+
+processor_resources:
+  - label: "{package}_69c0b6179a45ace3"
+    hp_function:
+      input: |-
+        meta 3932ec6e93970a02_parrent = meta("flowId")
+        meta flowId = "3932ec6e93970a02"
+        meta subflowId = "3932ec6e93970a02"
+        
+
+        let filter = model2json("1ce814de46f542cf_69c0b6179a45ace3_in")
+        root = this.json_filter($filter)
+
+
+      processors:
+        - hp_resource: 
+            id: "{package}_3932ec6e93970a02"
+            name: "Save Transaction Error"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "050fed1567eed5e1"
+              }
+
+        - label: "endsub"
+          hp_transform:
+            result_mode: merge
+            mapping: |-
+      
+              let filter = model2json("1ce814de46f542cf_69c0b6179a45ace3_out")
+              root = this.json_filter($filter)
+
+
+      result_mode: merge
+      output: |-
+        meta flowId = metadata("3932ec6e93970a02_parrent")
+        meta 3932ec6e93970a02_parrent = deleted()
+        meta subflowId = meta("parrent_69c0b6179a45ace3_subflowId")
+        meta parrent_69c0b6179a45ace3_subflowId = deleted()
+      
+      

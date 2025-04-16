@@ -1,0 +1,12 @@
+processor_resources:
+  - label: "{package}_aef4e84725c3cfc4"
+    hp_transform:
+      name: "Set Status Code"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.status.status = this.code
+      result_mode: merge
+      output: |-
+            root = this

@@ -1,0 +1,5 @@
+processor_resources:
+  - label: "{package}_05fe9ccc0b070ff6"
+    log:
+      level: "INFO"
+      message: "Get PersonID error by cif: ${! this.cif }"

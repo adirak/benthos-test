@@ -1,0 +1,16 @@
+processor_resources:
+  - label: "{package}_3d3ee886ff9e8eb2"
+    hp_transform:
+      name: "hp_transform"
+      input: |
+          root = this
+          
+      mapping: |
+          root = {}
+          
+          let encryptedRequest = this.requestData.gcm_encode(this.eKey.string(), this.requestData.string(), -1).or("Error")
+          
+          root.reqBody = {"request": $encryptedRequest}
+          
+    
+      result_mode: merge      

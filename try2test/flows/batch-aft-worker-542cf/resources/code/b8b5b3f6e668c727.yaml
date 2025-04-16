@@ -1,0 +1,12 @@
+processor_resources:
+  - label: "{package}_b8b5b3f6e668c727"
+    hp_transform:
+      name: "Set cr"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.cif = [0, this.cr_cif]
+      result_mode: merge
+      output: |-
+            root = this

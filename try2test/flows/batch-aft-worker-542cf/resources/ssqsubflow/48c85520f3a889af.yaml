@@ -1,0 +1,41 @@
+
+processor_resources:
+  - label: "{package}_48c85520f3a889af"
+    hp_function:
+      input: |-
+        meta d0534c8c9b38ec32_parrent = meta("flowId")
+        meta flowId = "d0534c8c9b38ec32"
+        meta subflowId = "d0534c8c9b38ec32"
+        
+
+        let filter = model2json("1ce814de46f542cf_48c85520f3a889af_in")
+        root = this.json_filter($filter)
+
+
+      processors:
+        - hp_resource: 
+            id: "{package}_d0534c8c9b38ec32"
+            name: "Read deposit Value"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "8664f11ca4f11fe1"
+              }
+
+        - label: "endsub"
+          hp_transform:
+            result_mode: merge
+            mapping: |-
+      
+              let filter = model2json("1ce814de46f542cf_48c85520f3a889af_out")
+              root = this.json_filter($filter)
+
+
+      result_mode: merge
+      output: |-
+        meta flowId = metadata("d0534c8c9b38ec32_parrent")
+        meta d0534c8c9b38ec32_parrent = deleted()
+        meta subflowId = meta("parrent_48c85520f3a889af_subflowId")
+        meta parrent_48c85520f3a889af_subflowId = deleted()
+      
+      

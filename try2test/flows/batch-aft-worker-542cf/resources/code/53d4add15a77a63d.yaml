@@ -1,0 +1,20 @@
+processor_resources:
+  - label: "{package}_53d4add15a77a63d"
+    hp_http:
+        url: ${! meta("reqUrl") }
+        verb: POST
+        
+        headers:
+            Content-Type: "application/json"
+            X-API-KEY: ${! meta("apiKey") }
+            
+        
+        input: |
+            root = this.params
+        
+        result_mode: "merge"
+        
+        output: |
+            root = this
+        
+        timeout: 10s

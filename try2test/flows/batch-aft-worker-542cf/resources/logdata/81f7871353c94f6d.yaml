@@ -1,0 +1,5 @@
+processor_resources:
+  - label: "{package}_81f7871353c94f6d"
+    log:
+      level: "ERROR"
+      message: "${! content()}"

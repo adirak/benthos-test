@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_3f3362dad79b3ac8"
+    hp_transform:
+      name: "Check Debtor Account"
+      result_mode: merge
+      mapping: |-
+        root = this
+
+        meta result_route = match {
+        isValid == false => "this.{package}_f5e9f7cd94981c55",
+        _ => "this.{package}_568a01c43153b2ae",
+        }
+

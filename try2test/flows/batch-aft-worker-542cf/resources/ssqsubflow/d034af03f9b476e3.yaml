@@ -1,0 +1,41 @@
+
+processor_resources:
+  - label: "{package}_d034af03f9b476e3"
+    hp_function:
+      input: |-
+        meta 6a297caaee1f0ef4_parrent = meta("flowId")
+        meta flowId = "6a297caaee1f0ef4"
+        meta subflowId = "6a297caaee1f0ef4"
+        
+
+        let filter = model2json("1ce814de46f542cf_d034af03f9b476e3_in")
+        root = this.json_filter($filter)
+
+
+      processors:
+        - hp_resource: 
+            id: "{package}_6a297caaee1f0ef4"
+            name: "Call Check Customer Restriction"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "44772c568b376c60"
+              }
+
+        - label: "endsub"
+          hp_transform:
+            result_mode: merge
+            mapping: |-
+      
+              let filter = model2json("1ce814de46f542cf_d034af03f9b476e3_out")
+              root = this.json_filter($filter)
+
+
+      result_mode: merge
+      output: |-
+        meta flowId = metadata("6a297caaee1f0ef4_parrent")
+        meta 6a297caaee1f0ef4_parrent = deleted()
+        meta subflowId = meta("parrent_d034af03f9b476e3_subflowId")
+        meta parrent_d034af03f9b476e3_subflowId = deleted()
+      
+      

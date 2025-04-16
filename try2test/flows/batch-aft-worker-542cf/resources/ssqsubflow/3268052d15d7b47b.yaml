@@ -1,0 +1,41 @@
+
+processor_resources:
+  - label: "{package}_3268052d15d7b47b"
+    hp_function:
+      input: |-
+        meta d0534c8c9b38ec32_parrent = meta("flowId")
+        meta flowId = "d0534c8c9b38ec32"
+        meta subflowId = "d0534c8c9b38ec32"
+        
+
+        let filter = model2json("1ce814de46f542cf_3268052d15d7b47b_in")
+        root = this.json_filter($filter)
+
+
+      processors:
+        - hp_resource: 
+            id: "{package}_d0534c8c9b38ec32"
+            name: "Check Key in Redis"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "23308c483a9c399f"
+              }
+
+        - label: "endsub"
+          hp_transform:
+            result_mode: merge
+            mapping: |-
+      
+              let filter = model2json("1ce814de46f542cf_3268052d15d7b47b_out")
+              root = this.json_filter($filter)
+
+
+      result_mode: merge
+      output: |-
+        meta flowId = metadata("d0534c8c9b38ec32_parrent")
+        meta d0534c8c9b38ec32_parrent = deleted()
+        meta subflowId = meta("parrent_3268052d15d7b47b_subflowId")
+        meta parrent_3268052d15d7b47b_subflowId = deleted()
+      
+      

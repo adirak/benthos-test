@@ -1,0 +1,16 @@
+processor_resources:
+  - label: "{package}_ecb521665d7cadc1"
+    hp_transform:
+      name: "Swap PP_Creditor with Own_Creditor"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            let pp_creditor = this.trans.pp_creditor.or({})
+            let own_creditor = this.trans.creditor.or({})
+            
+            root.trans.creditor = $pp_creditor
+            root.trans.own_creditor = $own_creditor
+      result_mode: merge
+      output: |-
+            root = this

@@ -1,0 +1,21 @@
+processor_resources:
+  - label: "{package}_9a95cd1d211fc3f3"
+    hp_transform:
+      name: "Prepare to get trans config"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.chanel = "MOBL"
+            root.restict = this.prod_cfg.rstgrp
+            root.kind = 1
+            root.branch = this.debtor.info.branch
+            
+            root.trans_type = if this.trans_type == null || this.trans_type == "" {
+                "TRANOFFUS"
+            }
+            
+            
+      result_mode: merge
+      output: |-
+            root = this

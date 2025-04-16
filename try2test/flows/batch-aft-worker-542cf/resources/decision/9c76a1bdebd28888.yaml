@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_9c76a1bdebd28888"
+    hp_transform:
+      name: "Check exp"
+      result_mode: merge
+      mapping: |-
+        root = this
+
+        meta result_route = match {
+        exp.number() < cur_date.number() => "this.{package}_8172e4648df3c92b",
+        _ => "this.{package}_4959803a0663cf55",
+        }
+

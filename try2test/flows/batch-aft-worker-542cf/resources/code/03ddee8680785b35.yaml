@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_03ddee8680785b35"
+    hp_transform:
+      name: "Set Next Date"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.effdate = this.nextDate
+            root.not_found = false
+      result_mode: merge
+      output: |-
+            root = this

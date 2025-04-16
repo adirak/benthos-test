@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_0dfc3aeba0051756"
+    hp_transform:
+      name: "Check Empty"
+      result_mode: merge
+      mapping: |-
+        root = this
+
+        meta result_route = match {
+        prod_cfg != null && prod_cfg.length() > 0 => "this.{package}_fd651037915e61be",
+        _ => "this.{package}_c6ef8f0259f4cc3b",
+        }
+

@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_7cf4e91bcfd84295"
+    hp_transform:
+      name: "Check to Get CBS"
+      result_mode: merge
+      mapping: |-
+        root = this
+
+        meta result_route = match {
+        acct_info.acct_list.length().or(0) < 2 => "this.{package}_54823a4b4c77a472",
+        _ => "this.{package}_d26508c4c4e39d50",
+        }
+

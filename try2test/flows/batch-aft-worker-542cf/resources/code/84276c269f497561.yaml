@@ -1,0 +1,18 @@
+processor_resources:
+  - label: "{package}_84276c269f497561"
+    hp_transform:
+      name: "Set acc_trans"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.acc_trans = "debtor"
+            
+            root.trans.debtor.info = this.result
+            root.trans.debtor.status = 0
+            root.trans.debtor.AccountName = this.result.AccountName
+            root.trans.debtor.AccountDisplay = this.result.AccountDisplay
+            root.trans.debtor.customerID = this.result.customerID
+      result_mode: merge
+      output: |-
+            root = this

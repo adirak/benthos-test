@@ -1,0 +1,12 @@
+processor_resources:
+  - label: "{package}_863137a975d10119"
+    hp_transform:
+      name: "Prepare Key"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.redis_key = "cbs_deposit_" + this.trans.creditor.AccountID.number(0).ceil().string()
+      result_mode: merge
+      output: |-
+            root = this

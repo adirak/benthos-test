@@ -1,0 +1,12 @@
+processor_resources:
+  - label: "{package}_88653d01935c60d4"
+    hp_transform:
+      name: "Transform Data 2"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.xtrans.transaction.amount = "%.2f".format(this.trans.ttxAmt.amt.number())
+      result_mode: merge
+      output: |-
+            root = this

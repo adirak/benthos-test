@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_cba41a146c4c413a"
+    hp_transform:
+      name: "Prepare PMP"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.xtrans.promptpay.proxyType = this.trans.creditor.ProxyType
+            root.xtrans.promptpay.toBankCode = this.trans.creditor.info.promptpay.toBankCode
+      result_mode: merge
+      output: |-
+            root = this

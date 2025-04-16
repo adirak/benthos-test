@@ -1,0 +1,41 @@
+
+processor_resources:
+  - label: "{package}_2f26cb8765b48a38"
+    hp_function:
+      input: |-
+        meta 94fec97864d5596e_parrent = meta("flowId")
+        meta flowId = "94fec97864d5596e"
+        meta subflowId = "94fec97864d5596e"
+        
+
+        let filter = model2json("1ce814de46f542cf_2f26cb8765b48a38_in")
+        root = this.json_filter($filter)
+
+
+      processors:
+        - hp_resource: 
+            id: "{package}_94fec97864d5596e"
+            name: "Call PCC Service"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "558786fe1720a0be"
+              }
+
+        - label: "endsub"
+          hp_transform:
+            result_mode: merge
+            mapping: |-
+      
+              let filter = model2json("1ce814de46f542cf_2f26cb8765b48a38_out")
+              root = this.json_filter($filter)
+
+
+      result_mode: merge
+      output: |-
+        meta flowId = metadata("94fec97864d5596e_parrent")
+        meta 94fec97864d5596e_parrent = deleted()
+        meta subflowId = meta("parrent_2f26cb8765b48a38_subflowId")
+        meta parrent_2f26cb8765b48a38_subflowId = deleted()
+      
+      

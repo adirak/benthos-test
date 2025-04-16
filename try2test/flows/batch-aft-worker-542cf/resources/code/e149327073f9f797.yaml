@@ -1,0 +1,14 @@
+processor_resources:
+  - label: "{package}_e149327073f9f797"
+    hp_transform:
+      name: "Prepare Owner"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.trans.owner = this.trans.prepare.trans.owner
+            root.trans.ownInst = this.trans.prepare.trans.ownInst
+            
+      result_mode: merge
+      output: |-
+            root = this

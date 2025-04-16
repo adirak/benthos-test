@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_ecfedde89eafdfdd"
+    hp_transform:
+      name: "Check trans_code Empty"
+      result_mode: merge
+      mapping: |-
+        root = this
+
+        meta result_route = match {
+        trans_code == null || trans_code == "" => "this.{package}_61d7c926a5976430",
+        _ => "this.{package}_c7d9ac3395f07480",
+        }
+

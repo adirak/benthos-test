@@ -1,0 +1,12 @@
+processor_resources:
+  - label: "{package}_74e950a2db51dc9e"
+    hp_transform:
+      name: "Set dr and cr"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.cif = [this.dr_cif, this.cr_cif]
+      result_mode: merge
+      output: |-
+            root = this

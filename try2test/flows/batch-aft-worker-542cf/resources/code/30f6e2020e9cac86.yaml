@@ -1,0 +1,14 @@
+processor_resources:
+  - label: "{package}_30f6e2020e9cac86"
+    hp_transform:
+      name: "Prepare User Trans"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.trans.debtor.transCode = this.trncde
+            
+            root.branch = this.trans.debtor.info.branch
+      result_mode: merge
+      output: |-
+            root = this

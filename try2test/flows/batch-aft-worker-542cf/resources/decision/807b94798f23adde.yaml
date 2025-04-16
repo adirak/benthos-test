@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_807b94798f23adde"
+    hp_transform:
+      name: "Check Equal"
+      result_mode: merge
+      mapping: |-
+        root = this
+
+        meta result_route = match {
+        dr_acctno_int == cr_acctno_int => "this.{package}_54216fa342b10532",
+        _ => "this.{package}_1f7148f326e1923c",
+        }
+

@@ -1,0 +1,12 @@
+processor_resources:
+  - label: "{package}_467dfccdc5956f9a"
+    hp_transform:
+      name: "Get Job by Index"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.job = this.jobs.index(this.index)
+      result_mode: merge
+      output: |-
+            root = this

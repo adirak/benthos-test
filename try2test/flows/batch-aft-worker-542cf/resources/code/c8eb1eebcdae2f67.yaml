@@ -1,0 +1,12 @@
+processor_resources:
+  - label: "{package}_c8eb1eebcdae2f67"
+    hp_transform:
+      name: "Set Code 2711"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.code = 2711
+      result_mode: merge
+      output: |-
+            root = this

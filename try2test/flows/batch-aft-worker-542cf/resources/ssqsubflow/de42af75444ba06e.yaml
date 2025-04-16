@@ -1,0 +1,41 @@
+
+processor_resources:
+  - label: "{package}_de42af75444ba06e"
+    hp_function:
+      input: |-
+        meta d1f9fd45ad0b7c71_parrent = meta("flowId")
+        meta flowId = "d1f9fd45ad0b7c71"
+        meta subflowId = "d1f9fd45ad0b7c71"
+        
+
+        let filter = model2json("1ce814de46f542cf_de42af75444ba06e_in")
+        root = this.json_filter($filter)
+
+
+      processors:
+        - hp_resource: 
+            id: "{package}_d1f9fd45ad0b7c71"
+            name: "Call Job Looper"
+            metadata: |-
+              {
+                "scopeType": "mainFlow",
+                "scopeId": "1ce814de46f542cf"
+              }
+
+        - label: "endsub"
+          hp_transform:
+            result_mode: merge
+            mapping: |-
+      
+              let filter = model2json("1ce814de46f542cf_de42af75444ba06e_out")
+              root = this.json_filter($filter)
+
+
+      result_mode: merge
+      output: |-
+        meta flowId = metadata("d1f9fd45ad0b7c71_parrent")
+        meta d1f9fd45ad0b7c71_parrent = deleted()
+        meta subflowId = meta("parrent_de42af75444ba06e_subflowId")
+        meta parrent_de42af75444ba06e_subflowId = deleted()
+      
+      

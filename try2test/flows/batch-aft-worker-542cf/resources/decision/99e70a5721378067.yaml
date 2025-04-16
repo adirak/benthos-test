@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_99e70a5721378067"
+    hp_transform:
+      name: "Check Validate Confirm"
+      result_mode: merge
+      mapping: |-
+        root = this
+
+        meta result_route = match {
+        code > 0 => "this.{package}_f5d0bd9568b3dc96",
+        _ => "this.{package}_2a1561c0e2caeddc",
+        }
+

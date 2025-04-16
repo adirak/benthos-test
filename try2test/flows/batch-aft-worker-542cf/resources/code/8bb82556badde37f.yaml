@@ -1,0 +1,25 @@
+processor_resources:
+  - label: "{package}_8bb82556badde37f"
+    hp_transform:
+      name: "Check Result"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.not_found = if this.hits != null && this.hits.total.or(0) <= 0 {
+                true
+            } else {
+                false
+            }
+            
+            roor.error = if this.error != null && this.error.length().or(0) > 0 {
+                true
+            }else {
+                false
+            }
+            
+            root.total = 0
+            
+      result_mode: merge
+      output: |-
+            root = this

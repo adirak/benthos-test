@@ -1,0 +1,41 @@
+
+processor_resources:
+  - label: "{package}_40b868817079d2cd"
+    hp_function:
+      input: |-
+        meta 49e4ea892c6224d6_parrent = meta("flowId")
+        meta flowId = "49e4ea892c6224d6"
+        meta subflowId = "49e4ea892c6224d6"
+        
+
+        let filter = model2json("1ce814de46f542cf_40b868817079d2cd_in")
+        root = this.json_filter($filter)
+
+
+      processors:
+        - hp_resource: 
+            id: "{package}_49e4ea892c6224d6"
+            name: "Prepare and Update Data"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "a0892606a07fdb82"
+              }
+
+        - label: "endsub"
+          hp_transform:
+            result_mode: merge
+            mapping: |-
+      
+              let filter = model2json("1ce814de46f542cf_40b868817079d2cd_out")
+              root = this.json_filter($filter)
+
+
+      result_mode: merge
+      output: |-
+        meta flowId = metadata("49e4ea892c6224d6_parrent")
+        meta 49e4ea892c6224d6_parrent = deleted()
+        meta subflowId = meta("parrent_40b868817079d2cd_subflowId")
+        meta parrent_40b868817079d2cd_subflowId = deleted()
+      
+      

@@ -1,0 +1,41 @@
+
+processor_resources:
+  - label: "{package}_57ba76efc7cc061d"
+    hp_function:
+      input: |-
+        meta d0534c8c9b38ec32_parrent = meta("flowId")
+        meta flowId = "d0534c8c9b38ec32"
+        meta subflowId = "d0534c8c9b38ec32"
+        
+
+        let filter = model2json("1ce814de46f542cf_57ba76efc7cc061d_in")
+        root = this.json_filter($filter)
+
+
+      processors:
+        - hp_resource: 
+            id: "{package}_d0534c8c9b38ec32"
+            name: "Get Data from Cache"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "2bb0640a68d4536b"
+              }
+
+        - label: "endsub"
+          hp_transform:
+            result_mode: merge
+            mapping: |-
+      
+              let filter = model2json("1ce814de46f542cf_57ba76efc7cc061d_out")
+              root = this.json_filter($filter)
+
+
+      result_mode: merge
+      output: |-
+        meta flowId = metadata("d0534c8c9b38ec32_parrent")
+        meta d0534c8c9b38ec32_parrent = deleted()
+        meta subflowId = meta("parrent_57ba76efc7cc061d_subflowId")
+        meta parrent_57ba76efc7cc061d_subflowId = deleted()
+      
+      

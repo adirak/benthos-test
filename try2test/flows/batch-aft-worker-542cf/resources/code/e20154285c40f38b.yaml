@@ -1,0 +1,23 @@
+processor_resources:
+  - label: "{package}_e20154285c40f38b"
+    hp_transform:
+      name: "Prepare for Creditor"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.trn_dtl0 = results
+            
+            root.transInput = this.trans.creditor
+            root.ttxInput = this.trans.ttxAmt 
+            
+            
+            root.trans_code = if this.trans.creditor.transCode.trncde.or("") != "" {
+                this.trans.creditor.transCode.trncde
+            } else {
+                "MOSDDT"
+            }
+            
+      result_mode: merge
+      output: |-
+            root = this

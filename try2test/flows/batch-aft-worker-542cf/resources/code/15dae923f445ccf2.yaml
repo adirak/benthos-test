@@ -1,0 +1,12 @@
+processor_resources:
+  - label: "{package}_15dae923f445ccf2"
+    hp_transform:
+      name: "Request Error"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.code = 1500
+      result_mode: merge
+      output: |-
+            root = this

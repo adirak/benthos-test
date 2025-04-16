@@ -1,0 +1,29 @@
+processor_resources:
+  - label: "{package}_219d4689b95538e3"
+    hp_transform:
+      name: "Prepare Result"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.trn_hdr = [
+                    
+                    "ZOTRAN",
+                    "CbsOnlineTransaction",
+                    this.curTime,
+                    this.address,
+                    this.sysid,
+                    this.user.api_user.or(""),
+                    this.count.or(2).string(),
+                    "1",
+                    this.ttx_id,
+                    "",
+                    "MOB",
+                    this.effdt.or(""),
+                    this.user.brcd.number(0).ceil().string().or(""),
+                    this.user.cc.number(0).ceil().string().or("")
+            
+                ]
+      result_mode: merge
+      output: |-
+            root = this

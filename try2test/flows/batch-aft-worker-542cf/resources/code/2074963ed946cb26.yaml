@@ -1,0 +1,12 @@
+processor_resources:
+  - label: "{package}_2074963ed946cb26"
+    hp_transform:
+      name: "Code"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.user_trans = json("result." + branch.string())
+      result_mode: merge
+      output: |-
+            root = this

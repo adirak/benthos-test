@@ -1,0 +1,41 @@
+
+processor_resources:
+  - label: "{package}_9df93377e355c65c"
+    hp_function:
+      input: |-
+        meta 617a6ab22b83327f_parrent = meta("flowId")
+        meta flowId = "617a6ab22b83327f"
+        meta subflowId = "617a6ab22b83327f"
+        
+
+        let filter = model2json("1ce814de46f542cf_9df93377e355c65c_in")
+        root = this.json_filter($filter)
+
+
+      processors:
+        - hp_resource: 
+            id: "{package}_617a6ab22b83327f"
+            name: "Get Creditor Data"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "f4ebe0725cba10cb"
+              }
+
+        - label: "endsub"
+          hp_transform:
+            result_mode: merge
+            mapping: |-
+      
+              let filter = model2json("1ce814de46f542cf_9df93377e355c65c_out")
+              root = this.json_filter($filter)
+
+
+      result_mode: merge
+      output: |-
+        meta flowId = metadata("617a6ab22b83327f_parrent")
+        meta 617a6ab22b83327f_parrent = deleted()
+        meta subflowId = meta("parrent_9df93377e355c65c_subflowId")
+        meta parrent_9df93377e355c65c_subflowId = deleted()
+      
+      

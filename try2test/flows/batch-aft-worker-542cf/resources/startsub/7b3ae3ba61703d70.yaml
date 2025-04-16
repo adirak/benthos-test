@@ -1,0 +1,3 @@
+processor_resources:
+  - label: "{package}_7b3ae3ba61703d70"
+    noop:

@@ -1,0 +1,41 @@
+
+processor_resources:
+  - label: "{package}_a5d246ab07c55695"
+    hp_function:
+      input: |-
+        meta 8664f11ca4f11fe1_parrent = meta("flowId")
+        meta flowId = "8664f11ca4f11fe1"
+        meta subflowId = "8664f11ca4f11fe1"
+        
+
+        let filter = model2json("1ce814de46f542cf_a5d246ab07c55695_in")
+        root = this.json_filter($filter)
+
+
+      processors:
+        - hp_resource: 
+            id: "{package}_8664f11ca4f11fe1"
+            name: "Get Acct in Cache"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "d9502c8029f26c87"
+              }
+
+        - label: "endsub"
+          hp_transform:
+            result_mode: merge
+            mapping: |-
+      
+              let filter = model2json("1ce814de46f542cf_a5d246ab07c55695_out")
+              root = this.json_filter($filter)
+
+
+      result_mode: merge
+      output: |-
+        meta flowId = metadata("8664f11ca4f11fe1_parrent")
+        meta 8664f11ca4f11fe1_parrent = deleted()
+        meta subflowId = meta("parrent_a5d246ab07c55695_subflowId")
+        meta parrent_a5d246ab07c55695_subflowId = deleted()
+      
+      

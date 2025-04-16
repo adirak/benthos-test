@@ -1,0 +1,26 @@
+processor_resources:
+  - label: "{package}_97737c2cf1392aa2"
+    hp_transform:
+      name: "Prepare Data"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            let trn_hdr_str = this.trans.prepare.trans.pre_post.header
+            root.trn_hdr = $trn_hdr_str.split("|")
+            root.trn_hdr4 = "MOB" + this.trans.prepare.trans.creditor.info.promptpay.toBankCode.or("")
+            
+            
+            root.trn_dtl = if this.trans.prepare.trans.pre_post.detail != null {
+                this.trans.prepare.trans.pre_post.detail
+            } else {
+                []
+            }
+            
+            root.ttx_comment = this.trans.ttxComment
+            
+            root.own_inst = this.trans.ownInst.or(false)
+            
+      result_mode: merge
+      output: |-
+            root = this

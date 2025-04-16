@@ -1,0 +1,41 @@
+
+processor_resources:
+  - label: "{package}_a545822dea0ab045"
+    hp_function:
+      input: |-
+        meta e264b7d438ae774c_parrent = meta("flowId")
+        meta flowId = "e264b7d438ae774c"
+        meta subflowId = "e264b7d438ae774c"
+        
+
+        let filter = model2json("1ce814de46f542cf_a545822dea0ab045_in")
+        root = this.json_filter($filter)
+
+
+      processors:
+        - hp_resource: 
+            id: "{package}_e264b7d438ae774c"
+            name: "Read Advance Transfer"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "a0892606a07fdb82"
+              }
+
+        - label: "endsub"
+          hp_transform:
+            result_mode: merge
+            mapping: |-
+      
+              let filter = model2json("1ce814de46f542cf_a545822dea0ab045_out")
+              root = this.json_filter($filter)
+
+
+      result_mode: merge
+      output: |-
+        meta flowId = metadata("e264b7d438ae774c_parrent")
+        meta e264b7d438ae774c_parrent = deleted()
+        meta subflowId = meta("parrent_a545822dea0ab045_subflowId")
+        meta parrent_a545822dea0ab045_subflowId = deleted()
+      
+      

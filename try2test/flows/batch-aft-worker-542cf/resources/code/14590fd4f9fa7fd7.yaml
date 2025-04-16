@@ -1,0 +1,12 @@
+processor_resources:
+  - label: "{package}_14590fd4f9fa7fd7"
+    hp_transform:
+      name: "Return Error 2302"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.status.status = 2302
+      result_mode: merge
+      output: |-
+            root = this

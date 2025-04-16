@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_714d338640fcc679"
+    hp_transform:
+      name: "Set Stop Acct"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.stop_acct = this.restrict
+            root.accts = this.accts.append(result)
+      result_mode: merge
+      output: |-
+            root = this

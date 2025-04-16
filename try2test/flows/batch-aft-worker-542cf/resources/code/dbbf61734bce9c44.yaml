@@ -1,0 +1,16 @@
+processor_resources:
+  - label: "{package}_dbbf61734bce9c44"
+    hp_transform:
+      name: "Check PMP"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.trans_type = if this.trans.creditor.Inst == "PMP" {
+                "TRANPROMT"
+            } else {
+                "TRANOFFUS"
+            }
+      result_mode: merge
+      output: |-
+            root = this

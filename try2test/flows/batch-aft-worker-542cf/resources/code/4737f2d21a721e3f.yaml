@@ -1,0 +1,12 @@
+processor_resources:
+  - label: "{package}_4737f2d21a721e3f"
+    hp_transform:
+      name: "Set Trans Prepare"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.trans.prepare = this.payment_info.or({})
+      result_mode: merge
+      output: |-
+            root = this

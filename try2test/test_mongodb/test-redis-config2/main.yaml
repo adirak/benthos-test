@@ -12,14 +12,24 @@ pipeline:
     - label: "InputData"
       dump_log:
 
+    - hp_transform:
+        name: "hp_transform"
+        input: |
+          root = this
+
+        mapping: |
+          root = {}
+          meta collection = "students"
+
+        result_mode: merge
+
     - label: "my_resource_main"
       mongodb:
         name: "mongodb"
-        profile: |-
-          {{mymongo}}
+        profile: {{mymongo}}
         database: test
         operation: insert-one
-        collection: students
+        collection: ${! meta("collection") }
         document_map: |
           root = this
           root.C = "C"

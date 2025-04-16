@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_c57bdec9114ff39a"
+    hp_transform:
+      name: "Check Not Found"
+      result_mode: merge
+      mapping: |-
+        root = this
+
+        meta result_route = match {
+        not_found => "this.{package}_b3b038e5bdd9df95",
+        _ => "this.{package}_357f9d822c5c9ad5",
+        }
+

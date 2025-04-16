@@ -1,0 +1,300 @@
+processor_resources:
+  - label: "{package}_6a297caaee1f0ef4"
+    hp_function:
+      name: "sub-check-customer-restriction"
+      input: |-
+
+        root = this
+
+
+      processors:
+        
+        # Node startsub
+        - label: "{package}_2e45b9f49133044d"
+          hp_resource:
+            id: "{package}_2e45b9f49133044d"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "6a297caaee1f0ef4",
+                "nodeId":"2e45b9f49133044d",
+                "nodeType":"startsub"
+              }
+            goto_route:
+              success: "this.{package}_38d4cf6d177fb33f"
+              #failure: "this.{package}_6a297caaee1f0ef4_exception"
+              
+        # Node define
+        - label: "{package}_38d4cf6d177fb33f"
+          hp_resource:
+            id: "{package}_38d4cf6d177fb33f"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "6a297caaee1f0ef4",
+                "nodeId":"38d4cf6d177fb33f",
+                "nodeType":"define"
+              }
+            goto_route:
+              success: "this.{package}_5b1da0bf7feb4085"
+              #failure: "this.{package}_6a297caaee1f0ef4_exception"
+              
+        # Node decision
+        - label: "{package}_5b1da0bf7feb4085"
+          hp_resource:
+            id: "{package}_5b1da0bf7feb4085"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "6a297caaee1f0ef4",
+                "nodeId":"5b1da0bf7feb4085",
+                "nodeType":"decision"
+              }
+            goto_route:
+              success: '${! metadata("result_route") }'
+              #failure: "this.{package}_6a297caaee1f0ef4_exception"
+              
+        # Node code
+        - label: "{package}_74e950a2db51dc9e"
+          hp_resource:
+            id: "{package}_74e950a2db51dc9e"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "6a297caaee1f0ef4",
+                "nodeId":"74e950a2db51dc9e",
+                "nodeType":"code"
+              }
+            goto_route:
+              success: "this.{package}_31a188ab9fc7d1d3"
+              #failure: "this.{package}_6a297caaee1f0ef4_exception"
+              
+        # Node code
+        - label: "{package}_b4ef86b4298573ae"
+          hp_resource:
+            id: "{package}_b4ef86b4298573ae"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "6a297caaee1f0ef4",
+                "nodeId":"b4ef86b4298573ae",
+                "nodeType":"code"
+              }
+            goto_route:
+              success: "this.{package}_31a188ab9fc7d1d3"
+              #failure: "this.{package}_6a297caaee1f0ef4_exception"
+              
+        # Node code
+        - label: "{package}_b8b5b3f6e668c727"
+          hp_resource:
+            id: "{package}_b8b5b3f6e668c727"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "6a297caaee1f0ef4",
+                "nodeId":"b8b5b3f6e668c727",
+                "nodeType":"code"
+              }
+            goto_route:
+              success: "this.{package}_31a188ab9fc7d1d3"
+              #failure: "this.{package}_6a297caaee1f0ef4_exception"
+              
+        # Node ssqsubflow
+        - label: "{package}_31a188ab9fc7d1d3"
+          hp_resource:
+            id: "{package}_31a188ab9fc7d1d3"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "6a297caaee1f0ef4",
+                "nodeId":"31a188ab9fc7d1d3",
+                "nodeType":"ssqsubflow"
+              }
+            goto_route:
+              success: "this.{package}_19d19e86fb274db6"
+              #failure: "this.{package}_6a297caaee1f0ef4_exception"
+              
+        # Node decision
+        - label: "{package}_19d19e86fb274db6"
+          hp_resource:
+            id: "{package}_19d19e86fb274db6"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "6a297caaee1f0ef4",
+                "nodeId":"19d19e86fb274db6",
+                "nodeType":"decision"
+              }
+            goto_route:
+              success: '${! metadata("result_route") }'
+              #failure: "this.{package}_6a297caaee1f0ef4_exception"
+              
+        # Node ssqsubflow
+        - label: "{package}_2fd88419ed50eeec"
+          hp_resource:
+            id: "{package}_2fd88419ed50eeec"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "6a297caaee1f0ef4",
+                "nodeId":"2fd88419ed50eeec",
+                "nodeType":"ssqsubflow"
+              }
+            goto_route:
+              success: "this.{package}_7ddab89a5638c2e8"
+              #failure: "this.{package}_6a297caaee1f0ef4_exception"
+              
+        # Node decision
+        - label: "{package}_7ddab89a5638c2e8"
+          hp_resource:
+            id: "{package}_7ddab89a5638c2e8"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "6a297caaee1f0ef4",
+                "nodeId":"7ddab89a5638c2e8",
+                "nodeType":"decision"
+              }
+            goto_route:
+              success: '${! metadata("result_route") }'
+              #failure: "this.{package}_6a297caaee1f0ef4_exception"
+              
+        # Node endsub
+        - label: "{package}_70ae0948519442f2"
+          hp_resource:
+            id: "{package}_70ae0948519442f2"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "6a297caaee1f0ef4",
+                "nodeId":"70ae0948519442f2",
+                "nodeType":"endsub"
+              }
+            goto_route:
+              success: "this.{package}_6a297caaee1f0ef4_endnode"
+              
+        # Node decision
+        - label: "{package}_bda9ae439ab6dbfe"
+          hp_resource:
+            id: "{package}_bda9ae439ab6dbfe"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "6a297caaee1f0ef4",
+                "nodeId":"bda9ae439ab6dbfe",
+                "nodeType":"decision"
+              }
+            goto_route:
+              success: '${! metadata("result_route") }'
+              #failure: "this.{package}_6a297caaee1f0ef4_exception"
+              
+        # Node code
+        - label: "{package}_c8eb1eebcdae2f67"
+          hp_resource:
+            id: "{package}_c8eb1eebcdae2f67"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "6a297caaee1f0ef4",
+                "nodeId":"c8eb1eebcdae2f67",
+                "nodeType":"code"
+              }
+            goto_route:
+              success: "this.{package}_f1af9799d6c0fe3d"
+              #failure: "this.{package}_6a297caaee1f0ef4_exception"
+              
+        # Node endsub
+        - label: "{package}_f1af9799d6c0fe3d"
+          hp_resource:
+            id: "{package}_f1af9799d6c0fe3d"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "6a297caaee1f0ef4",
+                "nodeId":"f1af9799d6c0fe3d",
+                "nodeType":"endsub"
+              }
+            goto_route:
+              success: "this.{package}_6a297caaee1f0ef4_endnode"
+              
+        # Node decision
+        - label: "{package}_a53d321957121b37"
+          hp_resource:
+            id: "{package}_a53d321957121b37"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "6a297caaee1f0ef4",
+                "nodeId":"a53d321957121b37",
+                "nodeType":"decision"
+              }
+            goto_route:
+              success: '${! metadata("result_route") }'
+              #failure: "this.{package}_6a297caaee1f0ef4_exception"
+              
+        # Node code
+        - label: "{package}_86068ee2c86851cc"
+          hp_resource:
+            id: "{package}_86068ee2c86851cc"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "6a297caaee1f0ef4",
+                "nodeId":"86068ee2c86851cc",
+                "nodeType":"code"
+              }
+            goto_route:
+              success: "this.{package}_f1af9799d6c0fe3d"
+              #failure: "this.{package}_6a297caaee1f0ef4_exception"
+              
+        # Node endsub
+        - label: "{package}_2d004e20fb1b2648"
+          hp_resource:
+            id: "{package}_2d004e20fb1b2648"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "6a297caaee1f0ef4",
+                "nodeId":"2d004e20fb1b2648",
+                "nodeType":"endsub"
+              }
+            goto_route:
+              success: "this.{package}_6a297caaee1f0ef4_endnode"
+              
+        # Node code
+        - label: "{package}_29bc62431a5203de"
+          hp_resource:
+            id: "{package}_29bc62431a5203de"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "6a297caaee1f0ef4",
+                "nodeId":"29bc62431a5203de",
+                "nodeType":"code"
+              }
+            goto_route:
+              success: "this.{package}_b0483205922b7a6c"
+              #failure: "this.{package}_6a297caaee1f0ef4_exception"
+              
+        # Node endsub
+        - label: "{package}_b0483205922b7a6c"
+          hp_resource:
+            id: "{package}_b0483205922b7a6c"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "6a297caaee1f0ef4",
+                "nodeId":"b0483205922b7a6c",
+                "nodeType":"endsub"
+              }
+            goto_route:
+              success: "this.{package}_6a297caaee1f0ef4_endnode"
+              
+        
+        # End flow resource
+        - label: "{package}_6a297caaee1f0ef4_endnode"
+          noop:
+
+      result_mode: new
+      output: |-
+         

@@ -1,0 +1,41 @@
+
+processor_resources:
+  - label: "{package}_4464319185dd1b51"
+    hp_function:
+      input: |-
+        meta 3194fcc1569cd905_parrent = meta("flowId")
+        meta flowId = "3194fcc1569cd905"
+        meta subflowId = "3194fcc1569cd905"
+        
+
+        let filter = model2json("1ce814de46f542cf_4464319185dd1b51_in")
+        root = this.json_filter($filter)
+
+
+      processors:
+        - hp_resource: 
+            id: "{package}_3194fcc1569cd905"
+            name: "Onus Confirm"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "df1558a8fdc05fc3"
+              }
+
+        - label: "endsub"
+          hp_transform:
+            result_mode: merge
+            mapping: |-
+      
+              let filter = model2json("1ce814de46f542cf_4464319185dd1b51_out")
+              root = this.json_filter($filter)
+
+
+      result_mode: merge
+      output: |-
+        meta flowId = metadata("3194fcc1569cd905_parrent")
+        meta 3194fcc1569cd905_parrent = deleted()
+        meta subflowId = meta("parrent_4464319185dd1b51_subflowId")
+        meta parrent_4464319185dd1b51_subflowId = deleted()
+      
+      

@@ -1,0 +1,16 @@
+processor_resources:
+  - label: "{package}_ced7b24a6e298f8a"
+    hp_transform:
+      name: "Prepare Trans Api"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.redis_key = "cbs_trans_api_offus_" + this.ttx_id
+            root.redis_value = this.ttx_data
+            root.in_cache_value = true
+            root.expire = 43200
+            
+      result_mode: merge
+      output: |-
+            root = this

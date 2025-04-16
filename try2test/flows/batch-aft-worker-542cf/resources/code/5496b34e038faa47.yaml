@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_5496b34e038faa47"
+    hp_transform:
+      name: "Get Code Value"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.drCode = this.stop_account.get(dr_acct.string()).or(0)
+            root.crCode = this.stop_account.get(cr_acct.string()).or(0)
+      result_mode: merge
+      output: |-
+            root = this

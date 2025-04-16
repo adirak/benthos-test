@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_162c5507a56d0376"
+    hp_transform:
+      name: "Prepare Not PMP"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.xtrans.promptpay.proxyType = "ACCT"
+            root.xtrans.promptpay.toBankCode = this.inst
+      result_mode: merge
+      output: |-
+            root = this

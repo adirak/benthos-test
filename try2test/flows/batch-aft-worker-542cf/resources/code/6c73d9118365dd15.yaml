@@ -1,0 +1,15 @@
+processor_resources:
+  - label: "{package}_6c73d9118365dd15"
+    hp_transform:
+      name: "Make Cache Key"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            let act = action.lowercase()
+            root.action = $act
+            root.redis_key = "cbs_deposit_" + json("trans."+ $act +".AccountID").number(0).floor().string()
+            
+      result_mode: merge
+      output: |-
+            root = this

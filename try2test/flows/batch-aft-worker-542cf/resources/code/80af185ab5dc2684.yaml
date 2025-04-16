@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_80af185ab5dc2684"
+    hp_transform:
+      name: "Prepare Detail"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.dtl10 = "TTXID=%s#INST=%s#TOACC=%s#TONAME=%s#PSTDT=%s".format(this.ttx_id, this.inst, this.acct, this.accname, this.pst_dt)
+            
+      result_mode: merge
+      output: |-
+            root = this

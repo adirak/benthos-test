@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_79cfdc30adb1d4a7"
+    hp_transform:
+      name: "Check Code"
+      result_mode: merge
+      mapping: |-
+        root = this
+
+        meta result_route = match {
+        code.number(0) != 0 => "this.{package}_b80642263304fbe1",
+        _ => "this.{package}_f65a51a5fedaf4ea",
+        }
+

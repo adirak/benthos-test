@@ -1,0 +1,39 @@
+processor_resources:
+  - label: "{package}_5e84370dadd0d3e8"
+    hp_transform:
+      name: "Prepare Request"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            let transRef = this.transRef
+            let reqPath = this.path.replace_all(":transRef", $transRef)
+            let reqPath = $reqPath.replace_all(":action", this.action)
+            
+            meta reqUrl = this.ktbgateway.base_url + "/" + $reqPath
+            meta xdevopsdest = this.ktbgateway.headers."x-devops-dest"
+            meta xdevopskey = this.ktbgateway.headers."x-devops-key"
+            meta xdevopssrc = this.ktbgateway.headers."x-devops-src"
+            
+            root.eKey = this.ktbgateway.crypt_key
+            root.reqUrl = this.ktbgateway.base_url + "/" + $reqPath
+            
+            root.reqBody.customerId = if this.customerId != null && this.customerId != "" {
+                this.customerId
+            }
+            
+            root.reqBody.transTimes = if this.transTimes != null {
+                (this.transTimes.int64() + 1).string()
+            }
+            root.reqBody.ttxid = if this.ttxID != null && this.ttxID != "" {
+                this.ttxID
+            }
+            root.reqBody.personID = if this.personID != null && this.personID != "" {
+                this.ttxID
+            }
+            
+            
+            
+      result_mode: merge
+      output: |-
+            root = this

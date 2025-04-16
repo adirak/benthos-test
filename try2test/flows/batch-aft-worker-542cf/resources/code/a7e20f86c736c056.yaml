@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_a7e20f86c736c056"
+    hp_transform:
+      name: "Set Header to TransPost"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            let header = this.trn_hdr.join("|")
+            root.trans_post.header = $header
+      result_mode: merge
+      output: |-
+            root = this

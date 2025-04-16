@@ -1,0 +1,12 @@
+processor_resources:
+  - label: "{package}_e3eac621e049fdd2"
+    hp_transform:
+      name: "Set Code 2403"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.code = 2403
+      result_mode: merge
+      output: |-
+            root = this

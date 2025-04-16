@@ -1,0 +1,1 @@
+{"filterInput":["aft","aft.nextDate"],"filterOutput":["data","data.effDate","data.transDateTime"],"process":[{"__id":"1","format":"2006-01-02 15:04:05","input":[],"inputLabels":"Input","output":["data.transDateTime"],"outputLabels":"string","type":"get_current_time"},{"__id":"r0","input":["aft.nextDate"],"output":["data.effDate"],"type":"rename_fields"}]}

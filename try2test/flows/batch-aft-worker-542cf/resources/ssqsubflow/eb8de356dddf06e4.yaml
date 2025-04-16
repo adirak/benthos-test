@@ -1,0 +1,41 @@
+
+processor_resources:
+  - label: "{package}_eb8de356dddf06e4"
+    hp_function:
+      input: |-
+        meta 3932ec6e93970a02_parrent = meta("flowId")
+        meta flowId = "3932ec6e93970a02"
+        meta subflowId = "3932ec6e93970a02"
+        
+
+        let filter = model2json("1ce814de46f542cf_eb8de356dddf06e4_in")
+        root = this.json_filter($filter)
+
+
+      processors:
+        - hp_resource: 
+            id: "{package}_3932ec6e93970a02"
+            name: "Save Transfer Success"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "a0892606a07fdb82"
+              }
+
+        - label: "endsub"
+          hp_transform:
+            result_mode: merge
+            mapping: |-
+      
+              let filter = model2json("1ce814de46f542cf_eb8de356dddf06e4_out")
+              root = this.json_filter($filter)
+
+
+      result_mode: merge
+      output: |-
+        meta flowId = metadata("3932ec6e93970a02_parrent")
+        meta 3932ec6e93970a02_parrent = deleted()
+        meta subflowId = meta("parrent_eb8de356dddf06e4_subflowId")
+        meta parrent_eb8de356dddf06e4_subflowId = deleted()
+      
+      

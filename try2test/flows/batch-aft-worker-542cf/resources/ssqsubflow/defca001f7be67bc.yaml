@@ -1,0 +1,41 @@
+
+processor_resources:
+  - label: "{package}_defca001f7be67bc"
+    hp_function:
+      input: |-
+        meta 049e6298cfa10cb0_parrent = meta("flowId")
+        meta flowId = "049e6298cfa10cb0"
+        meta subflowId = "049e6298cfa10cb0"
+        
+
+        let filter = model2json("1ce814de46f542cf_defca001f7be67bc_in")
+        root = this.json_filter($filter)
+
+
+      processors:
+        - hp_resource: 
+            id: "{package}_049e6298cfa10cb0"
+            name: "Get Trans Amt Flag"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "82478eb4bb06f1f1"
+              }
+
+        - label: "endsub"
+          hp_transform:
+            result_mode: merge
+            mapping: |-
+      
+              let filter = model2json("1ce814de46f542cf_defca001f7be67bc_out")
+              root = this.json_filter($filter)
+
+
+      result_mode: merge
+      output: |-
+        meta flowId = metadata("049e6298cfa10cb0_parrent")
+        meta 049e6298cfa10cb0_parrent = deleted()
+        meta subflowId = meta("parrent_defca001f7be67bc_subflowId")
+        meta parrent_defca001f7be67bc_subflowId = deleted()
+      
+      

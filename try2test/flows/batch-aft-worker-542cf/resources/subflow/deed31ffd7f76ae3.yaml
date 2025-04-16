@@ -1,0 +1,184 @@
+processor_resources:
+  - label: "{package}_deed31ffd7f76ae3"
+    hp_function:
+      name: "sub-onus-trans-confirm"
+      input: |-
+
+        root = this
+
+
+      processors:
+        
+        # Node startsub
+        - label: "{package}_7b3ae3ba61703d70"
+          hp_resource:
+            id: "{package}_7b3ae3ba61703d70"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "deed31ffd7f76ae3",
+                "nodeId":"7b3ae3ba61703d70",
+                "nodeType":"startsub"
+              }
+            goto_route:
+              success: "this.{package}_b55650f253199540"
+              #failure: "this.{package}_deed31ffd7f76ae3_exception"
+              
+        # Node define
+        - label: "{package}_b55650f253199540"
+          hp_resource:
+            id: "{package}_b55650f253199540"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "deed31ffd7f76ae3",
+                "nodeId":"b55650f253199540",
+                "nodeType":"define"
+              }
+            goto_route:
+              success: "this.{package}_5548575ba0d0ca76"
+              #failure: "this.{package}_deed31ffd7f76ae3_exception"
+              
+        # Node code
+        - label: "{package}_5548575ba0d0ca76"
+          hp_resource:
+            id: "{package}_5548575ba0d0ca76"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "deed31ffd7f76ae3",
+                "nodeId":"5548575ba0d0ca76",
+                "nodeType":"code"
+              }
+            goto_route:
+              success: "this.{package}_4737f2d21a721e3f"
+              #failure: "this.{package}_deed31ffd7f76ae3_exception"
+              
+        # Node code
+        - label: "{package}_4737f2d21a721e3f"
+          hp_resource:
+            id: "{package}_4737f2d21a721e3f"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "deed31ffd7f76ae3",
+                "nodeId":"4737f2d21a721e3f",
+                "nodeType":"code"
+              }
+            goto_route:
+              success: "this.{package}_1ed0c9d60eb1035f"
+              #failure: "this.{package}_deed31ffd7f76ae3_exception"
+              
+        # Node ssqsubflow
+        - label: "{package}_1ed0c9d60eb1035f"
+          hp_resource:
+            id: "{package}_1ed0c9d60eb1035f"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "deed31ffd7f76ae3",
+                "nodeId":"1ed0c9d60eb1035f",
+                "nodeType":"ssqsubflow"
+              }
+            goto_route:
+              success: "this.{package}_888f1f67b210fcfc"
+              #failure: "this.{package}_deed31ffd7f76ae3_exception"
+              
+        # Node endsub
+        - label: "{package}_4014ba6e1f72b536"
+          hp_resource:
+            id: "{package}_4014ba6e1f72b536"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "deed31ffd7f76ae3",
+                "nodeId":"4014ba6e1f72b536",
+                "nodeType":"endsub"
+              }
+            goto_route:
+              success: "this.{package}_deed31ffd7f76ae3_endnode"
+              
+        # Node code
+        - label: "{package}_888f1f67b210fcfc"
+          hp_resource:
+            id: "{package}_888f1f67b210fcfc"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "deed31ffd7f76ae3",
+                "nodeId":"888f1f67b210fcfc",
+                "nodeType":"code"
+              }
+            goto_route:
+              success: "this.{package}_a25316504f7e5fd6"
+              #failure: "this.{package}_deed31ffd7f76ae3_exception"
+              
+        # Node ssqsubflow
+        - label: "{package}_a25316504f7e5fd6"
+          hp_resource:
+            id: "{package}_a25316504f7e5fd6"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "deed31ffd7f76ae3",
+                "nodeId":"a25316504f7e5fd6",
+                "nodeType":"ssqsubflow"
+              }
+            goto_route:
+              success: "this.{package}_3062156f74e0c02e"
+              #failure: "this.{package}_deed31ffd7f76ae3_exception"
+              
+        # Node ssqsubflow
+        - label: "{package}_fb9f938d9e29dc34"
+          hp_resource:
+            id: "{package}_fb9f938d9e29dc34"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "deed31ffd7f76ae3",
+                "nodeId":"fb9f938d9e29dc34",
+                "nodeType":"ssqsubflow"
+              }
+            goto_route:
+              success: "this.{package}_5dde82fbeb3f12ef"
+              #failure: "this.{package}_deed31ffd7f76ae3_exception"
+              
+        # Node ssqsubflow
+        - label: "{package}_5dde82fbeb3f12ef"
+          hp_resource:
+            id: "{package}_5dde82fbeb3f12ef"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "deed31ffd7f76ae3",
+                "nodeId":"5dde82fbeb3f12ef",
+                "nodeType":"ssqsubflow"
+              }
+            goto_route:
+              success: "this.{package}_4014ba6e1f72b536"
+              #failure: "this.{package}_deed31ffd7f76ae3_exception"
+              
+        # Node code
+        - label: "{package}_3062156f74e0c02e"
+          hp_resource:
+            id: "{package}_3062156f74e0c02e"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "deed31ffd7f76ae3",
+                "nodeId":"3062156f74e0c02e",
+                "nodeType":"code"
+              }
+            goto_route:
+              success: "this.{package}_fb9f938d9e29dc34"
+              #failure: "this.{package}_deed31ffd7f76ae3_exception"
+              
+        
+        # End flow resource
+        - label: "{package}_deed31ffd7f76ae3_endnode"
+          noop:
+
+      result_mode: new
+      output: |-
+
+        root = this

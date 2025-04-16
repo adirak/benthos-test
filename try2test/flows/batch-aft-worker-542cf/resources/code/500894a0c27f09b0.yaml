@@ -1,0 +1,12 @@
+processor_resources:
+  - label: "{package}_500894a0c27f09b0"
+    hp_transform:
+      name: "Rename TTX Data"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.xchg_data = this.ttx_data
+      result_mode: merge
+      output: |-
+            root = this

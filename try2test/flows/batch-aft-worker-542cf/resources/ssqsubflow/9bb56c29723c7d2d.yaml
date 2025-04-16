@@ -1,0 +1,41 @@
+
+processor_resources:
+  - label: "{package}_9bb56c29723c7d2d"
+    hp_function:
+      input: |-
+        meta 558786fe1720a0be_parrent = meta("flowId")
+        meta flowId = "558786fe1720a0be"
+        meta subflowId = "558786fe1720a0be"
+        
+
+        let filter = model2json("1ce814de46f542cf_9bb56c29723c7d2d_in")
+        root = this.json_filter($filter)
+
+
+      processors:
+        - hp_resource: 
+            id: "{package}_558786fe1720a0be"
+            name: "Call XChange Confirm"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "ff5edfc18a2a0eb5"
+              }
+
+        - label: "endsub"
+          hp_transform:
+            result_mode: merge
+            mapping: |-
+      
+              let filter = model2json("1ce814de46f542cf_9bb56c29723c7d2d_out")
+              root = this.json_filter($filter)
+
+
+      result_mode: merge
+      output: |-
+        meta flowId = metadata("558786fe1720a0be_parrent")
+        meta 558786fe1720a0be_parrent = deleted()
+        meta subflowId = meta("parrent_9bb56c29723c7d2d_subflowId")
+        meta parrent_9bb56c29723c7d2d_subflowId = deleted()
+      
+      

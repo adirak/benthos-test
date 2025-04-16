@@ -1,0 +1,5 @@
+processor_resources:
+  - label: "{package}_24157be40cce0938"
+    log:
+      level: "INFO"
+      message: "ttx_id: ${! this.ttx_id }, collection: ${! this.collection }"

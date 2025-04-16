@@ -1,0 +1,18 @@
+processor_resources:
+  - label: "{package}_ba62f5a1c4970cef"
+    hp_transform:
+      name: "Prepare Comparing"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.debtor = this.trans.debtor
+            root.creditor = this.trans.creditor
+            root.ttx = this.trans.ttxAmt
+            
+            root.debtor_info = this.payment_info.trans.debtor
+            root.creditor_info = this.payment_info.trans.creditor
+            root.ttx_info = this.payment_info.trans.ttxAmt
+      result_mode: merge
+      output: |-
+            root = this

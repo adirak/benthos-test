@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_cbb2476a8a2eb804"
+    hp_transform:
+      name: "Check ResCode"
+      result_mode: merge
+      mapping: |-
+        root = this
+
+        meta result_route = match {
+        code != 0 => "this.{package}_66951b68d96308d0",
+        _ => "this.{package}_0301ea7ab314f4a1",
+        }
+

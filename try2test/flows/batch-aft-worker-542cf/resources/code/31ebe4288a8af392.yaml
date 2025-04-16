@@ -1,0 +1,12 @@
+processor_resources:
+  - label: "{package}_31ebe4288a8af392"
+    hp_transform:
+      name: "Set senderType"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.xtrans.promptpay.senderType = "H"
+      result_mode: merge
+      output: |-
+            root = this

@@ -1,0 +1,5 @@
+processor_resources:
+  - label: "{package}_33a603c07219edbe"
+    log:
+      level: "INFO"
+      message: "status: ${! this.status }"

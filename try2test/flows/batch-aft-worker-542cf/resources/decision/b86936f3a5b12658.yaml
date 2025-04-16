@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_b86936f3a5b12658"
+    hp_transform:
+      name: "Check Status"
+      result_mode: merge
+      mapping: |-
+        root = this
+
+        meta result_route = match {
+        result.status == 1 || result.status == 5 => "this.{package}_ea04192db7bb8d07",
+        _ => "this.{package}_f7bcfc373fdcb2a8",
+        }
+

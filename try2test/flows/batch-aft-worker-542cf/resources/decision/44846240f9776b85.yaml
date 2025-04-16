@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_44846240f9776b85"
+    hp_transform:
+      name: "Check Amt"
+      result_mode: merge
+      mapping: |-
+        root = this
+
+        meta result_route = match {
+        isValid == false => "this.{package}_b42d296b2105ab9d",
+        _ => "this.{package}_5af622d462892c96",
+        }
+

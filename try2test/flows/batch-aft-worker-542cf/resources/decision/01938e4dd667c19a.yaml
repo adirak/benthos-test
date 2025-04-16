@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_01938e4dd667c19a"
+    hp_transform:
+      name: "Check CIF"
+      result_mode: merge
+      mapping: |-
+        root = this
+
+        meta result_route = match {
+        cif.length() > 0 => "this.{package}_3c0f91ad870817dc",
+        _ => "this.{package}_5403d3d5f607ad28",
+        }
+

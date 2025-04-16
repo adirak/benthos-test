@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_adb59fc89a78628d"
+    hp_transform:
+      name: "Check Offus"
+      result_mode: merge
+      mapping: |-
+        root = this
+
+        meta result_route = match {
+        trans.debtor.Inst == "066" && trans.creditor.Inst != "066" && trans.creditor.Inst != "" => "this.{package}_6956ea270cb0caa3",
+        _ => "this.{package}_761ad3f7c5728497",
+        }
+

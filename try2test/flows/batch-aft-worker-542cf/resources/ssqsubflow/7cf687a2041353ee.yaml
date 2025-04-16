@@ -1,0 +1,41 @@
+
+processor_resources:
+  - label: "{package}_7cf687a2041353ee"
+    hp_function:
+      input: |-
+        meta 48a82f3e30c78d92_parrent = meta("flowId")
+        meta flowId = "48a82f3e30c78d92"
+        meta subflowId = "48a82f3e30c78d92"
+        
+
+        let filter = model2json("1ce814de46f542cf_7cf687a2041353ee_in")
+        root = this.json_filter($filter)
+
+
+      processors:
+        - hp_resource: 
+            id: "{package}_48a82f3e30c78d92"
+            name: "Generate ttxID"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "d7b2d54b5b872ee0"
+              }
+
+        - label: "endsub"
+          hp_transform:
+            result_mode: merge
+            mapping: |-
+      
+              let filter = model2json("1ce814de46f542cf_7cf687a2041353ee_out")
+              root = this.json_filter($filter)
+
+
+      result_mode: merge
+      output: |-
+        meta flowId = metadata("48a82f3e30c78d92_parrent")
+        meta 48a82f3e30c78d92_parrent = deleted()
+        meta subflowId = meta("parrent_7cf687a2041353ee_subflowId")
+        meta parrent_7cf687a2041353ee_subflowId = deleted()
+      
+      

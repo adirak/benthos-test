@@ -1,0 +1,12 @@
+processor_resources:
+  - label: "{package}_1ede59e010a3f068"
+    hp_transform:
+      name: "Prepare Get Info"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.redis_key = "cbs_trans_api_offus_" + this.ttxID.string().or("")
+      result_mode: merge
+      output: |-
+            root = this

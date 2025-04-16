@@ -1,0 +1,41 @@
+
+processor_resources:
+  - label: "{package}_2fcfa89df0632ea4"
+    hp_function:
+      input: |-
+        meta 2c97f6e7b5fadcf9_parrent = meta("flowId")
+        meta flowId = "2c97f6e7b5fadcf9"
+        meta subflowId = "2c97f6e7b5fadcf9"
+        
+
+        let filter = model2json("1ce814de46f542cf_2fcfa89df0632ea4_in")
+        root = this.json_filter($filter)
+
+
+      processors:
+        - hp_resource: 
+            id: "{package}_2c97f6e7b5fadcf9"
+            name: "Get Stop Account by CID"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "f766dca074482d3a"
+              }
+
+        - label: "endsub"
+          hp_transform:
+            result_mode: merge
+            mapping: |-
+      
+              let filter = model2json("1ce814de46f542cf_2fcfa89df0632ea4_out")
+              root = this.json_filter($filter)
+
+
+      result_mode: merge
+      output: |-
+        meta flowId = metadata("2c97f6e7b5fadcf9_parrent")
+        meta 2c97f6e7b5fadcf9_parrent = deleted()
+        meta subflowId = meta("parrent_2fcfa89df0632ea4_subflowId")
+        meta parrent_2fcfa89df0632ea4_subflowId = deleted()
+      
+      

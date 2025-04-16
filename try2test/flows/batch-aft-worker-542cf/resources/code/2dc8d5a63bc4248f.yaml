@@ -1,0 +1,12 @@
+processor_resources:
+  - label: "{package}_2dc8d5a63bc4248f"
+    hp_transform:
+      name: "Prepare personID"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.personID = this.customer.personID.or("")
+      result_mode: merge
+      output: |-
+            root = this

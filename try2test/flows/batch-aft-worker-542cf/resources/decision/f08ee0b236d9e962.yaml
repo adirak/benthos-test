@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_f08ee0b236d9e962"
+    hp_transform:
+      name: "Check PersonID"
+      result_mode: merge
+      mapping: |-
+        root = this
+
+        meta result_route = match {
+        not_found || customer.personID.or("") == "" => "this.{package}_05fe9ccc0b070ff6",
+        _ => "this.{package}_2dc8d5a63bc4248f",
+        }
+

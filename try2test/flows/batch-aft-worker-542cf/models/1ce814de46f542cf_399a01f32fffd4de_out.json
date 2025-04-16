@@ -1,0 +1,1 @@
+[{"default":null,"max":0,"min":0,"name":"mob_code","regexp":"","required":false,"type":"string","validated":false}, {"default":null,"max":0,"min":0,"name":"mob_message","regexp":"","required":false,"type":"string","validated":false}, {"default":null,"name":"mob_success","required":false,"type":"boolean","validated":false}]

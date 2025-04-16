@@ -1,0 +1,1 @@
+{"filterInput":[],"filterOutput":["rowData"],"process":[{"__id":"1","input":[],"inputLabels":"Input","output":["_tmp0013_"],"outputLabels":"any","type":"fix_value","value":"Y","valueType":"String"},{"__id":"2","index":"10","input":["_tmp0013_"],"inputLabels":"any","output":["rowData"],"outputLabels":"array","type":"update_record"}]}

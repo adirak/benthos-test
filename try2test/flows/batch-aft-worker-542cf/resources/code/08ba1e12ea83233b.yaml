@@ -1,0 +1,14 @@
+processor_resources:
+  - label: "{package}_08ba1e12ea83233b"
+    hp_transform:
+      name: "Prepare Header"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.requestData.header = if this.requestData.header == null || this.requestData.header.length().or(0) == 0 {
+                {"sysid": this.ppgateway.sysid, "requestID": uuid_v4(), "requestDT": now().ts_format("2006-01-02 15:04:05.000000")}
+            }
+      result_mode: merge
+      output: |-
+            root = this

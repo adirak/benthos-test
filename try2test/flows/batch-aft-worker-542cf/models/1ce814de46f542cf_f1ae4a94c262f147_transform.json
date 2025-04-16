@@ -1,0 +1,1 @@
+{"filterInput":[],"filterOutput":["currTime"],"process":[{"__id":"1","format":"2006-01-02 15:04:05.000000","input":[],"inputLabels":"Input","output":["currTime"],"outputLabels":"string","type":"get_current_time"}]}

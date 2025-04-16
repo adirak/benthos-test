@@ -1,0 +1,5 @@
+processor_resources:
+  - label: "{package}_c4087ce2ca921dd5"
+    log:
+      level: "INFO"
+      message: "Use Time: ${! this.useTime }ms, Job Size: ${! this.size }"

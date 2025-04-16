@@ -1,0 +1,1 @@
+[{"all":true,"default":"{\"creditor\":{\"Account\":\"\",\"AccountID\":0,\"Inst\":\"\"},\"debtor\":{\"Account\":\"\",\"Inst\":\"\"}}","max":0,"min":0,"name":"trans","required":false,"type":"map","validated":false}]

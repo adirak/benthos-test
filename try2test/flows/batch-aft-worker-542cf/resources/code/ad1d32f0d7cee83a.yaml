@@ -1,0 +1,15 @@
+processor_resources:
+  - label: "{package}_ad1d32f0d7cee83a"
+    hp_transform:
+      name: "Join and Update"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            let row = this.rowData
+            let joinRow = $row.join("|").or("")
+            root.trn_dtl_str = this.trn_dtl_str.append($joinRow)
+            
+      result_mode: merge
+      output: |-
+            root = this

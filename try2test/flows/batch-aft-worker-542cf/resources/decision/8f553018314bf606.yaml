@@ -1,0 +1,14 @@
+processor_resources:
+  - label: "{package}_8f553018314bf606"
+    hp_transform:
+      name: "Check index 10"
+      result_mode: merge
+      mapping: |-
+        root = this
+
+        meta result_route = match {
+        dtl != null && dtl.index(10) == "XTRANS_DR" => "this.{package}_a41cab53933b86c5",
+        dtl != null && dtl.index(10) == "XTRANS_CR" => "this.{package}_82a711aa7e18068d",
+        _ => "this.{package}_8d0e415c2427b06a",
+        }
+

@@ -1,0 +1,23 @@
+processor_resources:
+  - label: "{package}_0f1fd5f54cc4e7e7"
+    mongodb:
+      name: "ReadMongoData"
+      profile: |-
+        {{hyper_ibank_mongo_config}}
+      database: bigs
+      operation: find-one
+      collection: ${! meta("collection") }
+      
+      input: |-
+        root = this
+    
+      filter_map: |-
+            root = {"_id": this.ttx_id}
+    
+      json_marshal_mode: relaxed
+    
+      result_mode: "merge"
+    
+      output: |-
+        root = {}
+        root.oldData = this

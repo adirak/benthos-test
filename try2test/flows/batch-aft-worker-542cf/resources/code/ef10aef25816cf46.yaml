@@ -1,0 +1,15 @@
+processor_resources:
+  - label: "{package}_ef10aef25816cf46"
+    hp_transform:
+      name: "Make Data"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.ttx_data = {
+                "code":this.code,
+                "message":this.message
+            }
+      result_mode: merge
+      output: |-
+            root = this

@@ -1,0 +1,16 @@
+processor_resources:
+  - label: "{package}_e29bc450252219a8"
+    hp_transform:
+      name: "Set dr_acct cr_acct"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            let accts = [this.trans_post.trans.debtor.AccountID, this.trans_post.trans.creditor.AccountID]
+            
+            root.params = {"accts": $accts}
+            root.conditions = ["#{accts}"]
+            root.arrayType = true
+      result_mode: merge
+      output: |-
+            root = this

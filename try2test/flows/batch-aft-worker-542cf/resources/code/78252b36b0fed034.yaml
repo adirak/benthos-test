@@ -1,0 +1,12 @@
+processor_resources:
+  - label: "{package}_78252b36b0fed034"
+    hp_transform:
+      name: "Set isValid"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            isValid = false
+      result_mode: merge
+      output: |-
+            root = this

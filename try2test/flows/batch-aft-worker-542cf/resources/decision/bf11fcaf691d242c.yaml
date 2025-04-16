@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_bf11fcaf691d242c"
+    hp_transform:
+      name: "Check PMP and 066"
+      result_mode: merge
+      mapping: |-
+        root = this
+
+        meta result_route = match {
+        xchg_data.trans.creditor.Inst == "PMP" && xchg_data.trans.prepare.trans.creditor.info.promptpay.toBankCode == "066" => "this.{package}_c0d82b429f741dc5",
+        _ => "this.{package}_6949318b35506c91",
+        }
+

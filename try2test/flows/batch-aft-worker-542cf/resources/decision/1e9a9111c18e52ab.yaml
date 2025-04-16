@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_1e9a9111c18e52ab"
+    hp_transform:
+      name: "Set Product Conf"
+      result_mode: merge
+      mapping: |-
+        root = this
+
+        meta result_route = match {
+        not_found => "this.{package}_4bde95feb93118b3",
+        _ => "this.{package}_2ca287e6f7d1128a",
+        }
+

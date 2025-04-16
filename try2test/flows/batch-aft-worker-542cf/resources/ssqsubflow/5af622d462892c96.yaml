@@ -1,0 +1,41 @@
+
+processor_resources:
+  - label: "{package}_5af622d462892c96"
+    hp_function:
+      input: |-
+        meta e6a0c52e0f270f2b_parrent = meta("flowId")
+        meta flowId = "e6a0c52e0f270f2b"
+        meta subflowId = "e6a0c52e0f270f2b"
+        
+
+        let filter = model2json("1ce814de46f542cf_5af622d462892c96_in")
+        root = this.json_filter($filter)
+
+
+      processors:
+        - hp_resource: 
+            id: "{package}_e6a0c52e0f270f2b"
+            name: "Get Bankcode Flag"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "82478eb4bb06f1f1"
+              }
+
+        - label: "endsub"
+          hp_transform:
+            result_mode: merge
+            mapping: |-
+      
+              let filter = model2json("1ce814de46f542cf_5af622d462892c96_out")
+              root = this.json_filter($filter)
+
+
+      result_mode: merge
+      output: |-
+        meta flowId = metadata("e6a0c52e0f270f2b_parrent")
+        meta e6a0c52e0f270f2b_parrent = deleted()
+        meta subflowId = meta("parrent_5af622d462892c96_subflowId")
+        meta parrent_5af622d462892c96_subflowId = deleted()
+      
+      

@@ -1,0 +1,14 @@
+processor_resources:
+  - label: "{package}_3ceda2c1540ad3d2"
+    hp_transform:
+      name: "Prepare Response Code"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            let code = this.results.index(13)
+            
+            root.code = $code.number(0).ceil().or(2310)
+      result_mode: merge
+      output: |-
+            root = this

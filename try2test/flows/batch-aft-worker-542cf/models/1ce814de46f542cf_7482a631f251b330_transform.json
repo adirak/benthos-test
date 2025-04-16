@@ -1,0 +1,1 @@
+{"filterInput":["ttx_id"],"filterOutput":["pst_dt","trn_hdr"],"process":[{"__id":"2","format":"2006-01-02 15:04:05.000000","input":[],"inputLabels":"Input","output":["pst_dt"],"outputLabels":"string","type":"get_current_time"},{"__id":"1","index":"8","input":["ttx_id"],"inputLabels":"any","output":["trn_hdr"],"outputLabels":"array","type":"update_record"}]}

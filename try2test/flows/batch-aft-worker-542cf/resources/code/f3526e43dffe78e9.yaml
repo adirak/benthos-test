@@ -1,0 +1,16 @@
+processor_resources:
+  - label: "{package}_f3526e43dffe78e9"
+    hp_transform:
+      name: "Prepare Result"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root = {}
+            root.acct_info = {
+                    "stop_acct": this.stop_acct,
+                    "acct_list": this.accts
+                }
+      result_mode: merge
+      output: |-
+            root = this

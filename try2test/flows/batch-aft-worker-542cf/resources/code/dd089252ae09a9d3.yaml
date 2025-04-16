@@ -1,0 +1,15 @@
+processor_resources:
+  - label: "{package}_dd089252ae09a9d3"
+    hp_transform:
+      name: "Set Success"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.trans.creditor.AccountName = xchg_data.promptpay.toAcctDispName
+            root.trans.creditor.AccountDisplay = xchg_data.promptpay.toAcctName
+            root.code = 0
+            
+      result_mode: merge
+      output: |-
+            root = this

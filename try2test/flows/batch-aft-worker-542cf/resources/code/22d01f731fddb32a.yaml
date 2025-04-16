@@ -1,0 +1,16 @@
+processor_resources:
+  - label: "{package}_22d01f731fddb32a"
+    hp_transform:
+      name: "Prepare Header"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            let header = this.trans.prepare.trans.pre_post.header
+            root.trn_hdr = $header.split("|")
+            
+            let detail = this.trans.prepare.trans.pre_post.detail
+            root.trn_dtl = $detail
+      result_mode: merge
+      output: |-
+            root = this

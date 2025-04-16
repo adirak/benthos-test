@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_91e8616e3055219d"
+    hp_transform:
+      name: "Check Frequency"
+      result_mode: merge
+      mapping: |-
+        root = this
+
+        meta result_route = match {
+        frequency != null => "this.{package}_f5109d835e1dedb5",
+        _ => "this.{package}_a9c63c6feb167bd8",
+        }
+

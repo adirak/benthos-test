@@ -1,0 +1,22 @@
+processor_resources:
+  - label: "{package}_e3599d267cbe40ca"
+    hp_transform:
+      name: "Prepare for Creditor"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.trn_dtl0 = results
+            
+            root.transInput = this.trans.creditor
+            root.ttxInput = this.trans.ttxAmt 
+            
+            root.trans_code = if this.trans.debtor.transCode.trncde.or("") != "" {
+                this.trans.debtor.transCode.trncde
+            } else {
+                "GLS"
+            }
+            
+      result_mode: merge
+      output: |-
+            root = this

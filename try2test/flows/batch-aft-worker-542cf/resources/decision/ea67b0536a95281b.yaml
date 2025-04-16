@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_ea67b0536a95281b"
+    hp_transform:
+      name: "Check Response Length"
+      result_mode: merge
+      mapping: |-
+        root = this
+
+        meta result_route = match {
+        results.length().or(0) < 14 => "this.{package}_0e8333822ce4ffc6",
+        _ => "this.{package}_3ceda2c1540ad3d2",
+        }
+

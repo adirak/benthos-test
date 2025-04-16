@@ -1,0 +1,12 @@
+processor_resources:
+  - label: "{package}_89a87371d396f870"
+    hp_transform:
+      name: "Set Code"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            code = crCode
+      result_mode: merge
+      output: |-
+            root = this

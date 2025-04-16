@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_9526fb98677b3fbe"
+    hp_transform:
+      name: "Convert String to Map"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            let jsonTmp = this.strResult.parse_json().or({})
+            root.result = if $jsonTmp.cache_value != null { $jsonTmp.cache_value } else { $jsonTmp }
+      result_mode: merge
+      output: |-
+            root = this

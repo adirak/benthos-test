@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_37f2cda3b4445d08"
+    hp_transform:
+      name: "Set Balance"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.result.balance = bal
+            root.result.available = balavl
+      result_mode: merge
+      output: |-
+            root = this

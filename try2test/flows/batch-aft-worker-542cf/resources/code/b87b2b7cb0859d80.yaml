@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_b87b2b7cb0859d80"
+    hp_transform:
+      name: "Prepare Result"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.trans.creditor.transCode = this.trncde
+            
+      result_mode: merge
+      output: |-
+            root = this

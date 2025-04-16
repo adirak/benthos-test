@@ -1,0 +1,39 @@
+# Producer
+input:
+  generate:
+    mapping: |
+      root = {
+        "trans": {
+          "ttxAmt": {
+              "amt": 3500,
+              "ccy": "THB",
+              "crfee": 0,
+              "drfee": 0
+          }
+        }
+      }
+    interval: "30s"
+
+pipeline:
+  processors:
+    - label: "InputData"
+      dump_log:
+
+    - label: "Test Case 1-1"
+      hp_transform:
+        name: "hp_transform"
+
+        mapping: |
+          root = {}
+          root.amount = this.trans.ttxAmt.amt.number()
+          root.amountStr = "%.2f".format(this.trans.ttxAmt.amt.number())
+
+        result_mode: new
+
+    - label: "OutputData"
+      dump_log:
+
+# No output
+output:
+  label: ""
+  drop: {}

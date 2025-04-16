@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_32c9d6559e4d955e"
+    hp_transform:
+      name: "Set Code 2011"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.code = 2011
+            
+      result_mode: merge
+      output: |-
+            root = this

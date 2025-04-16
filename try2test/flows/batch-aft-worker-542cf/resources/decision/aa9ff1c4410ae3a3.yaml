@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_aa9ff1c4410ae3a3"
+    hp_transform:
+      name: "Check Account"
+      result_mode: merge
+      mapping: |-
+        root = this
+
+        meta result_route = match {
+        trans.debtor.Account == trans.creditor.Account => "this.{package}_b044d599bc5a4912",
+        _ => "this.{package}_739a4ab194b82ca8",
+        }
+

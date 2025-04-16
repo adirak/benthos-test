@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_f6af67c84414127f"
+    hp_transform:
+      name: "Make Key cr_acct"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.redis_key = "cbs_deposit_" + "%d".format(cr_acct)
+            
+      result_mode: merge
+      output: |-
+            root = this

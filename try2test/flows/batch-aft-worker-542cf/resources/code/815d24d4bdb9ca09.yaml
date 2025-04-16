@@ -1,0 +1,12 @@
+processor_resources:
+  - label: "{package}_815d24d4bdb9ca09"
+    hp_transform:
+      name: "Set Code"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            code = drCode
+      result_mode: merge
+      output: |-
+            root = this

@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_1ee1f3469e8de14a"
+    hp_transform:
+      name: "Check Cutoff"
+      result_mode: merge
+      mapping: |-
+        root = this
+
+        meta result_route = match {
+        afterPayment && beforeTransTime => "this.{package}_e4bb62f5f63df9cb",
+        _ => "this.{package}_75a1ba6dd2c1caaa",
+        }
+

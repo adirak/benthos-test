@@ -1,0 +1,1 @@
+[{"default":null,"max":0,"min":0,"name":"action","regexp":"","required":false,"type":"string","validated":false}, {"all":true,"default":"{}","max":0,"min":0,"name":"trans","required":false,"type":"map","validated":false}, {"default":null,"max":0,"min":0,"name":"trans_type","regexp":"","required":false,"type":"string","validated":false}]

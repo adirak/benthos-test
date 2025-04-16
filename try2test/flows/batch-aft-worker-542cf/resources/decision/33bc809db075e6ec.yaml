@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_33bc809db075e6ec"
+    hp_transform:
+      name: "Check Bank Code Flag"
+      result_mode: merge
+      mapping: |-
+        root = this
+
+        meta result_route = match {
+        isValid == false => "this.{package}_bd7c8b63b0908eab",
+        _ => "this.{package}_c8ef79443f9d34fe",
+        }
+

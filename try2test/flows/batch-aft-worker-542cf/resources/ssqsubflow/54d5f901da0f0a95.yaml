@@ -1,0 +1,41 @@
+
+processor_resources:
+  - label: "{package}_54d5f901da0f0a95"
+    hp_function:
+      input: |-
+        meta 3752c6afdc317cc0_parrent = meta("flowId")
+        meta flowId = "3752c6afdc317cc0"
+        meta subflowId = "3752c6afdc317cc0"
+        
+
+        let filter = model2json("1ce814de46f542cf_54d5f901da0f0a95_in")
+        root = this.json_filter($filter)
+
+
+      processors:
+        - hp_resource: 
+            id: "{package}_3752c6afdc317cc0"
+            name: "Check Stop Account"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "435b940d3622e52b"
+              }
+
+        - label: "endsub"
+          hp_transform:
+            result_mode: merge
+            mapping: |-
+      
+              let filter = model2json("1ce814de46f542cf_54d5f901da0f0a95_out")
+              root = this.json_filter($filter)
+
+
+      result_mode: merge
+      output: |-
+        meta flowId = metadata("3752c6afdc317cc0_parrent")
+        meta 3752c6afdc317cc0_parrent = deleted()
+        meta subflowId = meta("parrent_54d5f901da0f0a95_subflowId")
+        meta parrent_54d5f901da0f0a95_subflowId = deleted()
+      
+      

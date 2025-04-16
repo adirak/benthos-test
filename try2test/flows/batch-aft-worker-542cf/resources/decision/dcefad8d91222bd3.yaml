@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_dcefad8d91222bd3"
+    hp_transform:
+      name: "Check useDate After curDate"
+      result_mode: merge
+      mapping: |-
+        root = this
+
+        meta result_route = match {
+        after => "this.{package}_b88340f80694bc95",
+        _ => "this.{package}_3ec93a6c31787bbc",
+        }
+

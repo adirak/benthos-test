@@ -1,0 +1,41 @@
+
+processor_resources:
+  - label: "{package}_cb5d89896540aaa4"
+    hp_function:
+      input: |-
+        meta 72557cc8f1c354e3_parrent = meta("flowId")
+        meta flowId = "72557cc8f1c354e3"
+        meta subflowId = "72557cc8f1c354e3"
+        
+
+        let filter = model2json("1ce814de46f542cf_cb5d89896540aaa4_in")
+        root = this.json_filter($filter)
+
+
+      processors:
+        - hp_resource: 
+            id: "{package}_72557cc8f1c354e3"
+            name: "Offus Confirm"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "df1558a8fdc05fc3"
+              }
+
+        - label: "endsub"
+          hp_transform:
+            result_mode: merge
+            mapping: |-
+      
+              let filter = model2json("1ce814de46f542cf_cb5d89896540aaa4_out")
+              root = this.json_filter($filter)
+
+
+      result_mode: merge
+      output: |-
+        meta flowId = metadata("72557cc8f1c354e3_parrent")
+        meta 72557cc8f1c354e3_parrent = deleted()
+        meta subflowId = meta("parrent_cb5d89896540aaa4_subflowId")
+        meta parrent_cb5d89896540aaa4_subflowId = deleted()
+      
+      

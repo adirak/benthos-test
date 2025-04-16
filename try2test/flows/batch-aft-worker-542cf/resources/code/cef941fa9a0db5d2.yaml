@@ -1,0 +1,12 @@
+processor_resources:
+  - label: "{package}_cef941fa9a0db5d2"
+    hp_transform:
+      name: "Set Status 2405"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.code = 2405
+      result_mode: merge
+      output: |-
+            root = this

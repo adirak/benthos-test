@@ -1,0 +1,12 @@
+processor_resources:
+  - label: "{package}_331f2246c3ae3221"
+    hp_transform:
+      name: "Set responseCode 801"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.xchg_data.transaction.responseCode = 801
+      result_mode: merge
+      output: |-
+            root = this

@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_3602ec3ca88fa8c3"
+    hp_transform:
+      name: "Check BankCode 066"
+      result_mode: merge
+      mapping: |-
+        root = this
+
+        meta result_route = match {
+        trans.creditor.info.promptpay.toBankCode == "066" => "this.{package}_0730b9bed7c11e88",
+        _ => "this.{package}_3ae783efb5ccd257",
+        }
+

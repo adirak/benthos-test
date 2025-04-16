@@ -1,0 +1,16 @@
+processor_resources:
+  - label: "{package}_25bff10c3701e8cd"
+    hp_transform:
+      name: "Return Error "
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.status.status = if action == "debtor" {
+                    2101
+                } else {
+                    2201
+                }
+      result_mode: merge
+      output: |-
+            root = this

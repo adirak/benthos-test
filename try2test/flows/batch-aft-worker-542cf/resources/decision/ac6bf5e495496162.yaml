@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_ac6bf5e495496162"
+    hp_transform:
+      name: "Check Match Values"
+      result_mode: merge
+      mapping: |-
+        root = this
+
+        meta result_route = match {
+        this.ttxAmtStr != this.ttxAmtInfoStr => "this.{package}_ee49b2706c148dd7",
+        _ => "this.{package}_5dde390e38efe994",
+        }
+

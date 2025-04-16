@@ -1,0 +1,12 @@
+processor_resources:
+  - label: "{package}_c2844b90bdec2f1c"
+    hp_transform:
+      name: "Output Map"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.result = this.hits.data.index(0).or({})
+      result_mode: merge
+      output: |-
+            root = this

@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_d55f4bce1edf6bd5"
+    hp_transform:
+      name: "Check Existing Code"
+      result_mode: merge
+      mapping: |-
+        root = this
+
+        meta result_route = match {
+        stop_account.get(acct) == stp => "this.{package}_8172e4648df3c92b",
+        _ => "this.{package}_1ad9d1ed920db63c",
+        }
+

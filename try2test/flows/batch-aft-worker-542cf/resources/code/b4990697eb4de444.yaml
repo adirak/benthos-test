@@ -1,0 +1,12 @@
+processor_resources:
+  - label: "{package}_b4990697eb4de444"
+    hp_transform:
+      name: "Set Log ID"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.logID = this.data.logID
+      result_mode: merge
+      output: |-
+            root = this

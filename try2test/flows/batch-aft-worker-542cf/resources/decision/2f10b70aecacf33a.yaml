@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_2f10b70aecacf33a"
+    hp_transform:
+      name: "Check ttx_id"
+      result_mode: merge
+      mapping: |-
+        root = this
+
+        meta result_route = match {
+        ttx_id == "" || ttx_id == null || collection == null || collection == "" => "this.{package}_24157be40cce0938",
+        _ => "this.{package}_0f1fd5f54cc4e7e7",
+        }
+

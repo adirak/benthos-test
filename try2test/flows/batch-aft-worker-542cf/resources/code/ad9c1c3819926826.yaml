@@ -1,0 +1,12 @@
+processor_resources:
+  - label: "{package}_ad9c1c3819926826"
+    hp_transform:
+      name: "Prepare Output"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            customer = result
+      result_mode: merge
+      output: |-
+            root = this

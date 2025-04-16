@@ -1,0 +1,20 @@
+processor_resources:
+  - label: "{package}_2e86571deaf2d9b7"
+    hp_transform:
+      name: "Prepare Comment"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            let comment = if this.ttx_comment != null && this.ttx_comment != "" {
+                "%s#COMMENT=%s".format(this.dtl10, this.ttx_comment)
+            } else {
+                this.dtl10
+            }
+            
+            root.dtl10 = "%s#CMTSEP=CMTSEP".format(this.dtl10)
+            
+            
+      result_mode: merge
+      output: |-
+            root = this

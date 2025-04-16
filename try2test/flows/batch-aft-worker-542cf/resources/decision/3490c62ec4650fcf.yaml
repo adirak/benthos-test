@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_3490c62ec4650fcf"
+    hp_transform:
+      name: "Check cr_acct not 0"
+      result_mode: merge
+      mapping: |-
+        root = this
+
+        meta result_route = match {
+        cr_acct > 0 => "this.{package}_f6af67c84414127f",
+        _ => "this.{package}_4e5c92ef03684b13",
+        }
+

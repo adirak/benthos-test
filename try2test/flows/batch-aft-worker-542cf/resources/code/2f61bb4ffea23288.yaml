@@ -1,0 +1,27 @@
+processor_resources:
+  - label: "{package}_2f61bb4ffea23288"
+    hp_transform:
+      name: "Prepare Result"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.results = [
+            
+                    this.trans_code.or(""),
+                    this.transInput.transCode.trngrp.or(""),
+                    this.kwargs.seq.or("0"),
+                    this.account.number(0).ceil().string(),
+                    "%0.2f".format(this.amt.or(0).number()),
+                    "%0.2f".format(this.transInput.amt2.or(0).number()),
+                    "%0.2f".format(this.transInput.amt3.or(0).number()),
+                    "%0.2f".format(this.transInput.amt4.or(0).number()),
+                    "%0.2f".format(this.transInput.amt5.or(0).number()),
+                    this.transInput.transCode.parm.tso.or(""),
+                    this.transInput.trans_comment.or(""),
+                    this.transInput.trans_info.or("")
+            
+                ]
+      result_mode: merge
+      output: |-
+            root = this

@@ -1,0 +1,41 @@
+
+processor_resources:
+  - label: "{package}_d8047b15c52da87b"
+    hp_function:
+      input: |-
+        meta f45fba14734f227f_parrent = meta("flowId")
+        meta flowId = "f45fba14734f227f"
+        meta subflowId = "f45fba14734f227f"
+        
+
+        let filter = model2json("1ce814de46f542cf_d8047b15c52da87b_in")
+        root = this.json_filter($filter)
+
+
+      processors:
+        - hp_resource: 
+            id: "{package}_f45fba14734f227f"
+            name: "Get Product Config"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "d9502c8029f26c87"
+              }
+
+        - label: "endsub"
+          hp_transform:
+            result_mode: merge
+            mapping: |-
+      
+              let filter = model2json("1ce814de46f542cf_d8047b15c52da87b_out")
+              root = this.json_filter($filter)
+
+
+      result_mode: merge
+      output: |-
+        meta flowId = metadata("f45fba14734f227f_parrent")
+        meta f45fba14734f227f_parrent = deleted()
+        meta subflowId = meta("parrent_d8047b15c52da87b_subflowId")
+        meta parrent_d8047b15c52da87b_subflowId = deleted()
+      
+      

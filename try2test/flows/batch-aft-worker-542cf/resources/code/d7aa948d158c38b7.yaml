@@ -1,0 +1,15 @@
+processor_resources:
+  - label: "{package}_d7aa948d158c38b7"
+    hp_redis_cmd:
+      profile: |-
+        {{hyper_ibank_redis_config}}
+      command: get
+      args_mapping: root = [ "cbs_trans_ref_offus_" + this.trans.transRef.string().or("") ]
+      input: |
+        root = this
+    
+      result_mode: merge
+    
+      output: |
+        root = {}
+        root.trans_ref = this.result.parse_json().or({})

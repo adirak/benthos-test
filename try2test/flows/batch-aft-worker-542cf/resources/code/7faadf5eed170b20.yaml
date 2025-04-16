@@ -1,0 +1,5 @@
+processor_resources:
+  - label: "{package}_7faadf5eed170b20"
+    log:
+      level: "INFO"
+      message: "Before Call PCC: ${! this }"

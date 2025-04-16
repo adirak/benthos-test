@@ -1,0 +1,28 @@
+processor_resources:
+  - label: "{package}_1c05dcf75e0b6666"
+    hp_http:
+        url: ${! meta("reqUrl") }
+        verb: POST
+        
+        headers: 
+            Content-Type: "application/json"
+            x-devops-src: ${! meta("xdevopssrc") }
+            x-devops-dest: ${! meta("xdevopsdest") }
+            x-devops-key: ${! meta("xdevopskey") }
+        
+        input: |
+            root = if this.encryptedRequest != "" {
+                {"request": this.encryptedRequest}
+            }else {
+                {}
+            }
+        
+        result_mode: "merge"
+        
+        output: |
+            root.result = this
+        
+        timeout: 5s
+        
+        retries: 1
+        

@@ -1,0 +1,41 @@
+
+processor_resources:
+  - label: "{package}_fbb8ec2c6ddb4507"
+    hp_function:
+      input: |-
+        meta d0534c8c9b38ec32_parrent = meta("flowId")
+        meta flowId = "d0534c8c9b38ec32"
+        meta subflowId = "d0534c8c9b38ec32"
+        
+
+        let filter = model2json("1ce814de46f542cf_fbb8ec2c6ddb4507_in")
+        root = this.json_filter($filter)
+
+
+      processors:
+        - hp_resource: 
+            id: "{package}_d0534c8c9b38ec32"
+            name: "Get SQL Command"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "0bd1ddb017984c51"
+              }
+
+        - label: "endsub"
+          hp_transform:
+            result_mode: merge
+            mapping: |-
+      
+              let filter = model2json("1ce814de46f542cf_fbb8ec2c6ddb4507_out")
+              root = this.json_filter($filter)
+
+
+      result_mode: merge
+      output: |-
+        meta flowId = metadata("d0534c8c9b38ec32_parrent")
+        meta d0534c8c9b38ec32_parrent = deleted()
+        meta subflowId = meta("parrent_fbb8ec2c6ddb4507_subflowId")
+        meta parrent_fbb8ec2c6ddb4507_subflowId = deleted()
+      
+      

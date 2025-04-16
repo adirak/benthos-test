@@ -1,0 +1,41 @@
+
+processor_resources:
+  - label: "{package}_87face730336243b"
+    hp_function:
+      input: |-
+        meta e469d83c14a08a28_parrent = meta("flowId")
+        meta flowId = "e469d83c14a08a28"
+        meta subflowId = "e469d83c14a08a28"
+        
+
+        let filter = model2json("1ce814de46f542cf_87face730336243b_in")
+        root = this.json_filter($filter)
+
+
+      processors:
+        - hp_resource: 
+            id: "{package}_e469d83c14a08a28"
+            name: "Get Trans Config"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "72557cc8f1c354e3"
+              }
+
+        - label: "endsub"
+          hp_transform:
+            result_mode: merge
+            mapping: |-
+      
+              let filter = model2json("1ce814de46f542cf_87face730336243b_out")
+              root = this.json_filter($filter)
+
+
+      result_mode: merge
+      output: |-
+        meta flowId = metadata("e469d83c14a08a28_parrent")
+        meta e469d83c14a08a28_parrent = deleted()
+        meta subflowId = meta("parrent_87face730336243b_subflowId")
+        meta parrent_87face730336243b_subflowId = deleted()
+      
+      

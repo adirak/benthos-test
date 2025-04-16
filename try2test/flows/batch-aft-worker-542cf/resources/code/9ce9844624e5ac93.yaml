@@ -1,0 +1,12 @@
+processor_resources:
+  - label: "{package}_9ce9844624e5ac93"
+    hp_transform:
+      name: "Rename ttxID"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.ttx_id = ttxID
+      result_mode: merge
+      output: |-
+            root = this

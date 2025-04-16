@@ -1,0 +1,1 @@
+[{"default":0,"max":0,"min":0,"name":"code","required":false,"type":"integer","validated":false}, {"default":"","max":0,"min":0,"name":"message","regexp":"","required":false,"type":"string","validated":false}]

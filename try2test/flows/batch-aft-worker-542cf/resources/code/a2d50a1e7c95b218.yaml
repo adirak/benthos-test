@@ -1,0 +1,14 @@
+processor_resources:
+  - label: "{package}_a2d50a1e7c95b218"
+    hp_transform:
+      name: "Set Request Error Code"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.mob_success = false
+            root.mob_code = "500"
+            root.mob_message = "request error"
+      result_mode: merge
+      output: |-
+            root = this

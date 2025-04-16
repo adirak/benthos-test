@@ -1,0 +1,41 @@
+
+processor_resources:
+  - label: "{package}_b975e7f420ec9b94"
+    hp_function:
+      input: |-
+        meta b2b37150d7e4a507_parrent = meta("flowId")
+        meta flowId = "b2b37150d7e4a507"
+        meta subflowId = "b2b37150d7e4a507"
+        
+
+        let filter = model2json("1ce814de46f542cf_b975e7f420ec9b94_in")
+        root = this.json_filter($filter)
+
+
+      processors:
+        - hp_resource: 
+            id: "{package}_b2b37150d7e4a507"
+            name: "Call CBS MRPC"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "c8321dd1b85ed73a"
+              }
+
+        - label: "endsub"
+          hp_transform:
+            result_mode: merge
+            mapping: |-
+      
+              let filter = model2json("1ce814de46f542cf_b975e7f420ec9b94_out")
+              root = this.json_filter($filter)
+
+
+      result_mode: merge
+      output: |-
+        meta flowId = metadata("b2b37150d7e4a507_parrent")
+        meta b2b37150d7e4a507_parrent = deleted()
+        meta subflowId = meta("parrent_b975e7f420ec9b94_subflowId")
+        meta parrent_b975e7f420ec9b94_subflowId = deleted()
+      
+      

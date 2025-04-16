@@ -1,0 +1,12 @@
+processor_resources:
+  - label: "{package}_97af69e7da277bbe"
+    hp_transform:
+      name: "Set CrFee Default"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.aft.crFee = this.aft.crFee.or(0)
+      result_mode: merge
+      output: |-
+            root = this

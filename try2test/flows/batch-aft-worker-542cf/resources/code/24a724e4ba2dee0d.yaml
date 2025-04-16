@@ -1,0 +1,22 @@
+processor_resources:
+  - label: "{package}_24a724e4ba2dee0d"
+    hp_transform:
+      name: "hp_transform"
+      input: |
+        root = this
+    
+      mapping: |
+        root = this
+        root.data = this.aft
+        root.aftID = this.aft.aftID
+        root.logID = this.logID
+        root.data.mob_code = this.data.mob_code
+        root.data.mob_message = this.data.mob_message
+        root.data.code = this.status.status
+        root.data.ttxID = this.ttxID
+    
+      result_mode: merge
+    
+      output: |
+        root = this
+    

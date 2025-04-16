@@ -1,0 +1,22 @@
+processor_resources:
+  - label: "{package}_d729b46c68c0229f"
+    mongodb:
+      name: "UpdateTTXData"
+      profile: |-
+        {{hyper_ibank_mongo_config}}
+        
+      database: bigs
+      operation: update-one
+      collection: ${! meta("collection") }
+    
+      filter_map: |
+        root = {"_id": this.ttx_id.string()}
+    
+      input: |
+        root = this
+        
+      document_map: |
+        root = {"$set": this.ttx_data}
+        
+      result_mode: "merge"
+      

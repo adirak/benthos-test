@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_650ecf454a932d3b"
+    hp_transform:
+      name: "Check Creditor Account"
+      result_mode: merge
+      mapping: |-
+        root = this
+
+        meta result_route = match {
+        code > 0 => "this.{package}_aef4e84725c3cfc4",
+        _ => "this.{package}_e60315a6b69f07dd",
+        }
+

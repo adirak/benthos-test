@@ -1,0 +1,13 @@
+
+processor_resources:
+  - label: "{package}_bb9f488ccc32b9ba"
+    hp_transform:
+      name: "Define Data"
+      input: |-
+        root = this
+      mapping: |-
+        root = this
+      result_mode: merge
+      output: |-
+        let filter = model2json("1ce814de46f542cf_bb9f488ccc32b9ba_in")
+        root = this.json_filter($filter)

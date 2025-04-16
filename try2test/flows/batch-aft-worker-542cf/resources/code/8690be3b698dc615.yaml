@@ -1,0 +1,21 @@
+processor_resources:
+  - label: "{package}_8690be3b698dc615"
+    hp_transform:
+      name: "Prepare Query"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            let acc_list = [this.trans.debtor.AccountID, this.trans.creditor.AccountID]
+            
+            root = {}
+            root.conditions = [ "#{acc_list}" ]
+            root.params = {"acc_list": $acc_list}
+            root.arrayType = true
+            root.mockupName = "account_info"
+            
+            root.dr_acct = this.trans.debtor.AccountID
+            root.cr_acct = this.trans.creditor.AccountID
+      result_mode: merge
+      output: |-
+            root = this

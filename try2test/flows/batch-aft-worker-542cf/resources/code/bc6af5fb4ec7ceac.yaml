@@ -1,0 +1,5 @@
+processor_resources:
+  - label: "{package}_bc6af5fb4ec7ceac"
+    log:
+      level: "INFO"
+      message: "No transRef: ${! this.trans }"

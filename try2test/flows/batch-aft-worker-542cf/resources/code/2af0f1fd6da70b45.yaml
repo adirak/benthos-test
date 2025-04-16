@@ -1,0 +1,20 @@
+processor_resources:
+  - label: "{package}_2af0f1fd6da70b45"
+    hp_transform:
+      name: "hp_transform"
+      input: |
+          root = this
+    
+      mapping: |
+          root = {}
+          
+          root.strData = if this.result.response != "" {this.result.response.gcm_decode(this.eKey.string(), this.result.response.string(), -1).or("{}")}
+          
+      output: |
+          root = {}
+          root.code = if this.strData != null && this.strData != "{}" {
+              0
+          }
+          root.responseData = this.strData.parse_json().or({})
+    
+      result_mode: merge      

@@ -1,0 +1,7 @@
+processor_resources:
+  - label: "{package}_9e417a49abd06809"
+    log:
+      level: "INFO"
+      message: "Compare Time Error (yyyy-MM-dd HH:mm:ss.000000) cutoffTime: ${! this.cutoffTime }, payment_time: ${! this.payment_time }, trans_time: ${! this.trans_time }"
+      
+    

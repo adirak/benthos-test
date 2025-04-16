@@ -1,0 +1,12 @@
+processor_resources:
+  - label: "{package}_d5702b960de3cc8f"
+    hp_transform:
+      name: "Update Detail"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.trans.prepare.trans.pre_post.detail = this.trn_dtl
+      result_mode: merge
+      output: |-
+            root = this

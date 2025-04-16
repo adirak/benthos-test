@@ -1,0 +1,12 @@
+processor_resources:
+  - label: "{package}_e409563fe92fc378"
+    hp_transform:
+      name: "Rename to xchg_data"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.xchg_data = responseData
+      result_mode: merge
+      output: |-
+            root = this

@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_ef50452ac218df21"
+    hp_transform:
+      name: "Check in_cache_value"
+      result_mode: merge
+      mapping: |-
+        root = this
+
+        meta result_route = match {
+        in_cache_value => "this.{package}_c3bd5d4bc3d32045",
+        _ => "this.{package}_85a7f01e43b22c68",
+        }
+

@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_0204e0fd94db18a0"
+    hp_transform:
+      name: "Get Result at Index"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.result = this.acct_info.acct_list.index(this.index)
+            
+      result_mode: merge
+      output: |-
+            root = this

@@ -1,0 +1,41 @@
+
+processor_resources:
+  - label: "{package}_d67ae165f0ca45ad"
+    hp_function:
+      input: |-
+        meta a37db1f2439fbee5_parrent = meta("flowId")
+        meta flowId = "a37db1f2439fbee5"
+        meta subflowId = "a37db1f2439fbee5"
+        
+
+        let filter = model2json("1ce814de46f542cf_d67ae165f0ca45ad_in")
+        root = this.json_filter($filter)
+
+
+      processors:
+        - hp_resource: 
+            id: "{package}_a37db1f2439fbee5"
+            name: "Query Deposit From CBS"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "2bb0640a68d4536b"
+              }
+
+        - label: "endsub"
+          hp_transform:
+            result_mode: merge
+            mapping: |-
+      
+              let filter = model2json("1ce814de46f542cf_d67ae165f0ca45ad_out")
+              root = this.json_filter($filter)
+
+
+      result_mode: merge
+      output: |-
+        meta flowId = metadata("a37db1f2439fbee5_parrent")
+        meta a37db1f2439fbee5_parrent = deleted()
+        meta subflowId = meta("parrent_d67ae165f0ca45ad_subflowId")
+        meta parrent_d67ae165f0ca45ad_subflowId = deleted()
+      
+      

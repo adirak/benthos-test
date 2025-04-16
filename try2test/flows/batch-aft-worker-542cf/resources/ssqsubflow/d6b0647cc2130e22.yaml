@@ -1,0 +1,41 @@
+
+processor_resources:
+  - label: "{package}_d6b0647cc2130e22"
+    hp_function:
+      input: |-
+        meta a0892606a07fdb82_parrent = meta("flowId")
+        meta flowId = "a0892606a07fdb82"
+        meta subflowId = "a0892606a07fdb82"
+        
+
+        let filter = model2json("1ce814de46f542cf_d6b0647cc2130e22_in")
+        root = this.json_filter($filter)
+
+
+      processors:
+        - hp_resource: 
+            id: "{package}_a0892606a07fdb82"
+            name: "Call AFTJob"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "d1f9fd45ad0b7c71"
+              }
+
+        - label: "endsub"
+          hp_transform:
+            result_mode: merge
+            mapping: |-
+      
+              let filter = model2json("1ce814de46f542cf_d6b0647cc2130e22_out")
+              root = this.json_filter($filter)
+
+
+      result_mode: merge
+      output: |-
+        meta flowId = metadata("a0892606a07fdb82_parrent")
+        meta a0892606a07fdb82_parrent = deleted()
+        meta subflowId = meta("parrent_d6b0647cc2130e22_subflowId")
+        meta parrent_d6b0647cc2130e22_subflowId = deleted()
+      
+      

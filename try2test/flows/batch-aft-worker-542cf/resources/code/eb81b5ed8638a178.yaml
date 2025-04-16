@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_eb81b5ed8638a178"
+    hp_transform:
+      name: "Initial Loop"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.index = 0
+            root.size = this.results.length().or(0)
+      result_mode: merge
+      output: |-
+            root = this

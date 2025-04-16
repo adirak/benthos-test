@@ -1,0 +1,23 @@
+processor_resources:
+  - label: "{package}_287e95ce75ebf818"
+    hp_transform:
+      name: "Own Inst"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.trans.debtor.trans_comment = "XTRANS_DR"
+            root.trans.creditor.trans_comment = "XTRANS_CR"
+            
+            root.transInput = this.trans.debtor
+            root.ttxInput = this.trans.ttxAmt
+            
+            root.trans_code = if this.trans.debtor.transCode.trncde.or("") != "" {
+                this.trans.debtor.transCode.trncde
+            } else {
+                "MOSWTF"
+            }
+            
+      result_mode: merge
+      output: |-
+            root = this

@@ -1,0 +1,41 @@
+
+processor_resources:
+  - label: "{package}_0987d51d808cd220"
+    hp_function:
+      input: |-
+        meta 6a297caaee1f0ef4_parrent = meta("flowId")
+        meta flowId = "6a297caaee1f0ef4"
+        meta subflowId = "6a297caaee1f0ef4"
+        
+
+        let filter = model2json("1ce814de46f542cf_0987d51d808cd220_in")
+        root = this.json_filter($filter)
+
+
+      processors:
+        - hp_resource: 
+            id: "{package}_6a297caaee1f0ef4"
+            name: "Check Restriction"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "8e944f5f9f02fc65"
+              }
+
+        - label: "endsub"
+          hp_transform:
+            result_mode: merge
+            mapping: |-
+      
+              let filter = model2json("1ce814de46f542cf_0987d51d808cd220_out")
+              root = this.json_filter($filter)
+
+
+      result_mode: merge
+      output: |-
+        meta flowId = metadata("6a297caaee1f0ef4_parrent")
+        meta 6a297caaee1f0ef4_parrent = deleted()
+        meta subflowId = meta("parrent_0987d51d808cd220_subflowId")
+        meta parrent_0987d51d808cd220_subflowId = deleted()
+      
+      

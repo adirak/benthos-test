@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_3ea266b75f9ed1f6"
+    hp_transform:
+      name: "Set Default Error"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.trans.debtor.status = 2101
+            root.trans.creditor.status = 2201
+      result_mode: merge
+      output: |-
+            root = this

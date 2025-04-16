@@ -1,0 +1,24 @@
+processor_resources:
+  - label: "{package}_5ed3c8c186348b80"
+    hp_transform:
+      name: "Prepare Deptor Info"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.trans.debtor.cust_info = this.customer
+            root.trans.debtor.info = this.result
+            root.trans.debtor.status = 0
+            root.trans.debtor.AccountName = this.result.AccountName
+            root.trans.debtor.AccountDisplay = this.result.AccountDisplay
+            root.trans.debtor.customerID = this.result.customerID
+            root.trans.debtor.product_info = this.prod_cfg
+            
+            root.dr_acct = this.cid
+            root.cr_acct = 0
+            root.dr_cif = this.cif
+            
+            
+      result_mode: merge
+      output: |-
+            root = this

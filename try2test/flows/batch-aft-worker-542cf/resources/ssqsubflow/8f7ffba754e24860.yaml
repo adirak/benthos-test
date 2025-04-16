@@ -1,0 +1,41 @@
+
+processor_resources:
+  - label: "{package}_8f7ffba754e24860"
+    hp_function:
+      input: |-
+        meta fbbfa19bfc645f89_parrent = meta("flowId")
+        meta flowId = "fbbfa19bfc645f89"
+        meta subflowId = "fbbfa19bfc645f89"
+        
+
+        let filter = model2json("1ce814de46f542cf_8f7ffba754e24860_in")
+        root = this.json_filter($filter)
+
+
+      processors:
+        - hp_resource: 
+            id: "{package}_fbbfa19bfc645f89"
+            name: "Get Next Date"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "49e4ea892c6224d6"
+              }
+
+        - label: "endsub"
+          hp_transform:
+            result_mode: merge
+            mapping: |-
+      
+              let filter = model2json("1ce814de46f542cf_8f7ffba754e24860_out")
+              root = this.json_filter($filter)
+
+
+      result_mode: merge
+      output: |-
+        meta flowId = metadata("fbbfa19bfc645f89_parrent")
+        meta fbbfa19bfc645f89_parrent = deleted()
+        meta subflowId = meta("parrent_8f7ffba754e24860_subflowId")
+        meta parrent_8f7ffba754e24860_subflowId = deleted()
+      
+      

@@ -1,0 +1,21 @@
+processor_resources:
+  - label: "{package}_3824d318147b3e31"
+    hp_transform:
+      name: "Prepare Response"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.mob_message = if this.message != null {
+                this.message
+            }
+            root.mob_success = if this.code == "0000" {
+                true
+            } else {
+                false
+            }
+            
+            root.mob_code = this.code
+      result_mode: merge
+      output: |-
+            root = this

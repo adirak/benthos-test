@@ -1,0 +1,25 @@
+processor_resources:
+  - label: "{package}_0372ad778bda6dbc"
+    mongodb:
+      name: "UpdateAdvanceTransferList"
+      profile: |-
+        {{hyper_ibank_mongo_config}}
+      database: advance_transfer
+      operation: update-one
+      collection: advance_transfer_info
+      
+      input: |-
+        root = this
+        
+      document_map: |
+        root = {"$set": this.data}
+    
+      filter_map: |-
+        root = this.filter
+    
+    
+      result_mode: "void"
+      
+      
+      json_marshal_mode: relaxed
+    

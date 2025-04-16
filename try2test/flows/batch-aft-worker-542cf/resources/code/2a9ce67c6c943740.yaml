@@ -1,0 +1,12 @@
+processor_resources:
+  - label: "{package}_2a9ce67c6c943740"
+    hp_transform:
+      name: "Prepare Confirm"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            
+      result_mode: merge
+      output: |-
+            root = this

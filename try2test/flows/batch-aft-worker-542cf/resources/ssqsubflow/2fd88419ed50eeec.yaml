@@ -1,0 +1,41 @@
+
+processor_resources:
+  - label: "{package}_2fd88419ed50eeec"
+    hp_function:
+      input: |-
+        meta 0bd1ddb017984c51_parrent = meta("flowId")
+        meta flowId = "0bd1ddb017984c51"
+        meta subflowId = "0bd1ddb017984c51"
+        
+
+        let filter = model2json("1ce814de46f542cf_2fd88419ed50eeec_in")
+        root = this.json_filter($filter)
+
+
+      processors:
+        - hp_resource: 
+            id: "{package}_0bd1ddb017984c51"
+            name: "Get Restrict From CBS"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "6a297caaee1f0ef4"
+              }
+
+        - label: "endsub"
+          hp_transform:
+            result_mode: merge
+            mapping: |-
+      
+              let filter = model2json("1ce814de46f542cf_2fd88419ed50eeec_out")
+              root = this.json_filter($filter)
+
+
+      result_mode: merge
+      output: |-
+        meta flowId = metadata("0bd1ddb017984c51_parrent")
+        meta 0bd1ddb017984c51_parrent = deleted()
+        meta subflowId = meta("parrent_2fd88419ed50eeec_subflowId")
+        meta parrent_2fd88419ed50eeec_subflowId = deleted()
+      
+      

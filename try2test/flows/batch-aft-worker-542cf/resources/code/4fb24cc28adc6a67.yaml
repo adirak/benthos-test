@@ -1,0 +1,22 @@
+processor_resources:
+  - label: "{package}_4fb24cc28adc6a67"
+    mongodb:
+      name: "InsertTTXData"
+      profile: |-
+        {{hyper_ibank_mongo_config}}
+      database: bigs
+      operation: insert-one
+      collection: ${! meta("collection") }
+      
+      input: |-
+        root = this
+    
+      document_map: |-
+        root = this.ttx_data
+        
+      json_marshal_mode: relaxed
+    
+    
+      result_mode: "merge"
+    
+    

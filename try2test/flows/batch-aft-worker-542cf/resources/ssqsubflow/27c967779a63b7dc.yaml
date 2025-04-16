@@ -1,0 +1,41 @@
+
+processor_resources:
+  - label: "{package}_27c967779a63b7dc"
+    hp_function:
+      input: |-
+        meta 019cdb4921a9ae02_parrent = meta("flowId")
+        meta flowId = "019cdb4921a9ae02"
+        meta subflowId = "019cdb4921a9ae02"
+        
+
+        let filter = model2json("1ce814de46f542cf_27c967779a63b7dc_in")
+        root = this.json_filter($filter)
+
+
+      processors:
+        - hp_resource: 
+            id: "{package}_019cdb4921a9ae02"
+            name: "Prepare Creditor Account"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "a4cd9be558236134"
+              }
+
+        - label: "endsub"
+          hp_transform:
+            result_mode: merge
+            mapping: |-
+      
+              let filter = model2json("1ce814de46f542cf_27c967779a63b7dc_out")
+              root = this.json_filter($filter)
+
+
+      result_mode: merge
+      output: |-
+        meta flowId = metadata("019cdb4921a9ae02_parrent")
+        meta 019cdb4921a9ae02_parrent = deleted()
+        meta subflowId = meta("parrent_27c967779a63b7dc_subflowId")
+        meta parrent_27c967779a63b7dc_subflowId = deleted()
+      
+      
