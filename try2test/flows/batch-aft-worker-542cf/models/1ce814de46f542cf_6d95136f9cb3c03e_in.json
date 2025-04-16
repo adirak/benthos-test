@@ -1,1 +1,0 @@
-[{"default":-1,"max":0,"min":0,"name":"post_status","required":false,"type":"integer","validated":false}, {"all":true,"default":"{}","max":0,"min":0,"name":"trans_post","notEmpty":true,"required":false,"type":"map","validated":false}, {"default":-1,"max":0,"min":0,"name":"code","required":false,"type":"integer","validated":false}]

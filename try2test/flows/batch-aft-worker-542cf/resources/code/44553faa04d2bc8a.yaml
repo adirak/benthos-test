@@ -1,5 +1,0 @@
-processor_resources:
-  - label: "{package}_44553faa04d2bc8a"
-    log:
-      level: "INFO"
-      message: "Prepare Fail: ${! this }"

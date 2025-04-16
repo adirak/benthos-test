@@ -1,5 +1,0 @@
-processor_resources:
-  - label: "{package}_319806acb241b1c4"
-    log:
-      level: "INFO"
-      message: "After Call CBS: ${! this }"

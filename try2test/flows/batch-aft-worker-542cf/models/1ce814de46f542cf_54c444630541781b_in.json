@@ -1,1 +1,0 @@
-[{"default":null,"max":0,"min":0,"name":"action","regexp":"","required":false,"type":"string","validated":false}, {"all":true,"default":"{\"header\":{},\"promptpay\":{},\"transaction\":{}}","max":0,"min":0,"name":"requestData","required":false,"type":"map","validated":false}]

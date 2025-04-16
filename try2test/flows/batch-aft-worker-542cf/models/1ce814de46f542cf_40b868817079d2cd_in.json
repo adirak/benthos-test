@@ -1,1 +1,0 @@
-[{"all":true,"default":"{\"dateEnd\":\"\",\"dateStart\":\"\",\"days\":0,\"lastDate\":\"\",\"nextDate\":\"\"}","max":0,"min":0,"name":"aft","required":false,"type":"map","validated":false}, {"default":null,"max":0,"min":0,"name":"aftID","regexp":"","required":false,"type":"string","validated":false}]

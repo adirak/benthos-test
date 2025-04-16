@@ -1,1 +1,0 @@
-[{"default":0,"max":0,"min":0,"name":"cif","required":false,"type":"integer","validated":false}, {"all":true,"default":"{}","max":0,"min":0,"name":"customer","notEmpty":true,"required":false,"type":"map","validated":false}, {"default":true,"name":"in_cache_value","required":false,"type":"boolean","validated":false}]

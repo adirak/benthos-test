@@ -1,1 +1,0 @@
-[{"default":null,"max":0,"min":0,"name":"trans_code","regexp":"","required":false,"type":"string","validated":false}, {"all":true,"default":"{\"act\":\"\",\"chnl\":\"\",\"descript\":\"\",\"id\":0,\"kindtr\":0,\"parm\":{},\"rstgrp\":\"\",\"trncde\":\"\",\"trngrp\":\"\"}","max":0,"min":0,"name":"trncde","required":false,"type":"map","validated":false}]

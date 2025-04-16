@@ -1,1 +1,0 @@
-{"filterInput":["comment"],"filterOutput":["dtl"],"process":[{"__id":"2","index":"10","input":["comment"],"inputLabels":"any","output":["dtl"],"outputLabels":"array","type":"update_record"}]}

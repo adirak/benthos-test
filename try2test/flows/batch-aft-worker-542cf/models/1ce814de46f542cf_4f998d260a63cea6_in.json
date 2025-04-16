@@ -1,1 +1,0 @@
-[{"all":true,"default":"{}","max":0,"min":0,"name":"aft","notEmpty":true,"required":false,"type":"map","validated":false}, {"default":"cancel","max":0,"min":0,"name":"action","regexp":"","required":false,"type":"string","validated":false}]

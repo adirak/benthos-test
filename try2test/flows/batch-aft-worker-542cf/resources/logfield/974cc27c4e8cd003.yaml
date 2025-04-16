@@ -1,5 +1,0 @@
-processor_resources:
-  - label: "{package}_974cc27c4e8cd003"
-    log:
-      level: "INFO"
-      message: ' Notfound for aftID = ${! json(" aftID").string()}'

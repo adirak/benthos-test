@@ -1,5 +1,0 @@
-processor_resources:
-  - label: "{package}_3cfd30b544ad7e57"
-    log:
-      level: "INFO"
-      message: "Error after connect CBS: ${! this }"

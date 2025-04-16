@@ -1,1 +1,0 @@
-[{"all":true,"default":"{\"dateEnd\":\"\",\"dateStart\":\"\",\"days\":0}","max":0,"min":0,"name":"frequency","required":false,"type":"map","validated":false}, {"default":null,"max":0,"min":0,"name":"month","required":false,"type":"integer","validated":false}, {"default":null,"max":0,"min":0,"name":"year","required":false,"type":"integer","validated":false}]

@@ -1,5 +1,0 @@
-processor_resources:
-  - label: "{package}_e065c2b84e77933a"
-    log:
-      level: "INFO"
-      message: "Cannot Query from CBS: ${! this }"

@@ -1,1 +1,0 @@
-{"filterInput":["trans","trans.debtor","trans.debtor.Account"],"filterOutput":["trans","trans.debtor","trans.debtor.AccountID"],"process":[{"__id":"1","input":["trans.debtor.Account"],"output":["trans.debtor.AccountID"],"type":"to_number","valueType":"Decimal"}]}

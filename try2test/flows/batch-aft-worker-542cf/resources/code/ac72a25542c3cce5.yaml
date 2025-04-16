@@ -1,5 +1,0 @@
-processor_resources:
-  - label: "{package}_ac72a25542c3cce5"
-    log:
-      level: "INFO"
-      message: "Before Call MRPC: ${! this }"

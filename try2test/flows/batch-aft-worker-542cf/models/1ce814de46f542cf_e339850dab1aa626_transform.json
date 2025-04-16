@@ -1,1 +1,0 @@
-{"filterInput":["trn_dtl"],"filterOutput":["rowData"],"process":[{"__id":"1","index":"$index","input":["trn_dtl"],"inputLabels":"array","output":["rowData"],"outputLabels":"any","type":"copy_from_list_to_object"}]}

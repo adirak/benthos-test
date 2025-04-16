@@ -1,1 +1,0 @@
-{"filterInput":["newDtl"],"filterOutput":["trn_dtl"],"process":[{"__id":"2","index":"$index","input":["newDtl"],"inputLabels":"any","output":["trn_dtl"],"outputLabels":"array","type":"update_record"}]}
