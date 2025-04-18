@@ -1,0 +1,45 @@
+# Producer
+input:
+  generate:
+    mapping: |
+      root = {
+        "data": {
+                    "action": "cif_decrypt",
+                    "weight": 50158,
+                    "secret_key": "GIT3f+DWZxNpYDxGl1x6MuEH1RiKa4ntc7pPq/i+fj+iScaFmmFTmbG5LQPFFMdZ1qsxQgYy1oXVJsVio2gK7YShLmpicyCk1zWFY8693Xo=",
+                    "cif_encrypted": "1JwpLJ0apGr98jbN8aPCfvouYyRVKQxJ5gozWNbVMtKabA2Aiz+bqx/v181LzlIg4kHh94t8coO3pyC/uYPG9+SmO385xkshn9/GAde+1Gk="
+        },
+        "service_id": "cif-service",
+        "header":{
+          "operation": "cif_decrypt",
+            "content-type": "application/json"
+          },
+          "host":"host.docker.internal:50051"
+      }
+    interval: "300000s"
+
+pipeline:
+  processors:
+    - label: "InputData"
+      dump_log:
+
+    - label: "Test Case 1-1"
+      hp_transform:
+        name: "hp_transform"
+        input: |
+          root = this
+
+        mapping: |
+          root = this
+          let dummy = grpc_faas(this.host, false, "", "", this.service_id, this.header, this.data)
+          root = $dummy
+
+        result_mode: new
+
+    - label: "OutputData"
+      dump_log:
+
+# No output
+output:
+  label: ""
+  drop: {}
