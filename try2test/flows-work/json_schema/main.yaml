@@ -1,0 +1,68 @@
+# Producer
+input:
+  generate:
+    mapping: |
+      root = {
+        "data": {
+          "A": "A",
+          "B": {
+            "B1": 100.99,
+            "B2": "999"
+          },
+        },
+        "schema": {
+          "type": "object",
+          "properties": {
+            "A": {
+              "type": "string"
+            },
+            "B": {
+              "type": "object",
+              "properties": {
+                "B1": {
+                  "type": "number"
+                },
+                "B2": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    interval: "30s"
+
+pipeline:
+  processors:
+    - label: "InputData"
+      dump_log:
+
+    - label: "Test Case 1-1"
+      hp_transform:
+        name: "hp_transform"
+        input: |
+          root = this
+
+        mapping: |
+          root = {}
+          root.result = this.data.json_schema(this.schema.string())
+
+        result_mode: new
+
+        # error: |
+        #   root = {}
+        #   root.error = true
+          
+
+    - label: "OutputData"
+      dump_log:
+    
+    
+    - catch:
+       - label: "CatchData"
+         dump_log:
+
+# No output
+output:
+  label: ""
+  drop: {}

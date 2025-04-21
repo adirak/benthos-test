@@ -23,16 +23,19 @@ pipeline:
     - label: "InputData"
       dump_log:
 
-    - label: "Test Case 1-1"
-      hp_transform:
-        name: "hp_transform"
+    - label: "Test gRPC"
+      hp_grpc_faas:
+        name: "hp_grpc_faas"
+        address: "host.docker.internal:50051"
+        service: "cif-service"
+        headers: 
+          operation: "cif_decrypt"
+          content-type: "application/json"
         input: |
-          root = this
+          root = this.data
 
-        mapping: |
-          root = this
-          let dummy = grpc_faas(this.host, false, "", "", this.service_id, this.header, this.data)
-          root = $dummy
+        output: |
+          root.result = this.data
 
         result_mode: new
 

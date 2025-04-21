@@ -1,0 +1,39 @@
+# Producer
+input:
+  generate:
+    mapping: |
+      root = {
+        "key": {
+            "secret_key": "GIT3f+DWZxNpYDxGl1x6MuEH1RiKa4ntc7pPq/i+fj+iScaFmmFTmbG5LQPFFMdZ1qsxQgYy1oXVJsVio2gK7YShLmpicyCk1zWFY8693Xo=",
+            "token_key": "aBcDeFgHiJkLmNoPqRsTuVwXyZ#$0123",
+            "weight": 50158
+        },
+        "encCustomerID":"qM3q+msVg3z/C3z7/ZTOv/kmqInzbotlcSDyi6WMruBOafkMZy1rjUhm5dwoiFe9XFQdzd1yqo5ol3B2U/XquiIOaOS2Ndqj2YGulxjmPA0="
+      }
+    interval: "60s"
+
+pipeline:
+  processors:
+    - label: "InputData"
+      dump_log:
+
+    - label: "Test Case 1-1"
+      hp_transform:
+        name: "hp_transform"
+        input: |
+          root = this
+
+        mapping: |
+          root = {}
+          root.result = this.encCustomerID.cif_decode(this.key.weight.or(0), this.key.secret_key.string()).or("")
+
+
+        result_mode: new        
+
+    - label: "OutputData"
+      dump_log:
+
+# No output
+output:
+  label: ""
+  drop: {}
