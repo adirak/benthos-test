@@ -1,1 +1,0 @@
-[{"all":true,"default":"{\"secret_key\":\"\",\"weight\":0}","max":0,"min":0,"name":"key","required":false,"type":"map","validated":false}, {"all":true,"default":"{\"crypt_key\":\"\"}","max":0,"min":0,"name":"ppgateway","required":false,"type":"map","validated":false}]
