@@ -10,7 +10,6 @@ processor_resources:
       collection: students
       document_map: |
         root = this
-        root.C = "C"
 
       result_mode: "merge"
 
@@ -20,8 +19,9 @@ processor_resources:
         root.surname = "Donao"
         root.gender = "M"
         root.age = 40
-        
+        root.date1 = now()
+        root.date2 = "2020-Aug-14".ts_parse("2006-Jan-02")
 
       output: |
         root = {}
-        root.F = "F"
+        root.success = true
