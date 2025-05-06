@@ -19,8 +19,9 @@ processor_resources:
         root.surname = "Donao"
         root.gender = "M"
         root.age = 40
-        root.date1 = now()
-        root.date2 = "2020-Aug-14".ts_parse("2006-Jan-02")
+        let timeNow = now().ts_format("2006-01-02T15:04:05.000Z")
+        root.date1 = $timeNow
+        root.date2 =  $timeNow.ts_parse("2006-01-02T15:04:05.000Z")
 
       output: |
         root = {}
