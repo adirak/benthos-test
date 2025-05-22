@@ -38,7 +38,7 @@ pipeline:
       dump_log:
 
 output:
-  label: ""
+  label: "Output"
   hp_amqp:
     profile: {{myRabbitMQ}}
     exchange: "amqb.mobile.topic"

@@ -21,6 +21,8 @@ services:
       - JSON_USE_NUMBER=false
       - HYPER_NODE_PATH=/data/deployed
       - HYPER_REDIS=redis://host.docker.internal:6379
+      #- HYPER_REDIS=enc:geXMR3xzeH2v/AlKAhqcSHSTKOdnAe+nalE3mEMeJ19AfvY2dIUSOgYPZhgN
+      
 
       #- HYPER_REDIS=redis://default:securepassword@host.docker.internal:16379
       #- HYPER_REDIS=enc:geXMR3xzeH2v/AlKAhqcSHSTKOdnAe+nalE3mEMeJ19AfvY2dIUSOgYPZhgN
