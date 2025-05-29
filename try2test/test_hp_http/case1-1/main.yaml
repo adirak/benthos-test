@@ -19,6 +19,12 @@ pipeline:
           success: "this.OutputData"
           #failure: "this.ErrorData"
 
+
+    - label: "GetHttpHeader"
+      log:
+        level: "INFO"
+        message: "********HttpCOde: ${! meta(\"http_status_code\") }"
+
     - label: "OutputData"
       dump_log:
 

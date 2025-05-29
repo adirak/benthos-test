@@ -2,7 +2,7 @@
 processor_resources:
   - label: "my_resource"
     hp_http:
-      url: https://hyper-designer-dev-02.techberry.co.th/megw/apis/node/user-manager/system/login
+      url: https://76625c975052332d55320b488.mockapi.io/
       verb: POST
       headers:
         Content-Type: "application/json"
