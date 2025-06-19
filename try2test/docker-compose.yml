@@ -31,5 +31,12 @@ services:
       #- HYPER_AES_IV=WjgodSNBJFoxMjM0NTY3OA==
       #- HYPER_AES_SECRET_KEY=WUM4VGJWOGojIWJpNFBiLzEyMzQ1Njc4OTAxMjM0NTY=
 
+      #"key": "YC8TbV8j#!bi4Pb/1234567890123456",
+      #"iv": "Z8(u#A$Z12345678",
+
+      - MAX_X=99999
+      - SLEEP_TIME=10000
+      - CONSUMER_SLEEP_TIME=10000ms
+
     ports:
       - "8124:8124"
