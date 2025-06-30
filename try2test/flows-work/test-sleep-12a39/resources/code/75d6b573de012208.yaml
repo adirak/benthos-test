@@ -1,0 +1,4 @@
+processor_resources:
+  - label: "{package}_75d6b573de012208"
+    sleep:
+      duration: '${! env("SLEEP_TIME").number(0) }ms'

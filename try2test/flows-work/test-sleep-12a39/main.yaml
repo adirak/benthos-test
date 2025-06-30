@@ -1,0 +1,160 @@
+
+input:
+  http_server:
+    timeout: 60s
+    path: "/megw/apis/stream/{service}/{version}/{action}"
+    allowed_verbs:
+      - POST
+      - GET
+
+
+pipeline:
+  processors:
+
+
+    # Filter Input
+    - label: "FilterInputMainflow"
+      hp_transform:
+        name: "Filter Input"
+        result_mode: new
+        mapping: |-
+          meta mainFlowId = "2f7bd9bcf9012a39"
+          meta flowId = "2f7bd9bcf9012a39"
+          meta subflowId = "none"
+          meta testId = if meta("X-Trace").or("false") == "true" { if this._hyper_testId != null { this._hyper_testId } else if this.testId != null { this.testId } } else { deleted() }
+          meta username = if meta("X-Trace").or("false") == "true" && this._hyper_username != null { this._hyper_username } else { meta("X-Username").or(deleted()) }
+
+          root = this
+          
+      
+
+    # Node start
+    - label: "{package}_0fc5371288b21592"
+      hp_resource:
+        id: "{package}_0fc5371288b21592"
+        goto_route:
+          success: "this.{package}_56f03e58693cc132"
+          #failure: "this.{package}_exception"
+          
+        metadata: |-
+          {
+            "scopeType": "mainFlow",
+            "scopeId": "2f7bd9bcf9012a39",
+            "nodeId":"0fc5371288b21592",
+            "nodeType":"start"
+          }
+    
+
+    # Node code
+    - label: "{package}_75d6b573de012208"
+      hp_resource:
+        id: "{package}_75d6b573de012208"
+        goto_route:
+          success: "this.{package}_7a508981c84bde23"
+          #failure: "this.{package}_exception"
+          
+        metadata: |-
+          {
+            "scopeType": "mainFlow",
+            "scopeId": "2f7bd9bcf9012a39",
+            "nodeId":"75d6b573de012208",
+            "nodeType":"code"
+          }
+    
+
+    # Node code
+    - label: "{package}_7a508981c84bde23"
+      hp_resource:
+        id: "{package}_7a508981c84bde23"
+        goto_route:
+          success: "this.{package}_9f8897388bb8bb26"
+          #failure: "this.{package}_exception"
+          
+        metadata: |-
+          {
+            "scopeType": "mainFlow",
+            "scopeId": "2f7bd9bcf9012a39",
+            "nodeId":"7a508981c84bde23",
+            "nodeType":"code"
+          }
+    
+
+    # Node end
+    - label: "{package}_9f8897388bb8bb26"
+      hp_resource:
+        id: "{package}_9f8897388bb8bb26"
+        goto_route:
+          success: "this.{package}_endnode"
+          
+        metadata: |-
+          {
+            "scopeType": "mainFlow",
+            "scopeId": "2f7bd9bcf9012a39",
+            "nodeId":"9f8897388bb8bb26",
+            "nodeType":"end"
+          }
+    
+
+    # Node define
+    - label: "{package}_56f03e58693cc132"
+      hp_resource:
+        id: "{package}_56f03e58693cc132"
+        goto_route:
+          success: "this.{package}_75d6b573de012208"
+          #failure: "this.{package}_exception"
+          
+        metadata: |-
+          {
+            "scopeType": "mainFlow",
+            "scopeId": "2f7bd9bcf9012a39",
+            "nodeId":"56f03e58693cc132",
+            "nodeType":"define"
+          }
+    
+    # Exception resources
+    - catch:
+      - hp_transform:
+          name: "Prepare Exception"
+          input: |-
+            root = this
+          mapping: |-
+            let result_status = {"description": error().or(metadata("error_message").or("Exception")), "code": metadata("error_code").or("500") }
+            
+            meta result_status = $result_status
+            meta result_error = true
+
+            root = {}
+
+            root._hyper_code = $result_status.code
+            root._hyper_message = $result_status.description
+
+          result_mode: new
+
+
+# 
+    # End flow (Standard-Format)
+    - label: "{package}_endnode"
+      hp_transform:
+        name: "Pepare Result"
+        mapping: |-
+          let result_status = meta("result_status")
+          let code = $result_status.code.or("200")
+          let description = $result_status.description.or("Success")
+          root = this
+          
+          let del_result_status = meta_delete("result_status")
+
+        result_mode: new
+# 
+output:
+  switch:
+    cases:
+      - check: meta("input_channel") == "http"
+        output:
+          sync_response: {}
+      - check: meta("input_channel") == "socket_sync"
+        output:
+          sync_response: {}
+      - output:
+          drop: {}
+
