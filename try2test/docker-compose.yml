@@ -20,16 +20,16 @@ services:
       - LOG_FORMAT=json
       - JSON_USE_NUMBER=false
       - HYPER_NODE_PATH=/data/deployed
-      - HYPER_REDIS=redis://host.docker.internal:6379
-      #- HYPER_REDIS=enc:geXMR3xzeH2v/AlKAhqcSHSTKOdnAe+nalE3mEMeJ19AfvY2dIUSOgYPZhgN
+      #- HYPER_REDIS=redis://host.docker.internal:6379
+      - HYPER_REDIS=enc:geXMR3xzeH32o1QPH0/dGS/GdPg4XKH0Kwhv20mBlGcPKwrrttLKf1Ng0owsMhDihw==
       
 
       #- HYPER_REDIS=redis://default:securepassword@host.docker.internal:16379
       #- HYPER_REDIS=enc:geXMR3xzeH2v/AlKAhqcSHSTKOdnAe+nalE3mEMeJ19AfvY2dIUSOgYPZhgN
       
       #- HYPER_DATA_SERVICE=""
-      #- HYPER_AES_IV=WjgodSNBJFoxMjM0NTY3OA==
-      #- HYPER_AES_SECRET_KEY=WUM4VGJWOGojIWJpNFBiLzEyMzQ1Njc4OTAxMjM0NTY=
+      - HYPER_AES_IV=WjgodSNBJFoxMjM0NTY3OA==
+      - HYPER_AES_SECRET_KEY=WUM4VGJWOGojIWJpNFBiLzEyMzQ1Njc4OTAxMjM0NTY=
 
     ports:
       - "8124:8124"

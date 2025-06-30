@@ -1,0 +1,24 @@
+# Recources
+processor_resources:
+  - label: "my_resource"
+    hp_http:
+      url: http://host.docker.internal:8080/getEmpty
+      verb: GET
+      headers:
+        Content-Type: "application/json"
+        AppKey: "LQAsyihBGw3IW0IESsNcc79xlCSeoK6C"
+      input: |
+        root = {}
+        root.B = "B"
+        root.data = {
+          "username": "adirak",
+          "password": "lnwtools"
+        }
+
+      result_mode: "new"
+
+      output: |
+        root = {}
+        root.result = this.or({})
+
+      timeout: 5s

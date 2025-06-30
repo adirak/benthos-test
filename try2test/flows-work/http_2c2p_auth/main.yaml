@@ -1,0 +1,36 @@
+# Producer
+input:
+  generate:
+    mapping: |
+      root = {
+        "body": "grant_type=client_credentials",
+        "auth_url": "https://uat-oauth.2c2p.com",
+        "path": "/oauth/token",
+        "client_id": "IBOTTH",
+        "client_secret": "lNsmTqVirEbfofmKRdHzdf"
+      }
+    interval: "300s"
+
+pipeline:
+  processors:
+    - label: "InputData"
+      dump_log:
+
+    - label: "my_resource"
+      hp_resource:
+        id: "my_resource"
+        goto_route:
+          success: "this.OutputData"
+          #failure: "this.ErrorData"
+
+    - label: "OutputData"
+      dump_log:
+
+    - catch:
+        - label: "ErrorData"
+          dump_log:
+
+# No output
+output:
+  label: ""
+  drop: {}

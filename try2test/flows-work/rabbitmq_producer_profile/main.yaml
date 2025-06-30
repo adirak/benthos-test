@@ -1,0 +1,63 @@
+# Producer
+input:
+  generate:
+    mapping: |
+      root = {
+          "appzone": "email",
+          "chanel": "mobileTrans",
+          "process": "notify",
+          "status": {
+              "description": "Success",
+              "status": 0
+          },
+          "trans_code": "TRANONUS",
+          "ttxid": "xxxxxx"
+      }
+    interval: "3000s"
+
+pipeline:
+  processors:
+    - label: "InputData"
+      dump_log:
+
+    - label: "Test Case 1-1"
+      hp_transform:
+        name: "hp_transform"
+        input: |
+          root = this
+
+        mapping: |
+          root = this
+          root.ttxid = uuid_v4()
+          meta message_id = uuid_v4()
+
+        result_mode: new
+          
+
+    - label: "OutputData"
+      dump_log:
+
+output:
+  label: "Output"
+  hp_amqp:
+    profile: {{myRabbitMQ}}
+    exchange: "amqb.mobile.topic"
+    exchange_declare:
+      enabled: true 
+      type: topic 
+      durable: true
+    #key: "mobile.consumer.sit"
+    type: "topic"
+    content_type: "application/json"
+    message_id : "${! meta(\"message_id\")}"
+
+    metadata:
+      exclude_prefixes: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+
+    max_in_flight: 1
+    tls:
+      enabled: true
+      skip_cert_verify: true
+      enable_renegotiation: true
+
+

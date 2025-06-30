@@ -1,0 +1,5 @@
+com/benthos/sonar/bloblang/BloblangLanguage.class
+com/benthos/sonar/bloblang/BloblangSensor.class
+com/benthos/sonar/bloblang/BloblangSensor$BloblangMetrics.class
+com/benthos/sonar/bloblang/BloblangPlugin.class
+com/benthos/sonar/bloblang/BloblangQualityProfile.class

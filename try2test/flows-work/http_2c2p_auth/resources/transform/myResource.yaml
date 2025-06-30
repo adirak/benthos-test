@@ -1,0 +1,41 @@
+# Recources
+processor_resources:
+  - label: "my_resource"
+    hp_function:
+      name: "call_http_2c2p_auth"
+      input: |
+        root = this
+      result_mode: "merge"
+      output: |
+        root = this.or({})
+
+      processors:
+        - label: "maping"
+          mapping: |
+            root = this.body.string()
+            
+            meta _auth_url_2c2p = this.auth_url
+            meta _path_2c2p = this.path
+            meta _user_2c2p = this.client_id
+            meta _password_2c2p = this.client_secret
+
+            let enc = (this.client_id + ":" + this.client_secret).encode("base64")
+            meta _basic_auth_2c2p = "Basic " + $enc
+
+        - hp_http:
+            url: "${! meta(\"_auth_url_2c2p\") }${! meta(\"_path_2c2p\")}"
+            verb: POST
+
+            headers:
+              Content-Type: text/plain
+              Authorization: "${! meta(\"_basic_auth_2c2p\") }"
+
+            result_mode: "new"
+
+            output: |
+              root = {}
+              root.tokenData = this
+
+            timeout: 60s
+
+
