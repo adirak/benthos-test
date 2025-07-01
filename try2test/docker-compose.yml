@@ -1,11 +1,5 @@
 services:
   benthos:
-    #image: wutichai/hyper-runtime:v8.3.1.4
-    #image: wdsregistry1.beebuddy.net:9900/hyper-runtime:v8.3.1.4
-    #image: wdsregistry1.beebuddy.net:9900/hyper-runtime:v8.3.1.8
-    #image: wdsregistry1.beebuddy.net:9900/hyper-runtime:v8.3.1.9
-    #image: wdsregistry1.beebuddy.net:9900/hyper-runtime:v8.3.1.10
-    #image: wdsregistry1.beebuddy.net:9900/hyper-runtime:v8.3.2.0
     #image: wutichai/hyper-runtime:v8.3.2.0
     #image: wutichai/hyper-runtime:v8.3.2.4
     image: wutichai/hyper-runtime:v8.3.2.5
@@ -30,12 +24,6 @@ services:
       #- HYPER_AES_IV=WjgodSNBJFoxMjM0NTY3OA==
       #- HYPER_AES_SECRET_KEY=WUM4VGJWOGojIWJpNFBiLzEyMzQ1Njc4OTAxMjM0NTY=
 
-      #"key": "YC8TbV8j#!bi4Pb/1234567890123456",
-      #"iv": "Z8(u#A$Z12345678",
-
-      - MAX_X=99999
-      - SLEEP_TIME=10000
-      - CONSUMER_SLEEP_TIME=10000ms
 
     ports:
       - "8124:8124"
