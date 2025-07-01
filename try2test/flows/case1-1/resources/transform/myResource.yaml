@@ -1,0 +1,17 @@
+# Recources
+processor_resources:
+  - label: "my_resource"
+    hp_http:
+      url: https://uateba.2c2p.com/EbaCore/UAT/PartnerInterface/api/v1/Partner/GetProductList?Token=5hyiAa8N7NHIaP9zxWlUN8Bw5LTmg6pey6m8HkmMbwpQlPR0zvr3z9SnhpIcFaE5zG-f0tJpp55farUk3qEDTckT7WJpKpCZQZu8adyvsJ2kTF5pQIlUX1rcxoE6c4UCqsWPJlPwNNepYTpWTBSmTHfECLhtG04YyWsekZFshJnIhFRVQvH8JMOSZM3xPlATaoHqMw&PartnerCode=IBOTTH&BillerCode=THTDTAC
+      verb: GET
+      headers:
+        Host: uateba.2c2p.com
+        
+      result_mode: "merge"
+
+      output: |
+        root = this
+        root.result = this.or({})
+
+      retries: 0
+      timeout: 5s

@@ -7,7 +7,8 @@ services:
     #image: wdsregistry1.beebuddy.net:9900/hyper-runtime:v8.3.1.10
     #image: wdsregistry1.beebuddy.net:9900/hyper-runtime:v8.3.2.0
     #image: wutichai/hyper-runtime:v8.3.2.0
-    image: wutichai/hyper-runtime:v8.3.2.4
+    #image: wutichai/hyper-runtime:v8.3.2.4
+    image: wutichai/hyper-runtime:v8.3.2.5
     container_name: benthos
     volumes:
       - /usr/share/zoneinfo/Asia/Bangkok:/etc/localtime:ro
@@ -20,16 +21,14 @@ services:
       - LOG_FORMAT=json
       - JSON_USE_NUMBER=false
       - HYPER_NODE_PATH=/data/deployed
-      #- HYPER_REDIS=redis://host.docker.internal:6379
-      - HYPER_REDIS=enc:geXMR3xzeH32o1QPH0/dGS/GdPg4XKH0Kwhv20mBlGcPKwrrttLKf1Ng0owsMhDihw==
-      
-
+      - HYPER_REDIS=redis://host.docker.internal:6379
+      #- HYPER_REDIS=enc:geXMR3xzeH32o1QPH0/dGS/GdPg4XKH0Kwhv20mBlGcPKwrrttLKf1Ng0owsMhDihw==
       #- HYPER_REDIS=redis://default:securepassword@host.docker.internal:16379
       #- HYPER_REDIS=enc:geXMR3xzeH2v/AlKAhqcSHSTKOdnAe+nalE3mEMeJ19AfvY2dIUSOgYPZhgN
       
       #- HYPER_DATA_SERVICE=""
-      - HYPER_AES_IV=WjgodSNBJFoxMjM0NTY3OA==
-      - HYPER_AES_SECRET_KEY=WUM4VGJWOGojIWJpNFBiLzEyMzQ1Njc4OTAxMjM0NTY=
+      #- HYPER_AES_IV=WjgodSNBJFoxMjM0NTY3OA==
+      #- HYPER_AES_SECRET_KEY=WUM4VGJWOGojIWJpNFBiLzEyMzQ1Njc4OTAxMjM0NTY=
 
       #"key": "YC8TbV8j#!bi4Pb/1234567890123456",
       #"iv": "Z8(u#A$Z12345678",
