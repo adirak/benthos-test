@@ -1,0 +1,12 @@
+processor_resources:
+  - label: "{package}_c59019725c1488b3"
+    hp_transform:
+      name: "Multiply"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.result = number * 5
+      result_mode: merge
+      output: |-
+            root = this

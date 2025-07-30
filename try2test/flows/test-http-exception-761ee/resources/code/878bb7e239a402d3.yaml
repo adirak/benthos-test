@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_878bb7e239a402d3"
+    hp_transform:
+      name: "Handle Error"
+
+      mapping: |-
+            root = {}
+            root.code = 0
+
+            root.delErrorMsg = meta_delete("error_message")
+
+      result_mode: merge
+

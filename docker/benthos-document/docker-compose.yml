@@ -6,5 +6,5 @@ services:
     #image: wutichai/hyper-docs:v8.3.2.0
     image: wutichai/hyper-docs:v8.3.2.4
     ports:
-      - "80:80"
+      - "8888:80"
     restart: unless-stopped

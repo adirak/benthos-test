@@ -1,0 +1,41 @@
+
+processor_resources:
+  - label: "{package}_f7c426ba5da5d8b2"
+    hp_function:
+      input: |-
+        meta b71c058891f5a308_parrent = meta("flowId")
+        meta flowId = "b71c058891f5a308"
+        meta subflowId = "b71c058891f5a308"
+        
+
+        let filter = model2json("0c501d5a91e761ee_f7c426ba5da5d8b2_in")
+        root = this.json_filter($filter)
+
+
+      processors:
+        - hp_resource: 
+            id: "{package}_b71c058891f5a308"
+            name: "Sub Http"
+            metadata: |-
+              {
+                "scopeType": "mainFlow",
+                "scopeId": "0c501d5a91e761ee"
+              }
+
+        - label: "endsub"
+          hp_transform:
+            result_mode: merge
+            mapping: |-
+      
+              let filter = model2json("0c501d5a91e761ee_f7c426ba5da5d8b2_out")
+              root = this.json_filter($filter)
+
+
+      result_mode: merge
+      output: |-
+        meta flowId = metadata("b71c058891f5a308_parrent")
+        meta b71c058891f5a308_parrent = deleted()
+        meta subflowId = meta("parrent_f7c426ba5da5d8b2_subflowId")
+        meta parrent_f7c426ba5da5d8b2_subflowId = deleted()
+      
+      

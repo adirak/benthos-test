@@ -2,7 +2,8 @@ services:
   benthos:
     #image: wutichai/hyper-runtime:v8.3.2.0
     #image: wutichai/hyper-runtime:v8.3.2.4
-    image: wutichai/hyper-runtime:v8.3.2.5
+    #image: wutichai/hyper-runtime:v8.3.2.5
+    image: wutichai/hyper-runtime:v8.3.2.5-afee225
     container_name: benthos
     volumes:
       - /usr/share/zoneinfo/Asia/Bangkok:/etc/localtime:ro

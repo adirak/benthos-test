@@ -1,0 +1,140 @@
+# Flow Input Handler
+input:
+  http_server:
+    timeout: 60s
+    path: "/megw/apis/stream/{service}/{version}/{action}"
+    allowed_verbs:
+      - POST
+      - GET
+
+
+# Flow Meta Data
+stream_metadata:
+  id: "Test-Exception-a4de1"
+  name: "Test Exception, build_time: 2025-07-29 15:33:27"
+  version: "202507291533"   
+
+# Run Pipeline
+pipeline:
+  processors:
+
+
+    # Filter Input
+    - label: "FilterInputMainflow"
+      hp_transform:
+        name: "Filter Input"
+        result_mode: new
+        mapping: |-
+          meta mainFlowId = "07889339e57a4de1"
+          meta flowId = "07889339e57a4de1"
+          meta subflowId = "none"
+          meta testId = if meta("X-Trace").or("false") == "true" { if this._hyper_testId != null { this._hyper_testId } else if this.testId != null { this.testId } } else { deleted() }
+          meta username = if meta("X-Trace").or("false") == "true" && this._hyper_username != null { this._hyper_username } else { meta("X-Username").or(deleted()) }
+
+          root = this
+          
+      
+
+    # Node start
+    - label: "{package}_1a1d61ab02eacbb8"
+      hp_resource:
+        id: "{package}_1a1d61ab02eacbb8"
+        goto_route:
+          success: "this.{package}_d4da7eaec1436976"
+          #failure: "this.{package}_exception"
+          
+        metadata: |-
+          {
+            "scopeType": "mainFlow",
+            "scopeId": "07889339e57a4de1",
+            "nodeId":"1a1d61ab02eacbb8",
+            "nodeType":"start"
+          }
+    
+
+    # Node ssqsubflow
+    - label: "{package}_d4da7eaec1436976"
+      hp_resource:
+        id: "{package}_d4da7eaec1436976"
+        goto_route:
+          success: "this.{package}_6af6ff5c46ee5003"
+          #failure: "this.{package}_exception"
+          
+        metadata: |-
+          {
+            "scopeType": "mainFlow",
+            "scopeId": "07889339e57a4de1",
+            "nodeId":"d4da7eaec1436976",
+            "nodeType":"ssqsubflow"
+          }
+    
+
+    # Node end
+    - label: "{package}_6af6ff5c46ee5003"
+      hp_resource:
+        id: "{package}_6af6ff5c46ee5003"
+        goto_route:
+          success: "this.{package}_endnode"
+          
+        metadata: |-
+          {
+            "scopeType": "mainFlow",
+            "scopeId": "07889339e57a4de1",
+            "nodeId":"6af6ff5c46ee5003",
+            "nodeType":"end"
+          }
+    
+    # Exception resources
+    - catch:
+      - hp_transform:
+          name: "Prepare Exception"
+          input: |-
+            root = this
+          mapping: |-
+            let result_status = {"description": error().or(metadata("error_message").or("Exception")), "code": metadata("error_code").or("500") }
+            
+            meta result_status = $result_status
+            meta result_error = true
+
+            root = {}
+
+            root._hyper_code = $result_status.code
+            root._hyper_message = $result_status.description
+
+          result_mode: new
+
+
+# 
+    # End flow (Standard-Format)
+    - label: "{package}_endnode"
+      hp_transform:
+        name: "Pepare Result"
+        mapping: |-
+          let result_status = meta("result_status")
+          let code = $result_status.code.or("200")
+          let description = $result_status.description.or("Success")
+          root = this
+          
+          let del_result_status = meta_delete("result_status")
+
+          let delKey = meta_delete("error_message")
+          let delKey = meta_delete("error_throw")
+          let delKey = meta_delete("http_error_message")
+          let delKey = meta_delete("http_status_code")
+
+        result_mode: new
+# 
+
+# Flow Output Handler
+output:
+  switch:
+    cases:
+      - check: meta("input_channel") == "http"
+        output:
+          sync_response: {}
+      - check: meta("input_channel") == "socket_sync"
+        output:
+          sync_response: {}
+      - output:
+          drop: {}
+

@@ -1,0 +1,13 @@
+
+processor_resources:
+  - label: "{package}_c45a272bc07e4db9"
+    hp_transform:
+      name: "Define"
+      input: |-
+        root = this
+      mapping: |-
+        root = this
+      result_mode: merge
+      output: |-
+        let filter = model2json("07889339e57a4de1_c45a272bc07e4db9_in")
+        root = this.json_filter($filter)

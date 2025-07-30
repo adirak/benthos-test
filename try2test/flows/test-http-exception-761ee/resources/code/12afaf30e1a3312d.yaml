@@ -1,0 +1,12 @@
+processor_resources:
+  - label: "{package}_12afaf30e1a3312d"
+    hp_transform:
+      name: "Success"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.code = 0
+      result_mode: merge
+      output: |-
+            root = this

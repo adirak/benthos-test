@@ -1,0 +1,1 @@
+[{"default":0,"max":0,"min":0,"name":"number","required":false,"type":"integer","validated":false}, {"default":165,"max":0,"min":0,"name":"result","required":false,"type":"integer","validated":false}, {"default":true,"name":"success","required":false,"type":"boolean","validated":false}]

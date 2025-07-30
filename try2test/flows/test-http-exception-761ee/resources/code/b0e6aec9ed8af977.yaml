@@ -1,0 +1,25 @@
+processor_resources:
+  - label: "{package}_b0e6aec9ed8af977"
+    hp_http:
+      url: https://hyper-designer-dev-01.techberry.co.th/megw/apis/node/user-manager/system/login
+      verb: POST
+      headers:
+        Content-Type: "application/json"
+        AppKey: "LQAsyihBGw3IW0IESsNcc79xlCSeoK6C"
+      input: |
+        root = {}
+        root.B = "B"
+        root.data = {
+          "username": "adirak2",
+          "password": "123456"
+        }
+    
+      result_mode: "merge"
+    
+      output: |
+        root = {}
+        root.result = this.or({})
+    
+      timeout: 5s
+          
+          
