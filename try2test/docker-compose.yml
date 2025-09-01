@@ -2,8 +2,10 @@ services:
   benthos:
     #image: wutichai/hyper-runtime:v8.3.2.0
     #image: wutichai/hyper-runtime:v8.3.2.4
+    #image: dr-harbor.ibank.co.th/techberry/hyper-runtime:v8.3.2.4.1
     #image: wutichai/hyper-runtime:v8.3.2.5
-    image: wutichai/hyper-runtime:v8.3.2.5-afee225
+    #image: wutichai/hyper-runtime:v8.3.2.5-afee225
+    image: wutichai/hyper-runtime:v8.3.2.5-eed0ea4
     container_name: benthos
     volumes:
       - /usr/share/zoneinfo/Asia/Bangkok:/etc/localtime:ro

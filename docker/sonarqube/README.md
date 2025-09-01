@@ -183,3 +183,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - [Benthos](https://github.com/benthosdev/benthos) - Stream processing toolkit
 - [Bloblang](https://www.benthos.dev/docs/guides/bloblang/about) - Data mapping language
 - [SonarQube](https://www.sonarqube.org/) - Code quality platform 
+
+
+## Run Sonarqube to Scan
+ sonar-scanner -Dsonar.token=sqa_23931d83e245e8ca078b078b053544122ae5cad1

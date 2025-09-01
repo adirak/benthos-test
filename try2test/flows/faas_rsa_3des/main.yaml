@@ -1,0 +1,62 @@
+# Producer
+input:
+  generate:
+    mapping: |
+      root = {
+        "data": {
+                    "action": "rsa_to_3des",
+                    "rsa_private_key": "-----BEGIN RSA PRIVATE KEY-----\nMIIEowIBAAKCAQEAs2jaG5T03BDtkeM5QrWIC6B0CGK9dB8h2ipAsxC2Z53K/UXc\n63yr7dAwknT1DD3kGjg7bPbHnGODEe/5x6pANx8C80Dqc0evLBWIoLUwHFij614k\nfD5DufKW8Sl0TPuSgjdIxaURFP0b5nNe3FXMs6fkOE+RiBMl0iOt14XzygvCQRRO\nkngVFt/Ivbs3mj1NlyUaErITp9i4jHxD1hHnzg1iaZlYmJoLW5EdNAFi0L4fHMIK\nbOaV59uRYDNH3OslJRRXj049MKh1ZvwjsKdH1ogvs28GrwyQ132rj+zdNeOT73PR\ngW9bVbCHgFvdYvMkhhrraVXEyE84rEoOZ6g08wIDAQABAoIBACPIQtADen61xZw2\nNIJwkEy5WMsfXmfdmbPYf4T3TVoHJ6gyGejBucy5nCZpu0IQygDMvFV0NsWjN04J\njcjb1Ojpf34isWACqRZiyRg8avcMWs0jvqUlCf75Ok+pE/ASsNrVyebZkDmebcUd\nt4q8dhJS5vqwK/d20jFCOnbk2YWvUzLjPxvZNYcvURGYT1Jc2xHiMNRXuiGvbj1J\nQfWzpt1zKM+dEqPRGjUuNVZAFOF9Zj05KdRttLR/c9/SNqDmIDx11LYM+aGFwlgD\nGdhaL2GNacEdV3Bk3Kd+4z1vW+2LNT9rdkwyyfKxw9H/9pByBLiH+c4TnIWU38Cq\ng99SWQECgYEA0hBymsS0UeMe6hq0uB268I8/qEwh8k+lEMt+hUDEqaCdmvuH6Xhd\ngCpdkXSAMBhvkBx97ZoAhgUhgB98icjo/H57+I2XgeLKhK9j4A0AoeITq3st9lqd\nIxf80NEkjrHLLGJhHIaqLN4ILN0gWDX6ThteSt/uvsZUHUkEo/sYZ4ECgYEA2qRV\nR8nrdGIOYix3x/9qB6nXpHO5x2uPiBcFFYr85IiMEyG6ChFWTEdOF+5TNYxzJjoS\n+NB6rEpKgIMCLSn87UavOU6mso8yLfIHWuXUSY5wasmiX1yiuMXCkYdnKANbtC0c\nTy5+UaIazPtA1h0nvb+MG40dkRRYHHlWrfActnMCgYBBaCmnExRqYuOfVQ1sPqWU\nfaX+iyYOwsnMvu/4IcCaaI5qUWNySK4kWAymW7YGQ7WJE7YKI2eCU1qpACTQ6iPR\narjDHaNNKAaS5eGdQ68suK4TONmI2ZIP+UoY4uYVIDr46PD/5tZZ/hBhl8CYdsYn\nR9JGUg+Oi0Zpj/DH9kkVAQKBgQCFK2SaBh14VKUoHKeUVDhTlJo4mxgDo7rXjBXX\nqkEgPR78JCW5Lhge+6tQHiPmULZuCR83F1wwhktcfO8dbR6VsuDVCde0mE1a+LiM\nH8IuTyifklJovPaLjkBU/WDSWUFIu9UrUUk1FYQ3Z610/GsRQpLm0Qu6KucD6M/n\nv4DtiwKBgFnnLl/bfEXahwHouP/PC7Xdg/0aj3ooMN1s9Di8XtZ9+/Pyj+sHl4tr\nRB4s+aFdl3fJLs+c67afOUSuFcgx3rYZoJVcy2D7krnZVPpnoMHKrJM6naDCbpew\n86Mth9jHTSkalw0gzXEUnD5Aqlp8BgQnj8CxJt/jGH8MkTRvHO0B\n-----END RSA PRIVATE KEY-----\n",
+                    "des_key": "BHdRbHdBq3MKuo7LezFKyCpS8XLHO1gz",
+                    "rsa_encrypted": "jQeG383TnoY7nH8GfayJlVHQYOvncRwIk6x9MJad/DH9VACgvgaGIJ5UgU0oLRgarHBScY2Hv3SIR0Awx1TvphWyZPvFmt/US8ycEhTXevJAypqmXVAaIioE5eYUHUDttfMIRvp2wbyAZcPFNrj7tfm/KnKnExpZpXdMQtuMzWDDebyu6Y1lbepUJ+1UVCTFZ+2g9w8L9WpCXU5kRxrQqwbtXIMD7uc3OJjjNZcyu/bogIW7iFycLag8B7jN7J5+7cgbm7uLgAZomYtLvy7j5CmQ/Yq5i1ETBGVFiHDkhrV8ZGxh1BTSUEBMh/6lKo4vmgaJo5tBTkpHDntjl+7YZg=="
+        },
+        "service_id": "cif-service",
+        "header":{
+          "operation": "cif_decrypt",
+            "content-type": "application/json"
+          },
+          "host":"host.docker.internal:50051"
+      }
+    interval: "300000s"
+
+pipeline:
+  processors:
+    - label: "InputData"
+      dump_log:
+    
+    - label: "Prepare gRPC Request"
+      hp_transform:
+        name: "hp_transform"
+        input: |
+          root = this
+
+        mapping: |
+          root = this
+          
+          meta faasUrl = this.host
+
+        result_mode: merge
+
+
+    - label: "Test gRPC"
+      hp_grpc_faas:
+        name: "hp_grpc_faas"
+        address: ${! meta("faasUrl") }
+        service: "rsa_to_3des"
+        headers: 
+          operation: "rsa_to_3des"
+          content-type: "application/json"
+        input: |
+          root = this.data
+
+        output: |
+          root.result = this.data
+
+        result_mode: new
+
+    - label: "OutputData"
+      dump_log:
+
+# No output
+output:
+  label: ""
+  drop: {}
