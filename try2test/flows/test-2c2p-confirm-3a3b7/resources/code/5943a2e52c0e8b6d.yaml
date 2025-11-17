@@ -1,0 +1,6 @@
+processor_resources:
+  - label: "{package}_5943a2e52c0e8b6d"
+    log:
+      level: "INFO"
+      message: "transRef:${! meta(\"transRef\")}, err_reason: Call 2C2P Authentication Error"
+      

@@ -1,0 +1,346 @@
+processor_resources:
+  - label: "{package}_169525792e9b08b5"
+    hp_function:
+      name: "sub-2c2p-biller-confirm"
+      input: |-
+
+        root = this
+
+
+      processors:
+        
+        # Node startsub
+        - label: "{package}_1b861c26857574a7"
+          hp_resource:
+            id: "{package}_1b861c26857574a7"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "169525792e9b08b5",
+                "nodeId":"1b861c26857574a7",
+                "nodeType":"startsub"
+              }
+            goto_route:
+              success: "this.{package}_48d9ee70ce917edb"
+              #failure: "this.{package}_169525792e9b08b5_exception"
+              
+        # Node ssqsubflow
+        - label: "{package}_4ebb44b559e583b5"
+          hp_resource:
+            id: "{package}_4ebb44b559e583b5"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "169525792e9b08b5",
+                "nodeId":"4ebb44b559e583b5",
+                "nodeType":"ssqsubflow"
+              }
+            goto_route:
+              success: "this.{package}_07c755157a289fa2"
+              #failure: "this.{package}_169525792e9b08b5_exception"
+              
+        # Node decision
+        - label: "{package}_07c755157a289fa2"
+          hp_resource:
+            id: "{package}_07c755157a289fa2"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "169525792e9b08b5",
+                "nodeId":"07c755157a289fa2",
+                "nodeType":"decision"
+              }
+            goto_route:
+              success: '${! metadata("result_route") }'
+              #failure: "this.{package}_169525792e9b08b5_exception"
+              
+        # Node endsub
+        - label: "{package}_007118ac94f9452f"
+          hp_resource:
+            id: "{package}_007118ac94f9452f"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "169525792e9b08b5",
+                "nodeId":"007118ac94f9452f",
+                "nodeType":"endsub"
+              }
+            goto_route:
+              success: "this.{package}_169525792e9b08b5_endnode"
+              
+        # Node code
+        - label: "{package}_2dc0d2422b29046a"
+          hp_resource:
+            id: "{package}_2dc0d2422b29046a"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "169525792e9b08b5",
+                "nodeId":"2dc0d2422b29046a",
+                "nodeType":"code"
+              }
+            goto_route:
+              success: "this.{package}_46cb7a67315ccf74"
+              #failure: "this.{package}_169525792e9b08b5_exception"
+              
+        # Node code
+        - label: "{package}_30398bfe55cfc297"
+          hp_resource:
+            id: "{package}_30398bfe55cfc297"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "169525792e9b08b5",
+                "nodeId":"30398bfe55cfc297",
+                "nodeType":"code"
+              }
+            goto_route:
+              success: "this.{package}_52417a5fa4ef923a"
+              failure: "this.{package}_4ae86648bc4e903f"
+              
+        # Node code
+        - label: "{package}_4ae86648bc4e903f"
+          hp_resource:
+            id: "{package}_4ae86648bc4e903f"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "169525792e9b08b5",
+                "nodeId":"4ae86648bc4e903f",
+                "nodeType":"code"
+              }
+            goto_route:
+              success: "this.{package}_07c4b7989d0cf6ba"
+              #failure: "this.{package}_169525792e9b08b5_exception"
+              
+        # Node code
+        - label: "{package}_07c4b7989d0cf6ba"
+          hp_resource:
+            id: "{package}_07c4b7989d0cf6ba"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "169525792e9b08b5",
+                "nodeId":"07c4b7989d0cf6ba",
+                "nodeType":"code"
+              }
+            goto_route:
+              success: "this.{package}_30da95e3438f565e"
+              #failure: "this.{package}_169525792e9b08b5_exception"
+              
+        # Node endsub
+        - label: "{package}_30da95e3438f565e"
+          hp_resource:
+            id: "{package}_30da95e3438f565e"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "169525792e9b08b5",
+                "nodeId":"30da95e3438f565e",
+                "nodeType":"endsub"
+              }
+            goto_route:
+              success: "this.{package}_169525792e9b08b5_endnode"
+              
+        # Node code
+        - label: "{package}_52417a5fa4ef923a"
+          hp_resource:
+            id: "{package}_52417a5fa4ef923a"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "169525792e9b08b5",
+                "nodeId":"52417a5fa4ef923a",
+                "nodeType":"code"
+              }
+            goto_route:
+              success: "this.{package}_ec4036b0c1efb7ec"
+              #failure: "this.{package}_169525792e9b08b5_exception"
+              
+        # Node define
+        - label: "{package}_48d9ee70ce917edb"
+          hp_resource:
+            id: "{package}_48d9ee70ce917edb"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "169525792e9b08b5",
+                "nodeId":"48d9ee70ce917edb",
+                "nodeType":"define"
+              }
+            goto_route:
+              success: "this.{package}_4ebb44b559e583b5"
+              #failure: "this.{package}_169525792e9b08b5_exception"
+              
+        # Node decision
+        - label: "{package}_14df0660b64e4350"
+          hp_resource:
+            id: "{package}_14df0660b64e4350"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "169525792e9b08b5",
+                "nodeId":"14df0660b64e4350",
+                "nodeType":"decision"
+              }
+            goto_route:
+              success: '${! metadata("result_route") }'
+              #failure: "this.{package}_169525792e9b08b5_exception"
+              
+        # Node ssqsubflow
+        - label: "{package}_2ae2d30559a13871"
+          hp_resource:
+            id: "{package}_2ae2d30559a13871"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "169525792e9b08b5",
+                "nodeId":"2ae2d30559a13871",
+                "nodeType":"ssqsubflow"
+              }
+            goto_route:
+              success: "this.{package}_ad434b729cad1020"
+              #failure: "this.{package}_169525792e9b08b5_exception"
+              
+        # Node code
+        - label: "{package}_355484ecb3cffce5"
+          hp_resource:
+            id: "{package}_355484ecb3cffce5"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "169525792e9b08b5",
+                "nodeId":"355484ecb3cffce5",
+                "nodeType":"code"
+              }
+            goto_route:
+              success: "this.{package}_2ae2d30559a13871"
+              #failure: "this.{package}_169525792e9b08b5_exception"
+              
+        # Node endsub
+        - label: "{package}_38a5af02a2cb087d"
+          hp_resource:
+            id: "{package}_38a5af02a2cb087d"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "169525792e9b08b5",
+                "nodeId":"38a5af02a2cb087d",
+                "nodeType":"endsub"
+              }
+            goto_route:
+              success: "this.{package}_169525792e9b08b5_endnode"
+              
+        # Node code
+        - label: "{package}_14881a6e365a9c4c"
+          hp_resource:
+            id: "{package}_14881a6e365a9c4c"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "169525792e9b08b5",
+                "nodeId":"14881a6e365a9c4c",
+                "nodeType":"code"
+              }
+            goto_route:
+              success: "this.{package}_3c501e731c5b7744"
+              #failure: "this.{package}_169525792e9b08b5_exception"
+              
+        # Node endsub
+        - label: "{package}_3c501e731c5b7744"
+          hp_resource:
+            id: "{package}_3c501e731c5b7744"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "169525792e9b08b5",
+                "nodeId":"3c501e731c5b7744",
+                "nodeType":"endsub"
+              }
+            goto_route:
+              success: "this.{package}_169525792e9b08b5_endnode"
+              
+        # Node code
+        - label: "{package}_0d3dcb68fbcfda06"
+          hp_resource:
+            id: "{package}_0d3dcb68fbcfda06"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "169525792e9b08b5",
+                "nodeId":"0d3dcb68fbcfda06",
+                "nodeType":"code"
+              }
+            goto_route:
+              success: "this.{package}_007118ac94f9452f"
+              #failure: "this.{package}_169525792e9b08b5_exception"
+              
+        # Node code
+        - label: "{package}_46cb7a67315ccf74"
+          hp_resource:
+            id: "{package}_46cb7a67315ccf74"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "169525792e9b08b5",
+                "nodeId":"46cb7a67315ccf74",
+                "nodeType":"code"
+              }
+            goto_route:
+              success: "this.{package}_30398bfe55cfc297"
+              #failure: "this.{package}_169525792e9b08b5_exception"
+              
+        # Node code
+        - label: "{package}_ad434b729cad1020"
+          hp_resource:
+            id: "{package}_ad434b729cad1020"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "169525792e9b08b5",
+                "nodeId":"ad434b729cad1020",
+                "nodeType":"code"
+              }
+            goto_route:
+              success: "this.{package}_38a5af02a2cb087d"
+              #failure: "this.{package}_169525792e9b08b5_exception"
+              
+        # Node code
+        - label: "{package}_ec4036b0c1efb7ec"
+          hp_resource:
+            id: "{package}_ec4036b0c1efb7ec"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "169525792e9b08b5",
+                "nodeId":"ec4036b0c1efb7ec",
+                "nodeType":"code"
+              }
+            goto_route:
+              success: "this.{package}_14df0660b64e4350"
+              #failure: "this.{package}_169525792e9b08b5_exception"
+              
+        # Node code
+        - label: "{package}_5943a2e52c0e8b6d"
+          hp_resource:
+            id: "{package}_5943a2e52c0e8b6d"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "169525792e9b08b5",
+                "nodeId":"5943a2e52c0e8b6d",
+                "nodeType":"code"
+              }
+            goto_route:
+              success: "this.{package}_0d3dcb68fbcfda06"
+              #failure: "this.{package}_169525792e9b08b5_exception"
+              
+        
+        # End flow resource
+        - label: "{package}_169525792e9b08b5_endnode"
+          noop:
+
+      result_mode: new
+      output: |-
+
+        root = this

@@ -1,0 +1,19 @@
+processor_resources:
+  - label: "{package}_07c4b7989d0cf6ba"
+    hp_transform:
+      name: "Request Error"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.billerRef = {}
+            root.status.status = 2310
+            
+            root.request_response = {
+                "response": this.result,
+                "request": metadata("requestBody2c2p"),
+                "action": metadata("action2c2p"),
+            }
+      result_mode: merge
+      output: |-
+            root = this

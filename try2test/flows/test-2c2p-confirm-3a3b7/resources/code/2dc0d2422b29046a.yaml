@@ -1,0 +1,32 @@
+processor_resources:
+  - label: "{package}_2dc0d2422b29046a"
+    hp_transform:
+      name: "Prepare for Confirm"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            let reqUrl = this.base_url + "/Confirm"
+            meta reqUrl = $reqUrl
+            
+            let request = {
+                "url": $reqUrl,
+                "reqBody": {
+                    "Token": this.access_token,
+                    "PartnerCode": this.partner_code,
+                    "PartnerRefNo": this.transRef,
+                    "BillerCode": this.billerCode,
+                    "TransactionAmount": this.transactionAmount,
+                    "Detail": this.detail,
+                }
+            }
+            root.request = $request
+            
+            meta startTime2c2p = timestamp_unix()
+            meta requestBody2c2p = $request
+            meta action2c2p = this.action
+            
+            
+      result_mode: merge
+      output: |-
+            root = this

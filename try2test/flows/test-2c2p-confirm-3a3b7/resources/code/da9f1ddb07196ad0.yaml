@@ -1,0 +1,6 @@
+processor_resources:
+  - label: "{package}_da9f1ddb07196ad0"
+    log:
+      level: "INFO"
+      message: "transRef:${! meta(\"transRef\")}, err_reason: Call 2C2P No Token Data"
+      

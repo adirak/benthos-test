@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_52417a5fa4ef923a"
+    hp_transform:
+      name: "Prepare Result"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.errorCode = this.result.ErrorCode.or("")
+            root.errorMessage = this.result.ErrorMessage.or("")
+      result_mode: merge
+      output: |-
+            root = this

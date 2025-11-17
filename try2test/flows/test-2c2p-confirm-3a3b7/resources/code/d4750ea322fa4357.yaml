@@ -1,0 +1,6 @@
+processor_resources:
+  - label: "{package}_d4750ea322fa4357"
+    log:
+      level: "INFO"
+      message: "transRef:${! meta(\"transRef\")}, err_reason: No Token Data in Cache"
+      

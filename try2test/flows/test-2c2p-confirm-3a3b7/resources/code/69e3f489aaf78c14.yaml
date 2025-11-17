@@ -1,0 +1,18 @@
+processor_resources:
+  - label: "{package}_69e3f489aaf78c14"
+    hp_transform:
+      name: "Request Error"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.code = 2310
+            root.error = if error.or("") == "" {
+                "Call 2C2P Authentication Failed! RequestUrl: " + this.reqUrl
+            }
+            
+            
+            
+      result_mode: merge
+      output: |-
+            root = this

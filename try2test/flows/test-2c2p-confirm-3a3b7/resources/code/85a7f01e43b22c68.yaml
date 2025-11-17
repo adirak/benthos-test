@@ -1,0 +1,12 @@
+processor_resources:
+  - label: "{package}_85a7f01e43b22c68"
+    hp_transform:
+      name: "To String Value"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.strValue = this.redis_value.string()
+      result_mode: merge
+      output: |-
+            root = this

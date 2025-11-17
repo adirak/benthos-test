@@ -1,0 +1,17 @@
+processor_resources:
+  - label: "{package}_16602ecf2c69a467"
+    hp_transform:
+        name: "hp_transform"
+        input: |
+          root = this
+        
+        mapping: |
+          root = {}
+          root.auth_url = json("2c2p_services.auth_url").or("")
+          root.base_url = json("2c2p_services.base_url").or("")
+          root.client_id = json("2c2p_services.client_id").or("")
+          root.client_secret = json("2c2p_services.client_secret").or("")
+          root.partner_code = json("2c2p_services.partner_code").or("")
+        
+        result_mode: new
+        

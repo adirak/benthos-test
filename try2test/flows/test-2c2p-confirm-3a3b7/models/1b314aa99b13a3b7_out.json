@@ -1,0 +1,1 @@
+{"all":false,"filter":[{"all":true,"max":0,"min":0,"name":"billerRef","required":false,"type":"map","validated":false},{"all":true,"max":0,"min":0,"name":"request_response","required":false,"type":"map","validated":false},{"all":true,"max":0,"min":0,"name":"status","required":false,"type":"map","validated":false}]}

@@ -1,0 +1,6 @@
+processor_resources:
+  - label: "{package}_cab6359c55b4cee9"
+    log:
+      level: "INFO"
+      message: "transRef:${! meta(\"transRef\")}, err_reason: Call 2C2P Error"
+      

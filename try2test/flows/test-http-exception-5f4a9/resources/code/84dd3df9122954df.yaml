@@ -1,0 +1,21 @@
+processor_resources:
+  - label: "{package}_84dd3df9122954df"
+    hp_http:
+      url: http://host.docker.internal:8080/Enquiry
+      verb: POST
+      headers:
+        Content-Type: "application/json"
+      input: |
+        root = this
+        root.B = "B"
+        root.C = "C"
+    
+      result_mode: "merge"
+    
+      output: |
+        root = this
+        root.result = this.or({})
+        
+      retries: 0
+    
+      timeout: 5s

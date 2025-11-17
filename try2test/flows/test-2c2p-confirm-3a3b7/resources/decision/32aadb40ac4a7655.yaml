@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_32aadb40ac4a7655"
+    hp_transform:
+      name: "Check No Expired"
+      result_mode: merge
+      mapping: |-
+        root = this
+
+        meta result_route = match {
+        expire.number(0).ceil() <= 0 => "this.{package}_df314e01a67df662",
+        _ => "this.{package}_1ac645501b9e5057",
+        }
+

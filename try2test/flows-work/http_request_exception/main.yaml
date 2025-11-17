@@ -1,0 +1,39 @@
+# Producer
+input:
+  generate:
+    mapping: |
+      root = {
+        "A": "A"
+      }
+    interval: "3000s"
+
+pipeline:
+  processors:
+    - label: "InputData"
+      dump_log:
+
+    - label: "my_resource"
+      hp_resource:
+        id: "my_resource"
+        goto_route:
+          success: "this.OutputData"
+          #failure: "this.ErrorData"
+
+    - label: "OutputData"
+      dump_log:
+
+    - label: "GetHttpHeader"
+      log:
+        level: "INFO"
+        message: "********HttpCOde: ${! meta(\"http_status_code\") }"
+
+
+
+    - catch:
+        - label: "ErrorData"
+          dump_log:
+
+# No output
+output:
+  label: ""
+  drop: {}

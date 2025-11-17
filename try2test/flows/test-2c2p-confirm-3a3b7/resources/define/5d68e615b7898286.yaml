@@ -1,0 +1,12 @@
+
+processor_resources:
+  - label: "{package}_5d68e615b7898286"
+    hp_transform:
+      name: "Define In/Out"
+      input: |-
+        root = this
+      mapping: |-
+        root = this
+      result_mode: merge
+      output: |-
+        root = {}

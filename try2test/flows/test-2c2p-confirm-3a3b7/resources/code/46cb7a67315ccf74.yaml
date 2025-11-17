@@ -1,0 +1,6 @@
+processor_resources:
+  - label: "{package}_46cb7a67315ccf74"
+    log:
+      level: "INFO"
+      message: "transRef:${! meta(\"transRef\")}, Before Call 2C2P Confirm, startTime: ${! meta(\"startTime2c2p\") }"
+      

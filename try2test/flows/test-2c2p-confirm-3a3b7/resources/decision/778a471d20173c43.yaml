@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_778a471d20173c43"
+    hp_transform:
+      name: "Check Token"
+      result_mode: merge
+      mapping: |-
+        root = this
+
+        meta result_route = match {
+        code == 0 => "this.{package}_3347873ccedf0ad4",
+        _ => "this.{package}_da9f1ddb07196ad0",
+        }
+

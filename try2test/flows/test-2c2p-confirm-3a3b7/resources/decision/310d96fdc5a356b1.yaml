@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_310d96fdc5a356b1"
+    hp_transform:
+      name: "Check Key"
+      result_mode: merge
+      mapping: |-
+        root = this
+
+        meta result_route = match {
+        redis_key != null && redis_key != "" => "this.{package}_19256b91e5b91ab2",
+        _ => "this.{package}_16a7317d5d911e21",
+        }
+

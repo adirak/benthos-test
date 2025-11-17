@@ -1,0 +1,15 @@
+processor_resources:
+  - label: "{package}_a732c5da004f8675"
+    hp_transform:
+      name: "Response Error"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.code = 5003
+            root.error = this.tokenData.error.or("")
+            
+            
+      result_mode: merge
+      output: |-
+            root = this

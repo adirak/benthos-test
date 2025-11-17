@@ -1,0 +1,6 @@
+processor_resources:
+  - label: "{package}_ec4036b0c1efb7ec"
+    log:
+      level: "INFO"
+      message: "transRef:${! meta(\"transRef\")}, After Call 2C2P Confirm, startTime: ${! meta(\"startTime2c2p\") }, endTime: ${! timestamp_unix() }, errorMessage: ${! this.errorMessage }, errorCode: ${! this.errorCode }"
+      

@@ -1,0 +1,26 @@
+processor_resources:
+  - label: "{package}_30398bfe55cfc297"
+    hp_http:
+        url: ${! meta("reqUrl") }
+        verb: POST
+        
+        headers:
+            Content-Type: "application/json"
+        
+        input: |
+            root = this.request.reqBody
+        
+        result_mode: "merge"
+        
+        output: |
+            root = {}
+            root.result = this.or({})
+        
+        timeout: 45s
+        
+        retries: 0
+        
+        tls:
+            enabled: true
+            skip_cert_verify: true
+            enable_renegotiation: true

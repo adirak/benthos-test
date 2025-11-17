@@ -1,0 +1,45 @@
+processor_resources:
+  - label: "{package}_e6ee3592fd23dccd"
+    hp_transform:
+      name: "Prepare To Keep"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            let access_token = this.tokenData.access_token.or("")
+            let expire = this.tokenData.expires_in.number(0).int64() - 60
+            let redis_value = {
+                "access_token":this.tokenData.access_token.or(""),
+                "expires_in":this.tokenData.expires_in.or(0),
+                "token_type":this.tokenData.token_type.or(""),
+                "start_time": now(),
+            }
+            
+            root.code = if $access_token == "" {
+                2310
+            } else {
+                0
+            }
+            
+            root.bearerToken = if $access_token != "" {
+                "Bearer " + $access_token
+            } else {
+                ""
+            }
+            
+            root.access_token = $access_token
+            
+            root.expire = if $expire <= 0 {
+                0
+            } else {
+                $expire
+            }
+            
+            root.in_cache_value = true
+            root.redis_value = $redis_value
+            root.error = this.tokenData.error.or("")
+            
+            
+      result_mode: merge
+      output: |-
+            root = this

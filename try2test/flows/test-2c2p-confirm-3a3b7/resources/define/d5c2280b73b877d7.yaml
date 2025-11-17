@@ -1,0 +1,13 @@
+
+processor_resources:
+  - label: "{package}_d5c2280b73b877d7"
+    hp_transform:
+      name: "Default Config"
+      input: |-
+        root = this
+      mapping: |-
+        root = this
+      result_mode: merge
+      output: |-
+        let filter = model2json("1b314aa99b13a3b7_d5c2280b73b877d7_in")
+        root = this.json_filter($filter)

@@ -1,0 +1,6 @@
+processor_resources:
+  - label: "{package}_ad434b729cad1020"
+    log:
+      level: "INFO"
+      message: "transRef:${! meta(\"transRef\")}, err_reason: After Call 2C2P Confirm Authen Fail, startTime: ${! meta(\"startTime2c2p\") }, endTime: ${! timestamp_unix() }, code: ${! this.status.status }"
+      

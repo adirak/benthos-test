@@ -1,0 +1,21 @@
+processor_resources:
+  - label: "{package}_2d603a622592c62c"
+    hp_transform:
+      name: "Make ReqUrl"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            let reqUrl = this.auth_url.or("") + this.path.or("")
+            
+            meta _auth_url_2c2p = this.auth_url
+            meta _path_2c2p = this.path
+            meta _reqUrl_2c2p = $reqUrl
+            
+            let enc = (this.client_id + ":" + this.client_secret).encode("base64")
+            meta _basic_auth_2c2p = "Basic " + $enc
+            
+            root.reqUrl = $reqUrl
+      result_mode: merge
+      output: |-
+            root = this

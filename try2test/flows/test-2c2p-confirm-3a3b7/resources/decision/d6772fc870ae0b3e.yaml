@@ -1,0 +1,13 @@
+processor_resources:
+  - label: "{package}_d6772fc870ae0b3e"
+    hp_transform:
+      name: "Check Setting in Meta"
+      result_mode: merge
+      mapping: |-
+        root = this
+
+        meta result_route = match {
+        metadata("_setting_config_") != null => "this.{package}_75c2fc3fe872ac2b",
+        _ => "this.{package}_d5c2280b73b877d7",
+        }
+

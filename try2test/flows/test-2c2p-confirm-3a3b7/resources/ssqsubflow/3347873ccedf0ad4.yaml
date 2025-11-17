@@ -1,0 +1,41 @@
+
+processor_resources:
+  - label: "{package}_3347873ccedf0ad4"
+    hp_function:
+      input: |-
+        meta 24985262e8ba3f78_parrent = meta("flowId")
+        meta flowId = "24985262e8ba3f78"
+        meta subflowId = "24985262e8ba3f78"
+        
+
+        let filter = model2json("1b314aa99b13a3b7_3347873ccedf0ad4_in")
+        root = this.json_filter($filter)
+
+
+      processors:
+        - hp_resource: 
+            id: "{package}_24985262e8ba3f78"
+            name: "Keep Token"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "4003c4b05dacf8b2"
+              }
+
+        - label: "endsub"
+          hp_transform:
+            result_mode: merge
+            mapping: |-
+      
+              let filter = model2json("1b314aa99b13a3b7_3347873ccedf0ad4_out")
+              root = this.json_filter($filter)
+
+
+      result_mode: merge
+      output: |-
+        meta flowId = metadata("24985262e8ba3f78_parrent")
+        meta 24985262e8ba3f78_parrent = deleted()
+        meta subflowId = meta("parrent_3347873ccedf0ad4_subflowId")
+        meta parrent_3347873ccedf0ad4_subflowId = deleted()
+      
+      

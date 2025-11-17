@@ -1,0 +1,41 @@
+
+processor_resources:
+  - label: "{package}_2ae2d30559a13871"
+    hp_function:
+      input: |-
+        meta 3024eba5f7f8f552_parrent = meta("flowId")
+        meta flowId = "3024eba5f7f8f552"
+        meta subflowId = "3024eba5f7f8f552"
+        
+
+        let filter = model2json("1b314aa99b13a3b7_2ae2d30559a13871_in")
+        root = this.json_filter($filter)
+
+
+      processors:
+        - hp_resource: 
+            id: "{package}_3024eba5f7f8f552"
+            name: "Delete Cache"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "169525792e9b08b5"
+              }
+
+        - label: "endsub"
+          hp_transform:
+            result_mode: merge
+            mapping: |-
+      
+              let filter = model2json("1b314aa99b13a3b7_2ae2d30559a13871_out")
+              root = this.json_filter($filter)
+
+
+      result_mode: merge
+      output: |-
+        meta flowId = metadata("3024eba5f7f8f552_parrent")
+        meta 3024eba5f7f8f552_parrent = deleted()
+        meta subflowId = meta("parrent_2ae2d30559a13871_subflowId")
+        meta parrent_2ae2d30559a13871_subflowId = deleted()
+      
+      

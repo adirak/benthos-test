@@ -1,0 +1,12 @@
+processor_resources:
+  - label: "{package}_75c2fc3fe872ac2b"
+    hp_transform:
+        name: "hp_transform"
+        input: |
+          root = this
+        
+        mapping: |
+          root = metadata("_setting_config_")
+        
+        result_mode: new
+    

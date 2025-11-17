@@ -1,0 +1,17 @@
+processor_resources:
+  - label: "{package}_3f0b70e3a01e7ce2"
+    hp_transform:
+        name: "hp_transform"
+        input: |
+          root = this
+          
+          root.cache_value = deleted()
+        
+        mapping: |
+          root = this.config
+          root.cache_value = deleted()
+          
+          meta _setting_config_ = this.config
+        
+        result_mode: new
+    

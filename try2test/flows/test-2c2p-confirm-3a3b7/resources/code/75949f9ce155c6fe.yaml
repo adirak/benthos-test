@@ -1,0 +1,40 @@
+processor_resources:
+  - label: "{package}_75949f9ce155c6fe"
+    hp_function:
+      name: "call_http_2c2p_auth"
+      input: |
+        root = this
+      result_mode: "merge"
+      output: |
+        root = this.or({"error":"Call Authentication Failure"})
+    
+      processors:
+        - label: "maping"
+          mapping: |
+            root = this.body.string()
+    
+        - hp_http:
+            url: "${! meta(\"_reqUrl_2c2p\") }"
+            verb: POST
+    
+            headers:
+              Content-Type: text/plain
+              Authorization: "${! meta(\"_basic_auth_2c2p\") }"
+    
+            result_mode: "new"
+    
+            output: |
+              root = {}
+              root.tokenData = this
+    
+            timeout: 45s
+        
+            retries: 0
+        
+            tls:
+                enabled: true
+                skip_cert_verify: true
+                enable_renegotiation: true
+    
+    
+    

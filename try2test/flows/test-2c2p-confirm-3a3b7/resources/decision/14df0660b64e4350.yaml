@@ -1,0 +1,14 @@
+processor_resources:
+  - label: "{package}_14df0660b64e4350"
+    hp_transform:
+      name: "Authen Fail"
+      result_mode: merge
+      mapping: |-
+        root = this
+
+        meta result_route = match {
+        errorCode == "10" || errorCode == "03" => "this.{package}_355484ecb3cffce5",
+        errorCode == "" => "this.{package}_4ae86648bc4e903f",
+        _ => "this.{package}_14881a6e365a9c4c",
+        }
+

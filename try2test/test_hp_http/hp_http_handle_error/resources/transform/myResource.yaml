@@ -1,0 +1,20 @@
+# Recources
+processor_resources:
+  - label: "my_resource"
+    hp_http:
+      url: http://host.docker.internal:8080/Enquiry
+      verb: POST
+      headers:
+        Content-Type: "application/json"
+      input: |
+        root = {}
+        root.B = "B"
+        root.C = "C"
+
+      result_mode: "new"
+
+      output: |
+        root = {}
+        root.result = this.or({})
+
+      timeout: 30s

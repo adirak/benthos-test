@@ -1,0 +1,41 @@
+
+processor_resources:
+  - label: "{package}_c425e656284df01a"
+    hp_function:
+      input: |-
+        meta d0534c8c9b38ec32_parrent = meta("flowId")
+        meta flowId = "d0534c8c9b38ec32"
+        meta subflowId = "d0534c8c9b38ec32"
+        
+
+        let filter = model2json("1b314aa99b13a3b7_c425e656284df01a_in")
+        root = this.json_filter($filter)
+
+
+      processors:
+        - hp_resource: 
+            id: "{package}_d0534c8c9b38ec32"
+            name: "Read Old Session"
+            metadata: |-
+              {
+                "scopeType": "subFlow",
+                "scopeId": "4003c4b05dacf8b2"
+              }
+
+        - label: "endsub"
+          hp_transform:
+            result_mode: merge
+            mapping: |-
+      
+              let filter = model2json("1b314aa99b13a3b7_c425e656284df01a_out")
+              root = this.json_filter($filter)
+
+
+      result_mode: merge
+      output: |-
+        meta flowId = metadata("d0534c8c9b38ec32_parrent")
+        meta d0534c8c9b38ec32_parrent = deleted()
+        meta subflowId = meta("parrent_c425e656284df01a_subflowId")
+        meta parrent_c425e656284df01a_subflowId = deleted()
+      
+      

@@ -1,0 +1,6 @@
+processor_resources:
+  - label: "{package}_4ae86648bc4e903f"
+    log:
+      level: "INFO"
+      message: "transRef:${! meta(\"transRef\")}, err_reason: Call 2C2P Error, startTime: ${! meta(\"startTime2c2p\") }, endTime: ${! timestamp_unix() }, reqUrl: ${! meta(\"reqUrl\") }"
+      

@@ -1,0 +1,28 @@
+processor_resources:
+  - label: "{package}_14881a6e365a9c4c"
+    hp_transform:
+      name: "Prepare Success"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.status.status = if this.errorCode == "00" {
+                0
+            } else {
+                5000 + this.errorCode.number(0).int64()
+            }
+            
+            root.billerRef = {
+                "transactionAmount": this.result.TransactionAmount,
+                "detail": this.result.Detail.or("{}").parse_json().or("{}"),
+                "partnerRefNo": this.result.PartnerRefNo,
+            }
+            
+            root.request_response = {
+                "response": this.result,
+                "request": this.request,
+                "action": this.action,
+            }
+      result_mode: merge
+      output: |-
+            root = this

@@ -1,0 +1,21 @@
+processor_resources:
+  - label: "{package}_355484ecb3cffce5"
+    hp_transform:
+      name: "Prepare to Delete"
+      input: |-
+            root = this
+      mapping: |-
+            root = this
+            root.billerRef = {}
+            root.redis_key = "hyper_ibank_2c2p_session"
+            
+            root.request_response = {
+                "response": this.result,
+                "request": this.request,
+                "action": this.action,
+            }
+            
+            root.status.status = 5000 + this.errorCode.number(0).int64()
+      result_mode: merge
+      output: |-
+            root = this
